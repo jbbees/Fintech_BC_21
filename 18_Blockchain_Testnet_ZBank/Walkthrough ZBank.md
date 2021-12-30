@@ -94,34 +94,44 @@ We will be using geth application the rest of the project. We need to make a cop
 
 The mining node starts the blockchain. It will mine and seal empty blocks. Node 1 will be our mining node.
 
-* **NOTE:** This is the part that is the securtiy risk. Be careful.
-* **NOTE:** I am using a Windows PC for this, and geth has additional flags for Windows users.
-* **NOTE:** Updated versions of geth have changed the names of flags, so you might get `Flag not found` message many times.
-* **NOTE:** If you put a password on your network nodes there will be different commands that you need to run to get your nodes started. 
-
-**If no password on node:**
-
-**Password:**
-
-**Password:** when I created the network nodes I made a password for each. I then stored those passwords in a *.txt* file in my zbank folder. We will need to make sure to pass a special flag called `--password`
+**NOTE:** This is the part that is the securtiy risk. Be careful.<br>
+**NOTE:** I am using a Windows PC for this, and geth has additional flags for Windows users.<br>
+**NOTE:** Updated versions of geth have changed the names of flags, so you might get `flag provided but not defined` message many times.<br>
+**NOTE:** If you put a password on your network nodes, additional commands are needed to run your nodes.<br>
 
 * Be in Git-bash in our Geth-tools folder.
 * You need the wallet address of node1.
 * Enter the command `./geth --datadir zbank/node1 --mine --miner.threads 1 --http --password zbank/password1.txt --ipcdisable --unlock 0xAd17b0ACd427109C1212C246D8754D993d9b41E1 --allow-insecure-unlock --http.corsdomain "*"`
 
-When you enter this co
-* Copy the **enode** address quickly. 
-* You should see `looking for peers` displayed. The `peercount=0`
-* **Password:** we put a password on our nodes when we created them. We also stored 
-* The mining block will continue doing work sealing empty blocks until a peer connects to the network. 
+`--mine` indicates the mining action.<br>
+`--miner.threads` specifies the number of CPU workers we are using. *I'm on a latop so I assigned 1, because geth slows my laptop down.*<br>
+`--http` replaces the `--rpc` flag, this is needed to be able to connect our MetaMask digital wallet to the testnet to get the mined puppernet tokens.<br>
+`--password` flag wil bypass the `Enter password` prompt and will pass in the password via *.txt* file called **password1.txt**<br>
+`--ipcdisable` flag for Windows-users only, tells geth not use the `ipc` protocol on your computer.<br> 
 
-Geth will display a lot of blockchain information as it starts the network. 
+Geth will start the mining node. You'll see a display of a lot of information. Ideally there shouldn't be any warnings, but most warnings are ignorable. Please see Geth Warnings documentation for explanations.
 
+![image](images/part_6_mine_block_start.png)
 
+* **CRITICAL:** Copy the `self=enode://` address quickly. *You need to copy the whole thing that including the port number 30303*.
+ 
+![image](images/part_6_enode.png)
 
+* Final display you should see `looking for peers` displayed. The `peercount=0`. *There's no other nodes on this network until we add them*.
 
+![image](images/part_6_looking_for_peers.png)
 
-We now need to intialize each network node with a copy of the genesis block. Making sure a copy 
+**What we want to see:**
+
+Geth should be busy mining empty blocks in the background until we get a peer node running.
+
+* The display should be `Commit new mining work` followed by `Successfully sealing block`. Then it should commit to new block work again. 
+
+![image](images/part_6_sealed_block.png)
+
+If there's a failure sealing blocks, this is a huge problem. This means we can't mine our puppernet tokens. See the Geth Warnin
+
+![image](images/
 
 ## Part 7 - geth: Start the peer node.
 
