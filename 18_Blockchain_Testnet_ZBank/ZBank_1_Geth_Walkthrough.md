@@ -42,7 +42,7 @@ Blockchains require nodes to run the network. We create nodes in geth applicatio
 
 ![image](images/part1.png)
 
-**NIOTE:** If you entered a password for your node, it would wise to open a Notepad file and write the password in there as a *.txt* file.  
+**NOTE:** If you entered a password for your node, it would wise to open a Notepad file and write the password in there as a *.txt* file.  
 
 ## Part 2 - geth: Creating Network Node 2.
 
@@ -97,19 +97,23 @@ The mining node starts the blockchain. It will mine and seal empty blocks. Node 
 **NOTE:** This is the part that is the securtiy risk. Be careful.<br>
 **NOTE:** I am using a Windows PC for this, and geth has additional flags for Windows users.<br>
 **NOTE:** Updated versions of geth have changed the names of flags, so you might get `flag provided but not defined` message many times.<br>
-**NOTE:** If you put a password on your network nodes, additional commands are needed to run your nodes.<br>
 
 * Be in Git-bash in our Geth-tools folder.
 * You need the wallet address of node1.
-* Enter the command `./geth --datadir zbank/node1 --mine --miner.threads 1 --http --password zbank/password1.txt --ipcdisable --unlock 0xAd17b0ACd427109C1212C246D8754D993d9b41E1 --allow-insecure-unlock --http.corsdomain "*"`
+* Enter the command `./geth --datadir zbank/node1 --mine --miner.threads 1 --http --password zbank/password1.txt --ipcdisable --unlock 0xAd17b0ACd427109C1212C246D8754D993d9b41E1 --allow-insecure-unlock --http.corsdomain "*"` and hit Enter.
+
+**Flags explained:**<br>
 
 `--mine` indicates the mining action.<br>
-`--miner.threads` specifies the number of CPU workers we are using. *I'm on a latop so I assigned 1, because geth slows my laptop down.*<br>
+`--miner.threads` specifies the number of CPU workers mining. *I'm on a latop so I assigned 1, because geth slows my laptop down.*<br>
 `--http` replaces the `--rpc` flag, this is needed to be able to connect our MetaMask digital wallet to the testnet to get the mined puppernet tokens.<br>
-`--password` flag wil bypass the `Enter password` prompt and will pass in the password via *.txt* file called **password1.txt**<br>
+`--password` will bypass the `Enter password` prompt and will pass in the password via *.txt* file. *I called my file **password1.txt***<br>
 `--ipcdisable` flag for Windows-users only, tells geth not use the `ipc` protocol on your computer.<br> 
+`--unlock` unlocks the wallet if there's a password. Pass the `0x` wallet address for the node after this flag.<br>
+`--allow-insecure-unlock` permits other nodes to connect to the mining node.<br>
+`--http.corsdomain` allows cross-domain connections from external sources, pass `"*"` to allow *all* online locations (the security risk), so we can connect thru MetaMask.
 
-Geth will start the mining node. You'll see a display of a lot of information. Ideally there shouldn't be any warnings, but most warnings are ignorable. Please see Geth Warnings documentation for explanations.
+Geth will start the mining node. You'll see a display of a lot of information. Ideally there shouldn't be any warnings, but most warnings are ignorable. Please see Troubleshooting documentation for explanations.
 
 ![image](images/part_6_mine_block_start.png)
 
@@ -119,7 +123,7 @@ Geth will start the mining node. You'll see a display of a lot of information. I
 
 * Final display you should see `looking for peers` displayed. The `peercount=0`. *There's no other nodes on this network until we add them*.
 
-![image](images/part_6_looking_for_peers.png)
+![image](images/part_6_looking_for_peers2.png)
 
 **What we want to see:**
 
@@ -129,13 +133,16 @@ Geth should be busy mining empty blocks in the background until we get a peer no
 
 ![image](images/part_6_sealed_block.png)
 
-If there's a failure sealing blocks, this is a huge problem. This means we can't mine our puppernet tokens. See the Geth Warnin
+* If there's `Block sealing failed` this is a problem only if the block couldn't be signed. Right now there's no other nodes on the network. See Troubleshooting documentation. 
 
-![image](images/
+![image](images/part_6_sealed_failed.png)
 
 ## Part 7 - geth: Start the peer node.
 
-node2 will the peer node. 
+**NOTE:** You need to have copied the `self=enode://` address from the mining block.<br>
+**NOTE:** The mining node is running on **port 30303** be default. We need to run our peer node on a different port. Just go up 1 number and use **port 30304**.<br> 
 
-**NOTE:** You need to have copied the enode address from the mining block in order to 
-**NOTE:** The mining node is running on **port 30303** be default. We need to run our peer node on a different port. Just go up 1 number and use **port 30304**. 
+* Enter the command `./geth --datadir zbank/node2 --port 30304 --bootnodes "enode://b250745d329dbbf7c79b3485d6f5730a70d89a4c0999a73ebc33bf648b8d56553fe7291bae186d980e01648363c71947b7472ce6f52220fb5f0e000b74d4b034@127.0.0.1:30303" --ipcdisable` and hit Enter.
+
+* Make you drop the `self=` part and put the `enode` and everything after it within double-quotes " "
+* Make sure the `--port` flag has a different number. 
