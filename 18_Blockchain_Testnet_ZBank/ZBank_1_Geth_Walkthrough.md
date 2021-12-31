@@ -159,10 +159,6 @@ Geth should be busy mining empty blocks in the background until we get a peer no
 
 ![image](images/part_6_sealed_block.png)
 
-Once the peer node is connected you'll see a little mining icon when it mines a block.
-
-![image]
-
 * If there's `Block sealing failed` this is a problem only if the block couldn't be signed and you see `err=unauthorized signer`. Right now there's no other nodes on the network. See Troubleshooting documentation. 
 
 ![image](images/part_6_sealed_failed.png)
