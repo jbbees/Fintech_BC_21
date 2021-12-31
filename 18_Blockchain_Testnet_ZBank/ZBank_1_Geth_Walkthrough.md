@@ -57,10 +57,6 @@ Inside the keystore folder there should be a `UTC` keystore file. This improtant
 
 ![image](images/part_2_keystore2.PNG)
 
-**NOTE:** If you entered a password for your node, it would wise to open a Notepad file and write the password in there as a *.txt* file.  
-
-
-
 ## Task 2 - geth: Creating Network Node 2.
 
 * Repeat the same command, only change the name of the node. 
@@ -73,7 +69,7 @@ Every network node will have its own wallet address, its own subfolder, that wil
 
 When creating the nodes it's optional to make a password for it. Be default geth automatically generates a wallet address and a private key for the node. The private keys for this wallet are stored in a keystore file, which is stored locally on your computer. Keystores are a safe and efficient. A hacker would need to guess your private key. 
 
-I added passwords to the nodes for extra security. This means when we run the network we'll be prompted to enter a password to unlock the wallets when we mine tokens.
+I added passwords to the nodes for extra security. This means when we run the network we'll be prompted to enter a password for our nodes. But we can also pass commands to auto-fill these passwords 
 
 ## Task 3 - puppeth: Creating Puppernet Network and Genesis Block.
 
@@ -102,7 +98,7 @@ We're still in puppeth. After making the new *puppernet* network and genesis, pu
 * **Which folder to export to?** *zbank, we want to keep everything in the same network folder*. 
 * Enter `Ctrl-C`, to exit puppeth application. We want to stay in the directory and activate `geth` application again.  
 
-This is making a copy of the genesis block into several JSON files. We do not need to care about the aleth.json, or harmony.json, or parity.json. We only care about the regular JSON file. All of this will be in a zbank folder. 
+This is making a copy of the genesis block into several JSON files. We do not need to care about the `aleth.json`, or `harmony.json`, or `parity.json`. We only care about the regular JSON file. All of this will be in a zbank folder. 
 
 **NOTE:** We will no longer need to use puppeth after this. 
 
@@ -113,6 +109,8 @@ We will be using geth application the rest of the project. We need to make a cop
 * Enter command `./geth init zbank/puppernet.json --datadir zbank/node1`
 * Repeat this command for the second node replacing with *node2*
 * You should see the message `Successfully wrote genesis state` for each command. If you go into each node subfolder, a copy of the genesis file is there. 
+
+![image](images/part_5_node_json.PNG)
 
 ## Task 6 - geth: Start the blockchain, the mining node.
 
@@ -187,8 +185,10 @@ The same display as when we started the mining node. With a proof-of-authority n
 
 You'll also see the `peercount=1` because a node is connected. And it should also show mining block work and looking for peers.
 
-![image](images/part_7_peer_connected.png)
+![image](images/part_7_looking.PNG)
 
 ## Closing the network
 
 Just close down the Git-bash session and it will terminate the network. Any node connection is severed. But we need to have the network running for the second part of this project.
+
+![image](images/closing_blockchain.PNG)
