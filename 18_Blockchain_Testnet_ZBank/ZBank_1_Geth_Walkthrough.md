@@ -43,13 +43,15 @@ Blockchains require nodes to run the network. We create nodes in geth applicatio
 
 ![image](images/part1.png)
 
+* Run the command 
+
 **What we want to see:**
 
-And then you'll see on your local computer within a folder called zbank with subfolder for node1. Every node created will be like this. 
+There should be on your local computer a new folder created called **zbank** with subfolder for **node1**. Every node created will be like this. 
 
-Inside node1 or any node folder there should be both a geth and keystore folder.
+Inside node1 or any node folder there should be both a **geth** and **keystore** folder.
 
-Inside the keystore folder there should be a `UTC` keystore file. This improtant. If it's not there. Then something 
+Inside the keystore folder there should be a `UTC` keystore file. This improtant. If it's not there then something went wrong creating the node. Only solution would be to re-create again. 
 
 **NOTE:** If you entered a password for your node, it would wise to open a Notepad file and write the password in there as a *.txt* file.  
 
@@ -126,7 +128,7 @@ The mining node starts the blockchain. It will mine and seal empty blocks. Node 
 
 `--mine` indicates the mining action.<br>
 `--miner.threads` specifies the number of CPU workers mining. *I'm on a latop so I assigned 1, because geth slows my laptop down.*<br>
-`--http` replaces the `--rpc` flag, this is needed to be able to connect our MetaMask digital wallet to the testnet to get the mined puppernet tokens.<br>
+`--http` replaces the `--rpc` flag. This is exposes our computer port as an endpoint that allows external connections to our testnet. Needed to be able to connect our MetaMask digital wallet.<br>
 `--password` will bypass the `Enter password` prompt and will pass in the password via *.txt* file. *I called my file **password1.txt***<br>
 `--ipcdisable` flag for Windows-users only, tells geth not use the `ipc` protocol on your computer.<br> 
 `--unlock` unlocks the wallet if there's a password. Pass the `0x` wallet address for the node after this flag.<br>
