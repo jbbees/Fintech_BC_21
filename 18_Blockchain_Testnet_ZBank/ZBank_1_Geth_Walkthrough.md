@@ -43,15 +43,19 @@ Blockchains require nodes to run the network. We create nodes in geth applicatio
 
 ![image](images/part1.png)
 
-* Run the command 
-
 **What we want to see:**
 
 There should be on your local computer a new folder created called **zbank** with subfolder for **node1**. Every node created will be like this. 
 
+![image](images/part_2_node_folders.PNG)
+
 Inside node1 or any node folder there should be both a **geth** and **keystore** folder.
 
+![image](images/part_2_keystore1.PNG)
+
 Inside the keystore folder there should be a `UTC` keystore file. This improtant. If it's not there then something went wrong creating the node. Only solution would be to re-create again. 
+
+![image](images/part_2_keystore2.PNG)
 
 **NOTE:** If you entered a password for your node, it would wise to open a Notepad file and write the password in there as a *.txt* file.  
 
@@ -157,9 +161,9 @@ Geth should be busy mining empty blocks in the background until we get a peer no
 
 Once the peer node is connected you'll see a little mining icon when it mines a block.
 
+![image]
 
-
-* If there's `Block sealing failed` this is a problem only if the block couldn't be signed. Right now there's no other nodes on the network. See Troubleshooting documentation. 
+* If there's `Block sealing failed` this is a problem only if the block couldn't be signed and you see `err=unauthorized signer`. Right now there's no other nodes on the network. See Troubleshooting documentation. 
 
 ![image](images/part_6_sealed_failed.png)
 
@@ -174,7 +178,8 @@ Once the peer node is connected you'll see a little mining icon when it mines a 
 
 `./geth --datadir zbank/node2 --port 30304 --bootnodes "enode://b250745d329dbbf7c79b3485d6f5730a70d89a4c0999a73ebc33bf648b8d56553fe7291bae186d980e01648363c71947b7472ce6f52220fb5f0e000b74d4b034@127.0.0.1:30303" --ipcdisable`
 
-* Make you drop the `self=` part and put the `enode` and everything after it within double-quotes " "
+* You have to put the enode for the mining block after `--bootnodes` flag in quotes "". 
+* Make you drop the `self=` part and put the `enode`.
 * Make sure the `--port` flag has a different number. 
 * We don't need to unlock the wallet, or pass any passwords for this command, as node2 serves as network support. Any mining rewards and tokens will be in node1 wallet.
 
@@ -182,6 +187,12 @@ Once the peer node is connected you'll see a little mining icon when it mines a 
 
 The same display as when we started the mining node. With a proof-of-authority network both nodes are mining, so both screens should display the same thing.
 
-You'll also see the peercount has changed to 1. 
+![image](part_7_peer_start.png)
+
+You'll also see the `peercount=1` because a node is connected. And it should also show mining block work and looking for peers.
 
 ![image](images/part_7_peer_connected.png)
+
+## Closing the network
+
+Just close down the Git-bash session and it will terminate the network. Any node connection is severed. 
