@@ -33,16 +33,27 @@ First download the Geth tool. After downloading, store in a folder on your C: dr
 Blockchains require nodes to run the network. We create nodes in geth application that will generate wallet addresses.
 
 * On Git-bash navigate to your folder with your Geth tools.
-* Enter the command `./geth account new --datadir zbank/node1` and then hit enter. 
-* Create a password, or you can hit enter. *I'd advise making a password*. 
-* Repeat the password, or hit enter. 
+* The `./geth` commmand starts geth program. We will use `account new` feature to create a new account node.
+* Enter the command `./geth account new --datadir zbank/node1` and then hit Enter. 
+* Create a password, or you can hit Enter. *I'd advise making a password*. 
+* Repeat the password, or hit Enter. 
 * Generate a wallet address. **Copy the wallet address**. 
 * The private key (the password) is stored in a secure keystore file. 
 * A folder called **zbank** is created. And inside zbank folder is a subfolder called **node1**. This is what the `--datadir` flag passed in the command does.
 
 ![image](images/part1.png)
 
+**What we want to see:**
+
+And then you'll see on your local computer within a folder called zbank with subfolder for node1. Every node created will be like this. 
+
+Inside node1 or any node folder there should be both a geth and keystore folder.
+
+Inside the keystore folder there should be a `UTC` keystore file. This improtant. If it's not there. Then something 
+
 **NOTE:** If you entered a password for your node, it would wise to open a Notepad file and write the password in there as a *.txt* file.  
+
+
 
 ## Part 2 - geth: Creating Network Node 2.
 
@@ -52,20 +63,27 @@ Blockchains require nodes to run the network. We create nodes in geth applicatio
 
 Every network node will have its own wallet address, its own subfolder, that will store its own keystore file, and its own copy of the genesis block. 
 
+### Passwords
+
+When creating the nodes it's optional to make a password for it. Be default geth automatically generates a wallet address and a private key for the node. The private keys for this wallet are stored in a keystore file, which is stored locally on your computer. Keystores are a safe and efficient. A hacker would need to guess your private key. 
+
+I added passwords to the nodes for extra security. This means when we run the network we'll be prompted to enter a password to unlock the wallets when we mine tokens.
+
 ## Part 3 - puppeth: Creating Puppernet Network and Genesis Block.
 
 We use the puppeth application to make an Ethereum test network, and genesis block that is the foundation of any blockchain.
 
 * On Git-bash navigate to your folder with your Geth tools.
 * Enter `./puppeth` command to run puppeth applicaiton.
-* Enter "puppernet" as the network name in lowercase. Hit enter. *You can't use capital letters, spaces, or symbols in puppeth*.
+* Enter `puppernet` as the network name in lowercase. Hit Enter. *You can't use capital letters, spaces, or symbols in puppeth*.
 * **What would like to do?** Hit option 2, `Configure new genesis`.
 * `Create new genesis from scratch`.
 * **Which consensus to use?** Option 2, `proof-of-authority`.
-* **How many seconds should blocks take?** Hit enter. The default is fine.
-* **CRITICAL: Which accounts are allowed to seal?** Enter the wallet addresses from your two network nodes created, and do not include the `0x` at the beginning. Hit enter.
-* **CRITICAL: Which accounts should be pre-funded?** Enter the wallet addresses from your network nodes. Hit enter.
+* **How many seconds should blocks take?** Hit Enter. The default is fine.
+* **CRITICAL: Which accounts are allowed to seal?** Enter the wallet addresses from your two network nodes created, and do not include the `0x` at the beginning. Hit Enter.
+* **CRITICAL: Which accounts should be pre-funded?** Enter the wallet addresses from your network nodes. Hit Enter.
 * **Should the precompile addresses be re-funded with 1 wei?** `no`. *We are not going to do that even if it's advisable*. 
+* **Specify a chain/network ID:** `input any number here you can remember`. The *Chain ID* is your network ID number, and is used for signing transactions. Problems mining blocks because of failure to sign is likely because of an incorrect Chain ID when linking a node.  
 
 ![image](images/part3.png)
 
@@ -100,7 +118,9 @@ The mining node starts the blockchain. It will mine and seal empty blocks. Node 
 
 * Be in Git-bash in our Geth-tools folder.
 * You need the wallet address of node1.
-* Enter the command `./geth --datadir zbank/node1 --mine --miner.threads 1 --http --password zbank/password1.txt --ipcdisable --unlock 0xAd17b0ACd427109C1212C246D8754D993d9b41E1 --allow-insecure-unlock --http.corsdomain "*"` and hit Enter.
+* Enter this command and hit Enter.  
+
+`./geth --datadir zbank/node1 --mine --miner.threads 1 --http --password zbank/password1.txt --ipcdisable --unlock 0xAd17b0ACd427109C1212C246D8754D993d9b41E1 --allow-insecure-unlock --http.corsdomain "*"`
 
 **Flags explained:**<br>
 
@@ -133,16 +153,33 @@ Geth should be busy mining empty blocks in the background until we get a peer no
 
 ![image](images/part_6_sealed_block.png)
 
+Once the peer node is connected you'll see a little mining icon when it mines a block.
+
+
+
 * If there's `Block sealing failed` this is a problem only if the block couldn't be signed. Right now there's no other nodes on the network. See Troubleshooting documentation. 
 
 ![image](images/part_6_sealed_failed.png)
 
 ## Part 7 - geth: Start the peer node.
 
+**NOTE** You need to open a separate Git-bash session to run the peer node in conjunction with the git session running your mining node.
 **NOTE:** You need to have copied the `self=enode://` address from the mining block.<br>
 **NOTE:** The mining node is running on **port 30303** be default. We need to run our peer node on a different port. Just go up 1 number and use **port 30304**.<br> 
 
-* Enter the command `./geth --datadir zbank/node2 --port 30304 --bootnodes "enode://b250745d329dbbf7c79b3485d6f5730a70d89a4c0999a73ebc33bf648b8d56553fe7291bae186d980e01648363c71947b7472ce6f52220fb5f0e000b74d4b034@127.0.0.1:30303" --ipcdisable` and hit Enter.
+* Open a new git session and navigate to your correct folder with your geth tools and network files. 
+* Enter this command and hit Enter.
+
+`./geth --datadir zbank/node2 --port 30304 --bootnodes "enode://b250745d329dbbf7c79b3485d6f5730a70d89a4c0999a73ebc33bf648b8d56553fe7291bae186d980e01648363c71947b7472ce6f52220fb5f0e000b74d4b034@127.0.0.1:30303" --ipcdisable`
 
 * Make you drop the `self=` part and put the `enode` and everything after it within double-quotes " "
 * Make sure the `--port` flag has a different number. 
+* We don't need to unlock the wallet, or pass any passwords for this command, as node2 serves as network support. Any mining rewards and tokens will be in node1 wallet.
+
+**What we should see:**
+
+The same display as when we started the mining node. With a proof-of-authority network both nodes are mining, so both screens should display the same thing.
+
+You'll also see the peercount has changed to 1. 
+
+![image](images/part_7_peer_connected.png)
