@@ -1,4 +1,4 @@
-# Zbank Ethereum Poof-of-Authority Puppernet Token/Testnet
+# Part 1: Zbank Ethereum Poof-of-Authority Puppernet Token/Testnet
 
 ## Please Read First!
 
@@ -28,7 +28,7 @@ We are a blockchain developer working for a fictional bank called ZBank that's l
 
 First download the Geth tool. After downloading, store in a folder on your C: drive. I named mine *geth* because it's memorable to me. You'll see multiple applications. The Geth suite has multiple programs. We are only going to to need the **geth** and **puppeth** applications. 
 
-## Part 1 - geth: Creating Network Node 1.
+## Task 1 - geth: Creating Network Node 1.
 
 Blockchains require nodes to run the network. We create nodes in geth application that will generate wallet addresses.
 
@@ -61,7 +61,7 @@ Inside the keystore folder there should be a `UTC` keystore file. This improtant
 
 
 
-## Part 2 - geth: Creating Network Node 2.
+## Task 2 - geth: Creating Network Node 2.
 
 * Repeat the same command, only change the name of the node. 
 * `./geth account new --datadir zbank/node2`
@@ -69,13 +69,13 @@ Inside the keystore folder there should be a `UTC` keystore file. This improtant
 
 Every network node will have its own wallet address, its own subfolder, that will store its own keystore file, and its own copy of the genesis block. 
 
-### Passwords
+### Optional Task: Storing Node Passwords.
 
 When creating the nodes it's optional to make a password for it. Be default geth automatically generates a wallet address and a private key for the node. The private keys for this wallet are stored in a keystore file, which is stored locally on your computer. Keystores are a safe and efficient. A hacker would need to guess your private key. 
 
 I added passwords to the nodes for extra security. This means when we run the network we'll be prompted to enter a password to unlock the wallets when we mine tokens.
 
-## Part 3 - puppeth: Creating Puppernet Network and Genesis Block.
+## Task 3 - puppeth: Creating Puppernet Network and Genesis Block.
 
 We use the puppeth application to make an Ethereum test network, and genesis block that is the foundation of any blockchain.
 
@@ -93,7 +93,7 @@ We use the puppeth application to make an Ethereum test network, and genesis blo
 
 ![image](images/part3.png)
 
-## Part 4 - puppeth: Exporting the genesis block to a JSON file.
+## Task 4 - puppeth: Exporting the genesis block to a JSON file.
 
 We're still in puppeth. After making the new *puppernet* network and genesis, puppeth will ask if you want to do more.
 
@@ -106,7 +106,7 @@ This is making a copy of the genesis block into several JSON files. We do not ne
 
 **NOTE:** We will no longer need to use puppeth after this. 
 
-## Part 5 - geth: Initialize a copy of genesis block into network nodes.
+## Task 5 - geth: Initialize a copy of genesis block into network nodes.
 
 We will be using geth application the rest of the project. We need to make a copy of the genesis block for every network node. We only made 2 network nodes. 
 
@@ -114,7 +114,7 @@ We will be using geth application the rest of the project. We need to make a cop
 * Repeat this command for the second node replacing with *node2*
 * You should see the message `Successfully wrote genesis state` for each command. If you go into each node subfolder, a copy of the genesis file is there. 
 
-## Part 6 - geth: Start the blockchain, the mining node.
+## Task 6 - geth: Start the blockchain, the mining node.
 
 The mining node starts the blockchain. It will mine and seal empty blocks. Node 1 will be our mining node.
 
@@ -167,7 +167,7 @@ Once the peer node is connected you'll see a little mining icon when it mines a 
 
 ![image](images/part_6_sealed_failed.png)
 
-## Part 7 - geth: Start the peer node.
+## Task 7 - geth: Start the peer node.
 
 **NOTE** You need to open a separate Git-bash session to run the peer node in conjunction with the git session running your mining node.
 **NOTE:** You need to have copied the `self=enode://` address from the mining block.<br>
@@ -195,4 +195,4 @@ You'll also see the `peercount=1` because a node is connected. And it should als
 
 ## Closing the network
 
-Just close down the Git-bash session and it will terminate the network. Any node connection is severed. 
+Just close down the Git-bash session and it will terminate the network. Any node connection is severed. But we need to have the network running for the second part of this project.
