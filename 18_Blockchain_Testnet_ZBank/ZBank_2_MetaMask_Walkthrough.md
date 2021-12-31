@@ -1,3 +1,8 @@
-# MetaMask C
+# MetaMask Connection to Testnet
 
-We will connect our online digital wallet to our testnet. We should have puppernet tokens in our wallet.
+This continuing from the previous section. Our puppernet blockchain testnet should be running and mining/sealing blocks. We ran our network to allow node connections from external online sources. MetaMask will be one of these sources. We will access and connect to the puppernet network through MetaMask.
+
+## Part 1 
+
+* Have your testnet turned on in Git-bash.
+* Go into MetaMask.
