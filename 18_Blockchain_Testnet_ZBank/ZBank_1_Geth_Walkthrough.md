@@ -43,19 +43,13 @@ Blockchains require nodes to run the network. We create nodes in geth applicatio
 
 ![image](images/part1.png)
 
-**What we want to see:**
+**What you should see:**
 
-There should be on your local computer a new folder created called **zbank** with subfolder for **node1**. Every node created will be like this. 
+* There should be on your local computer a new folder created called **zbank** with subfolder for **node1**. Every node created will be like this. 
 
 ![image](images/part_2_node_folders.PNG)
 
-Inside node1 or any node folder there should be both a **geth** and **keystore** folder.
-
-![image](images/part_2_keystore1.PNG)
-
-Inside the keystore folder there should be a `UTC` keystore file. This improtant. If it's not there then something went wrong creating the node. Only solution would be to re-create again. 
-
-![image](images/part_2_keystore2.PNG)
+Inside node1 or any node folder there should be a **keystore** folder. Inside the keystore folder there should be a `UTC` keystore file.
 
 ## Task 2 - geth: Creating Network Node 2.
 
@@ -63,42 +57,47 @@ Inside the keystore folder there should be a `UTC` keystore file. This improtant
 * `./geth account new --datadir zbank/node2`
 * This will generate its own wallet address. **Copy this wallet address**. There will be a new subfolder for **node2** created. 
 
-Every network node will have its own wallet address, its own subfolder, that will store its own keystore file, and its own copy of the genesis block. 
+### Optional Task: Storing node passwords.
 
-### Optional Task: Storing Node Passwords.
+I saved the passwords for both node wallets into their own separate *.txt* files using Notepad. Later on when we start our network nodes, geth will need to authorize needing the password. But we can pass commands to pass these files in to auto-fill the passwords to save time. 
 
-When creating the nodes it's optional to make a password for it. Be default geth automatically generates a wallet address and a private key for the node. The private keys for this wallet are stored in a keystore file, which is stored locally on your computer. Keystores are a safe and efficient. A hacker would need to guess your private key. 
-
-I added passwords to the nodes for extra security. This means when we run the network we'll be prompted to enter a password for our nodes. But we can also pass commands to auto-fill these passwords 
-
-## Task 3 - puppeth: Creating Puppernet Network and Genesis Block.
+## Task 3 - puppeth: Creating puppercoin network and genesis block.
 
 We use the puppeth application to make an Ethereum test network, and genesis block that is the foundation of any blockchain.
 
 * On Git-bash navigate to your folder with your Geth tools.
 * Enter `./puppeth` command to run puppeth applicaiton.
-* Enter `puppernet` as the network name in lowercase. Hit Enter. *You can't use capital letters, spaces, or symbols in puppeth*.
+* Enter `puppercoin` as the network name in lowercase. Hit Enter. *You can't use capital letters, spaces, or symbols in puppeth*.
 * **What would like to do?** Hit option 2, `Configure new genesis`.
 * `Create new genesis from scratch`.
 * **Which consensus to use?** Option 2, `proof-of-authority`.
 * **How many seconds should blocks take?** Hit Enter. The default is fine.
-* **CRITICAL: Which accounts are allowed to seal?** Enter the wallet addresses from your two network nodes created, and do not include the `0x` at the beginning. Hit Enter.
-* **CRITICAL: Which accounts should be pre-funded?** Enter the wallet addresses from your network nodes. Hit Enter.
-* **Should the precompile addresses be re-funded with 1 wei?** `no`. *We are not going to do that even if it's advisable*. 
+* **CRITICAL: Which accounts are allowed to seal?** Enter the wallet addresses from your two network nodes created, and your MetaMask wallet, and do not include the `0x` at the beginning. Hit Enter.
+* **CRITICAL: Which accounts should be pre-funded?** Enter the wallet addresses from prior step. Hit Enter.
+* **Should the precompile addresses be re-funded with 1 wei?** `no`. We are going to mine our puppercoin tokens manually.
 * **Specify a chain/network ID:** `input any number here you can remember`. The *Chain ID* is your network ID number, and is used for signing transactions. Problems mining blocks because of failure to sign is likely because of an incorrect Chain ID when linking a node.  
 
 ![image](images/part3.png)
 
+
+
 ## Task 4 - puppeth: Exporting the genesis block to a JSON file.
 
-We're still in puppeth. After making the new *puppernet* network and genesis, puppeth will ask if you want to do more.
+We're still in puppeth. After making the new *puppercoin* network and genesis, puppeth will ask if you want to do more.
 
 * `Manage existing genesis`.
 * `Export genesis configurations`.
 * **Which folder to export to?** *zbank, we want to keep everything in the same network folder*. 
-* Enter `Ctrl-C`, to exit puppeth application. We want to stay in the directory and activate `geth` application again.  
+* Enter `Ctrl-C`, to exit puppeth application. We want to stay in the directory and activate `geth` application again. 
+* This is making a copy of the genesis block into several JSON files.
 
-This is making a copy of the genesis block into several JSON files. We do not need to care about the `aleth.json`, or `harmony.json`, or `parity.json`. We only care about the regular JSON file. All of this will be in a zbank folder. 
+Do not worry about the `Failed to create Aleth chain spec` and `unsupported consensus engine` messages. We do not need to care about the `aleth.json`, or `harmony.json`, or `parity.json`. We only care about the regular JSON file. All of this will be in the parent zbank folder. 
+
+**What you should see:**
+
+* Your zbank network parent folder will show the `puppercoin.json` files. This is the genensis block.
+
+* There will also be a new folder called `puppeth` created externally on your local drive. It also has a copy of the genesis block. 
 
 **NOTE:** We will no longer need to use puppeth after this. 
 
@@ -106,11 +105,14 @@ This is making a copy of the genesis block into several JSON files. We do not ne
 
 We will be using geth application the rest of the project. We need to make a copy of the genesis block for every network node. We only made 2 network nodes. 
 
-* Enter command `./geth init zbank/puppernet.json --datadir zbank/node1`
+* Enter command `./geth init zbank/puppercoin.json --datadir zbank/node1`
 * Repeat this command for the second node replacing with *node2*
-* You should see the message `Successfully wrote genesis state` for each command. If you go into each node subfolder, a copy of the genesis file is there. 
 
-![image](images/part_5_node_json.PNG)
+**What you should see:**
+
+* You should see the message `Successfully wrote genesis state` for each command.
+
+* Each node subfolder will now have a `geth` folder in addition to a keystore folder.
 
 ## Task 6 - geth: Start the blockchain, the mining node.
 
@@ -137,11 +139,13 @@ The mining node starts the blockchain. It will mine and seal empty blocks. Node 
 `--allow-insecure-unlock` permits other nodes to connect to the mining node.<br>
 `--http.corsdomain` allows cross-domain connections from external sources, pass `"*"` to allow *all* online locations (the security risk), so we can connect thru MetaMask.
 
+**What you should see:**
+
 Geth will start the mining node. You'll see a display of a lot of information. Ideally there shouldn't be any warnings, but most warnings are ignorable. Please see Troubleshooting documentation for explanations.
 
 ![image](images/part_6_mine_block_start.png)
 
-* **CRITICAL:** Copy the `self=enode://` address quickly. *You need to copy the whole thing that including the port number 30303*.
+* **CRITICAL:** Copy the `self=enode://` address quickly. This is the miner adddress other nodes use to connect to the network. *You need to copy the whole thing that including the port number 30303*.
  
 ![image](images/part_6_enode.png)
 
@@ -149,15 +153,11 @@ Geth will start the mining node. You'll see a display of a lot of information. I
 
 ![image](images/part_6_looking_for_peers2.png)
 
-**What we want to see:**
-
-Geth should be busy mining empty blocks in the background until we get a peer node running.
-
 * The display should be `Commit new mining work` followed by `Successfully sealing block`. Then it should commit to new block work again. 
 
 ![image](images/part_6_sealed_block.png)
 
-* If there's `Block sealing failed` this is a problem only if the block couldn't be signed and you see `err=unauthorized signer`. Right now there's no other nodes on the network. See Troubleshooting documentation. 
+* If there's `Block sealing failed` this is a problem only if the block couldn't be signed and you see `err=authentication needed: password or unlock`. Right now there's no other nodes on the network. See Troubleshooting documentation. 
 
 ![image](images/part_6_sealed_failed.png)
 
