@@ -2,23 +2,27 @@
 
 ## Please Read First!
 
-I am student, not a professional programmer, doing an exercise intended for students self-learning blockchain. 
+I couldn't get MetaMask to connect to my local testnet to get tokens. I will try MyCrypto. But the steps for using Geth and creating a blockchain are accurate.
+
+I am student, not a professional programmer, doing an exercise intended for students self-learning blockchain. This was an optional assignment. Many students (including myself) and instructors couldn't get this to work correctly, but the steps below are how this assignment is to be executied. Maybe you will have better luck. 
 
 **WARNING:** This assignment involves open-source Ethereum software and online digitial wallet applications. If you plan on doing this project, please make sure you have up-to-date anti-virus software installed on your computer. We are using the **Geth-Network** command-line software, or **"Geth"**, to complete these tasks, and running this software will expose your local computer to the internet. The exposure risk only happens at the final steps when we officially turn on and execute our ethereum testnet to mine our tokens. The latest versions of Geth are much safer from hackers, but still have anti-virus enabled and don't click 'ALLOW' or any permission window that pops up. The real risk is if you share information about your test netowrk or private keys to others online while the network is running.  
 
 A few final things to note about what we're doing:
 * This is a custom test-blockchain-network we are building on our local machine. 
 * Nothing we do in this project will be on the Ethereum mainnet, or any of the test networks such as: Ropsten, Kovan, or Rinkeby.
-* The crypto tokens produced by our testnet will have no monetary value. There's no real Ethereum involved.
+* The puppercoin tokens produced by our testnet will have no monetary value. There's no real Ethereum involved.
 * This will be a **proof-of-authority** network. The only nodes running this network should be your own computer.
 * Do not share any private keys or network RPC addresses to others online unless you trust them to help you with your testnet.
 * Terminating your git bash sessions will immediately stop the network and close your connection online. 
 
 ## Premise
 
-We are a blockchain developer working for a fictional bank called ZBank that's looking to get into blockchain. ZBank wants to issue a crypto token called "puppernet". We want to develop a test blockchain-network and mine these tokens. Then we will send these mined bank tokens to a digitial wallet, in this case using MetaMask, and then from MetaMask create a mock transaction to transfer some tokens to another wallet address. All we need is a snapshot of the transaction when it successfully completes. 
+We are a blockchain developer working for a fictional bank called ZBank that's looking to get into blockchain. ZBank wants to issue a crypto token called "puppercoin" and to make test transactions with the token. We will develop a test blockchain-network and mine these tokens in the Geth command-line tool on our local computer, and then connect our online MetaMask wallet to this local testnet to get some tokens. Once we have puppercoin tokens in our MetaMask wallet, send tokens to another online wallet address in a transaction. 
 
 ## Tools Used
+
+This walkthrough is split into two parts. Geth and creating/running the network is Part 1. Conencting MetaMask is Part 2. 
 
 * Git Bash (required), Geth only works in git.
 * Geth, or GO-Ethereum, a command-line tool used to generate and run Ethereum-based blockchain networks.  
@@ -28,9 +32,9 @@ We are a blockchain developer working for a fictional bank called ZBank that's l
 
 First download the Geth tool. After downloading, store in a folder on your C: drive. I named mine *geth* because it's memorable to me. You'll see multiple applications. The Geth suite has multiple programs. We are only going to to need the **geth** and **puppeth** applications. 
 
-## Task 1 - geth: Creating Network Node 1.
+## Task 1 - geth: Creating Network Node/Wallet 1.
 
-Blockchains require nodes to run the network. We create nodes in geth application that will generate wallet addresses.
+`geth` is used to create wallet addresses. 
 
 * On Git-bash navigate to your folder with your Geth tools.
 * The `./geth` commmand starts geth program. We will use `account new` feature to create a new account node.
@@ -41,15 +45,17 @@ Blockchains require nodes to run the network. We create nodes in geth applicatio
 * The private key (the password) is stored in a secure keystore file. 
 * A folder called **zbank** is created. And inside zbank folder is a subfolder called **node1**. This is what the `--datadir` flag passed in the command does.
 
-![image](images/part1.png)
+![image](images/task1/t1_create_node.PNG)
 
 **What you should see:**
 
-* There should be on your local computer a new folder created called **zbank** with subfolder for **node1**. Every node created will be like this. 
+* There should be a new folder created called **zbank** with subfolder for **node1**. Every node created will be like this. 
 
-![image](images/part_2_node_folders.PNG)
+![image](images/task1/t1_node_folder.PNG)
 
-Inside node1 or any node folder there should be a **keystore** folder. Inside the keystore folder there should be a `UTC` keystore file.
+* Inside the node folders there should be a **keystore** folder. Inside the keystore folder there should be a `UTC` keystore file. If the UTC is not there, then something went wrong and you need to re-run the `account new` command again. 
+
+![image](images/task1/t1_node_keystore.png)
 
 ## Task 2 - geth: Creating Network Node 2.
 
