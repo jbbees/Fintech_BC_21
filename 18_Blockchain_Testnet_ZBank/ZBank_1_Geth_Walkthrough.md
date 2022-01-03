@@ -89,7 +89,7 @@ We use the `puppeth` application to make an Ethereum test network, and genesis b
 
 **What you should see:**
 
-* There will be a folder called **puppeth** created on your local machine. This contains all the network data.
+* There will be a *hidden* folder called **.puppeth** created on your local machine. This contains all the network data.
 
 ![image](images/part_1/task3/t3_puppeth_folder.png)
 
