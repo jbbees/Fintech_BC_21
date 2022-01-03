@@ -2,9 +2,9 @@
 
 ## Please Read First!
 
-I couldn't get MetaMask to connect to my local testnet to get tokens. I will try MyCrypto. But the steps for using Geth and creating a blockchain are accurate.
+For Part 2, I couldn't get MetaMask to connect to my local testnet to get tokens. I will try MyCrypto. 
 
-I am student, not a professional programmer, doing an exercise intended for students self-learning blockchain. This was an optional assignment. Many students (including myself) and instructors couldn't get this to work correctly, but the steps below are how this assignment is to be executied. Maybe you will have better luck. 
+I am student, not a professional programmer, doing an exercise intended for students self-learning blockchain. This was an optional assignment. 
 
 **WARNING:** This assignment involves open-source Ethereum software and online digitial wallet applications. If you plan on doing this project, please make sure you have up-to-date anti-virus software installed on your computer. We are using the **Geth-Network** command-line software, or **"Geth"**, to complete these tasks, and running this software will expose your local computer to the internet. The exposure risk only happens at the final steps when we officially turn on and execute our ethereum testnet to mine our tokens. The latest versions of Geth are much safer from hackers, but still have anti-virus enabled and don't click 'ALLOW' or any permission window that pops up. The real risk is if you share information about your test netowrk or private keys to others online while the network is running.  
 
