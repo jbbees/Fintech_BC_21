@@ -1,4 +1,4 @@
-# Part 1: Zbank Ethereum Poof-of-Authority Puppernet Token/Testnet
+# Part 1: Zbank Ethereum Poof-of-Authority PupperCoin Token/Testnet
 
 ## Please Read First!
 
