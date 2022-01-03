@@ -1,11 +1,38 @@
 # Part 2: MetaMask Connection to Testnet
 
-This continuing from the previous section. Our puppernet blockchain testnet should be running and mining/sealing blocks. We ran our network to allow node connections from external online sources. MetaMask will be one of these sources. We will access and connect to the puppernet network through MetaMask.
+Our `puppercoin` blockchain testnet should be running and mining/sealing blocks. We ran our network to allow node connections from external online sources. We'll connect our MetaMask to the network. 
 
 ## Part 1 
 
-* Have your testnet turned on in Git-bash.
-* Go into MetaMask.
+* In MetaMask  
+
+**What you should see:**
+
+![image](images/part_2/metamask/EGE.PNG)
+
+* Put any network name you want. 
+* **RPC URL** sould be `127.0.0.1:8545` is the default port that connects to your local computer.
+* **CRITICAL:** Enter the `Chain ID` you established when you made the network. 
+* Make a symbol for your token if you want.
+* Click Save
+
+**What you should see:**
+
+* You'll see a message that it successfully added.
+
+![image](images/part_2/metamask/metmask_network_added.PNG)
+
+* You can see the testnet on your network drop-down options.
+
+![image](images/part_2/metamask/metmask_puppercoin.PNG)
+
+## Chain ID failed.
+
+![image](images/part_2/metamask/PORT.PNG)
+
+If the Chain ID fails. Check your genesis block .JSON file, and make sure the Chain ID is matching what you're typing.
 
 
-`127.0.0.1:8545` is the default port that connects to your local computer.
+
+
+
