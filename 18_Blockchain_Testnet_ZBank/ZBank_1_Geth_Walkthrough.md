@@ -71,7 +71,7 @@ I saved the passwords for both node wallets into their own separate *.txt* files
 
 ## Task 3 - puppeth: Creating puppercoin network and genesis block.
 
-We use the puppeth application to make an Ethereum test network, and genesis block that is the foundation of any blockchain.
+We use the `puppeth` application to make an Ethereum test network, and genesis block that is the foundation of any blockchain.
 
 * On Git-bash navigate to your folder with your Geth tools.
 * Enter `./puppeth` command to run puppeth applicaiton.
@@ -95,7 +95,7 @@ We use the puppeth application to make an Ethereum test network, and genesis blo
 
 ## Task 4 - puppeth: Exporting the genesis block to a JSON file.
 
-We're still in puppeth. After making the new *puppercoin* network and genesis, puppeth will ask if you want to do more.
+We're still in `puppeth`. After making the new *puppercoin* network and genesis, puppeth will ask if you want to do more.
 
 * `Manage existing genesis`.
 * `Export genesis configurations`.
@@ -113,11 +113,11 @@ Do not worry about the `Failed to create Aleth chain spec` and `unsupported cons
 
 ![image](images/part_1/task4/t4_genesis_files.png)
 
-**NOTE:** We will no longer need to use puppeth after this. 
+**NOTE:** We will no longer need to use `puppeth` after this. 
 
 ## Task 5 - geth: Initialize a copy of genesis block into network nodes.
 
-We will be using geth application the rest of the project. We need to make a copy of the genesis block for every network node. We only made 2 network nodes. 
+We will be using `geth` application the rest of the project. We need to make a copy of the genesis block for every network node. We only made 2 network nodes. 
 
 * Enter command `./geth init zbank/puppercoin.json --datadir zbank/node1`
 * Repeat this command for the second node replacing with *node2*
