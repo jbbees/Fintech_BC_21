@@ -45,17 +45,17 @@ First download the Geth tool. After downloading, store in a folder on your C: dr
 * The private key (the password) is stored in a secure keystore file. 
 * A folder called **zbank** is created. And inside zbank folder is a subfolder called **node1**. This is what the `--datadir` flag passed in the command does.
 
-![image](images/task1/t1_create_node.PNG)
+![image](images/part_1/task1/t1_create_node.png)
 
 **What you should see:**
 
 * There should be a new folder created called **zbank** with subfolder for **node1**. Every node created will be like this. 
 
-![image](images/task1/t1_node_folder.PNG)
+![image](images/part_1/task1/t1_node_folder.PNG)
 
 * Inside the node folders there should be a **keystore** folder. Inside the keystore folder there should be a `UTC` keystore file. If the UTC is not there, then something went wrong and you need to re-run the `account new` command again. 
 
-![image](images/task1/t1_node_keystore.png)
+![image](images/part_1/task1/t1_node_keystore.png)
 
 ## Task 2 - geth: Creating Network Node 2.
 
@@ -66,6 +66,8 @@ First download the Geth tool. After downloading, store in a folder on your C: dr
 ### Optional Task: Storing node passwords.
 
 I saved the passwords for both node wallets into their own separate *.txt* files using Notepad. Later on when we start our network nodes, geth will need to authorize needing the password. But we can pass commands to pass these files in to auto-fill the passwords to save time. 
+
+![image](images/part_1/task2/t2_passwords.PNG)
 
 ## Task 3 - puppeth: Creating puppercoin network and genesis block.
 
@@ -83,9 +85,13 @@ We use the puppeth application to make an Ethereum test network, and genesis blo
 * **Should the precompile addresses be re-funded with 1 wei?** `no`. We are going to mine our puppercoin tokens manually.
 * **Specify a chain/network ID:** `input any number here you can remember`. The *Chain ID* is your network ID number, and is used for signing transactions. Problems mining blocks because of failure to sign is likely because of an incorrect Chain ID when linking a node.  
 
-![image](images/part3.png)
+![image](images/part_1/task3/t3_puppeth.png)
 
+**What you should see:**
 
+* There will be a folder called **puppeth** created on your local machine. This contains all the network data.
+
+![image](images/part_1/task3/t3_puppeth_folder.png)
 
 ## Task 4 - puppeth: Exporting the genesis block to a JSON file.
 
@@ -97,13 +103,15 @@ We're still in puppeth. After making the new *puppercoin* network and genesis, p
 * Enter `Ctrl-C`, to exit puppeth application. We want to stay in the directory and activate `geth` application again. 
 * This is making a copy of the genesis block into several JSON files.
 
+![image](images/part_1/task4/t4_export.png)
+
 Do not worry about the `Failed to create Aleth chain spec` and `unsupported consensus engine` messages. We do not need to care about the `aleth.json`, or `harmony.json`, or `parity.json`. We only care about the regular JSON file. All of this will be in the parent zbank folder. 
 
 **What you should see:**
 
 * Your zbank network parent folder will show the `puppercoin.json` files. This is the genensis block.
 
-* There will also be a new folder called `puppeth` created externally on your local drive. It also has a copy of the genesis block. 
+![image](images/part_1/task4/t4_genesis_files.png)
 
 **NOTE:** We will no longer need to use puppeth after this. 
 
@@ -114,11 +122,19 @@ We will be using geth application the rest of the project. We need to make a cop
 * Enter command `./geth init zbank/puppercoin.json --datadir zbank/node1`
 * Repeat this command for the second node replacing with *node2*
 
+![image](images/part_1/task5/t5_geth_init.png)
+
 **What you should see:**
 
 * You should see the message `Successfully wrote genesis state` for each command.
 
 * Each node subfolder will now have a `geth` folder in addition to a keystore folder.
+
+![image](images/part_1/task5/t5_geth_node.png)
+
+* If it `Failed to write genesis block` with an incompatible genesis, simply re-run the command again.
+
+![image](images/part_1/task5/t5_incompatible.PNG)
 
 ## Task 6 - geth: Start the blockchain, the mining node.
 
@@ -149,23 +165,23 @@ The mining node starts the blockchain. It will mine and seal empty blocks. Node 
 
 Geth will start the mining node. You'll see a display of a lot of information. Ideally there shouldn't be any warnings, but most warnings are ignorable. Please see Troubleshooting documentation for explanations.
 
-![image](images/part_6_mine_block_start.png)
+![image](images/part_1/task6/t6_mine_start.PNG) 
 
 * **CRITICAL:** Copy the `self=enode://` address quickly. This is the miner adddress other nodes use to connect to the network. *You need to copy the whole thing that including the port number 30303*.
  
-![image](images/part_6_enode.png)
+![image](images/part_1/task6/t6_enode.png)
 
 * Final display you should see `looking for peers` displayed. The `peercount=0`. *There's no other nodes on this network until we add them*.
 
-![image](images/part_6_looking_for_peers2.png)
+![image](images/part_1/task6/t6_looking_peers.png)
 
 * The display should be `Commit new mining work` followed by `Successfully sealing block`. Then it should commit to new block work again. 
 
-![image](images/part_6_sealed_block.png)
+![image](images/part_1/task6/t6_sealed_block.png)
 
 * If there's `Block sealing failed` this is a problem only if the block couldn't be signed and you see `err=authentication needed: password or unlock`. Right now there's no other nodes on the network. See Troubleshooting documentation. 
 
-![image](images/part_6_sealed_failed.png)
+![image](images/part_1/task6/t6_sealed_fail.png)
 
 ## Task 7 - geth: Start the peer node.
 
@@ -187,14 +203,14 @@ Geth will start the mining node. You'll see a display of a lot of information. I
 
 The same display as when we started the mining node. With a proof-of-authority network both nodes are mining, so both screens should display the same thing.
 
-![image](part_7_peer_start.png)
+![image](images/part_1/task7/t7_peer_start.PNG)
 
 You'll also see the `peercount=1` because a node is connected. And it should also show mining block work and looking for peers.
 
-![image](images/part_7_looking.PNG)
+![image](images/part_1/task7/t7_looking_peers.PNG)
 
 ## Closing the network
 
 Just close down the Git-bash session and it will terminate the network. Any node connection is severed. But we need to have the network running for the second part of this project.
 
-![image](images/closing_blockchain.PNG)
+![image](images/part_1/task7/closing_blockchain.PNG)
