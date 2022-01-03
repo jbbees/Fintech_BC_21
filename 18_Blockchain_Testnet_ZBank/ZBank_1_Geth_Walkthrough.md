@@ -57,7 +57,7 @@ First download the Geth tool. After downloading, store in a folder on your C: dr
 
 ![image](images/part_1/task1/t1_node_keystore.png)
 
-## Task 2 - geth: Creating Network Node 2.
+## Task 2 - geth: Creating Network Node/Wallet 2.
 
 * Repeat the same command, only change the name of the node. 
 * `./geth account new --datadir zbank/node2`
