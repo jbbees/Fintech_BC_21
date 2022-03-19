@@ -63,10 +63,11 @@ yen_futures.head()
 </code></pre>
 What you should see 
 
-We only Yen data from Jan 1 1990 to present. So we slice the dataframe 
+Slice the dataframe. Only use rows from **Jan 1 1990 to present**. 
 <pre><code>yen_futures = yen_futures.loc["1990-01-01":, :]</code></pre>
 
-
+Plot the raw returns based on the *Settle* column of the dataset.
+<pre><code>yen_futures['Settle'].plot(title='Yen Futures Settle Prices', ylabel='Settle Price in $USD', figsize=(15,10))</code></pre>
 
 
 
