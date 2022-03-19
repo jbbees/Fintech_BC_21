@@ -40,13 +40,14 @@ Run a simple `.shape` or  on the raw dataframe and it will
 
 ## Imports:
 
-> 
-  import numpy as np
-  import pandas as pd
-  from pathlib import Path
-  %matplotlib inline
-  import warnings
-  warnings.filterwarnings('ignore')
+<pre><code>
+import numpy as np
+import pandas as pd
+from pathlib import Path
+%matplotlib inline
+import warnings
+warnings.filterwarnings('ignore')
+</code></pre>
 
 ## Read-in data and cleanup
 
