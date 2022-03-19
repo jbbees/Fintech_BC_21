@@ -85,5 +85,10 @@ We declare trend/noise variables.
 
 <pre><code>settle_noise, settle_trend = sm.tsa.filters.hpfilter(yen_futures['Settle'])</code></pre>
 
+<pre><code>decomposed_yen_settle_prices = pd.DataFrame(yen_futures['Settle'])
+decomposed_yen_settle_prices['noise'] = settle_noise
+decomposed_yen_settle_prices['trend'] = settle_trend
+decomposed_yen_settle_prices.head()</code></pre>
+
 
 
