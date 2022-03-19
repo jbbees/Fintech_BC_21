@@ -2,7 +2,7 @@
 
 Our `puppercoin` blockchain testnet should be running and mining/sealing blocks. We ran our network to allow node connections from external online sources. We'll connect our MetaMask to the network. This part required copying and pasting a MetaMask wallet address into `puppeth` when making the `puppercoin` network. 
 
-## Part 1 
+## Task 1  - Setting up Custom Network, adding puppercoin.
 
 * In MetaMask choose **Custom Network** from the dropdown list of Ethereum networks. 
 
@@ -32,7 +32,8 @@ If the Chain ID fails. Check your genesis block .JSON file, and make sure the Ch
 
 ![image](images/part_2/metamask/metmask_chain_check.PNG)
 
+## Task 2 - Wallet token balance, send transaction
 
-
+There should be tokens in MetaMask wallet address used for sealing when setting up puppeth. 
 
 

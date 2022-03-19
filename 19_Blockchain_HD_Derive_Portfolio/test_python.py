@@ -1,4 +1,6 @@
 # Import HD Derive wallets.
+# Capturing output from the standard output buffer, from command line into python. 
+# Enter 
 # HD Derive can only be executed on command line. This program will import it into python script and execute it. 
 # python script that can be used to build a universal wallet manager.
 
