@@ -1,5 +1,7 @@
 # Yen Futures: Should we buy JPY?
 
+![image](images/japanese-yen.webp)
+
 <details><summary>Premise:</summary>
 
 * We need to decide if it is financially sound to buy Japanese Yen (JPY) now based on predicted future returns and volatilty.
