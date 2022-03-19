@@ -57,6 +57,9 @@ import statsmodels.api as sm
 </code></pre>
 
 ## Read-in data and cleanup
+
+We create a starting dataframe by reading in the `yen.csv` and I'll call it `yen_futures`.
+
 <pre><code>
 yen_futures = pd.read_csv(
     Path("yen.csv"), index_col="Date", infer_datetime_format=True, parse_dates=True
