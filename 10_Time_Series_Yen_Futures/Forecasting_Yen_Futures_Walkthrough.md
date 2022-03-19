@@ -99,5 +99,5 @@ decomposed_yen_settle_prices.head()</code></pre>
 
 <details><summary>What you should see</summary>
 
-![image](images/ts_2_decomposed_hp_plot.PNG)
+![image](images/ts_2_decomposed_hp_plot.PNG)</details>
 
