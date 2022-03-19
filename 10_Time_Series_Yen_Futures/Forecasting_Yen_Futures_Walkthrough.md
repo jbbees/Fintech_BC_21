@@ -39,7 +39,6 @@ Run a simple `.shape` or  on the raw dataframe and it will
 # Part 1: Time-Series Analysis
 
 ## Imports:
-
 <pre><code>
 import numpy as np
 import pandas as pd
@@ -47,6 +46,12 @@ from pathlib import Path
 %matplotlib inline
 import warnings
 warnings.filterwarnings('ignore')
+</code></pre>
+
+You'll need to import the `sickit-learn` modules. I did this at the
+
+<pre><code>
+import statsmodels.api as sm
 </code></pre>
 
 ## Read-in data and cleanup
