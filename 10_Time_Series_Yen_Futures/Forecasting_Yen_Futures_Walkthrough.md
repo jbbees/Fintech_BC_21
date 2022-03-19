@@ -33,7 +33,7 @@ Run a simple `.shape` or  on the raw dataframe and it will
 * High, the highest price for the yen in that day.
 * Low, the lowest price for the Yen in the day.
 * Last
-* Settle
+* Settle, this the main column that we are making our forecasts with. 
 * Volume, the amount of yen traded that day.
 * Previous Day Open Interest
 </details>
@@ -101,6 +101,6 @@ decomposed_yen_settle_prices.head()</code></pre>
 
 ![image](images/ts_2_decomposed_hp_plot.PNG)
     
-So we removed the noise or spikiness of the Settle price data, and  can see an overlay of a smooth trend in *orange*. 
+So we removed the noise or spikiness/seasonality of the Settle price data, and  can see an overlay of a smooth trend in *orange*. 
 </details>
 
