@@ -55,7 +55,13 @@ import statsmodels.api as sm
 </code></pre>
 
 ## Read-in data and cleanup
-
+<pre><code>
+yen_futures = pd.read_csv(
+    Path("yen.csv"), index_col="Date", infer_datetime_format=True, parse_dates=True
+)
+yen_futures.head()
+</code></pre>
+What you should see 
 
 
 
