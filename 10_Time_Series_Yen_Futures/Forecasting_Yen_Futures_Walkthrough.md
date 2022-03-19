@@ -81,9 +81,11 @@ Overall the view of the data looks non-stationary and that some kind of trend ex
 
 The Hodrick-Prescott filter is a function we use to decompose a time-series dataset into trending and noise components. This is why we imported the `statsmodels` module. 
 
-We declare trend/noise variables.
+We declare trend/noise variables. We only to decompose based on the *Settle* column-only of the original data.
 
 <pre><code>settle_noise, settle_trend = sm.tsa.filters.hpfilter(yen_futures['Settle'])</code></pre>
+
+Create a new dataframe. Add-in columns for the *noise* and *trend* values.
 
 <pre><code>decomposed_yen_settle_prices = pd.DataFrame(yen_futures['Settle'])
 decomposed_yen_settle_prices['noise'] = settle_noise
