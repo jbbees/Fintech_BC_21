@@ -8,7 +8,7 @@
 * We will also use **sklearn** module to make Linear Regression models, splitting the yen data into training and test components, and Rolling Out-of-Sample methods to test the models goodness of fit with the model.
 </details>
 
-### Installs needed
+<details><summary>Installs needed</summary>
 
 Most of time-series model functions are built-in. To import these modules:
 
@@ -20,8 +20,9 @@ For the GARCH model:
 `conda install -c bashtage arch` or you simply use `pip install arch`
 
 `from arch import arch_model`
+</details>
 
-### What does the yen data file contain?
+<details><summary>What does the yen data file contain?</summary>
 
 Run a simple `.shape` or  on the raw dataframe and it will
 
@@ -33,6 +34,7 @@ Run a simple `.shape` or  on the raw dataframe and it will
 * Settle
 * Volume, the amount of yen traded that day.
 * Previous Day Open Interest
+</details>
 
 # Part 1: Time-Series Analysis
 
