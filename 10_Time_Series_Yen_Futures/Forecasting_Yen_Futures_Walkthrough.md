@@ -63,6 +63,9 @@ yen_futures.head()
 </code></pre>
 What you should see 
 
+We only Yen data from Jan 1 1990 to present. So we slice the dataframe 
+<pre><code>yen_futures = yen_futures.loc["1990-01-01":, :]</code></pre>
+
 
 
 
