@@ -50,7 +50,7 @@ import warnings
 warnings.filterwarnings('ignore')
 </code></pre>
 
-You'll need to import the `sickit-learn` modules. I did this at the
+You'll need to import the `sickit-learn` modules. This will be used to
 
 <pre><code>
 import statsmodels.api as sm
@@ -76,6 +76,14 @@ Plot the raw returns based on the *Settle* column of the dataset.
 ![image](images/ts_1_raw_plot.PNG)
     
 Overall the view of the data looks non-stationary and that some kind of trend exists. I am seeing a pattern of gradual incrases followed by gradual decreases, in approximately 4-year intervals. From 1992-1996 there's increase from 6000-12,700, and the from 1996-2000 it gradually declines below 7000 by 1998-1999. There's intermittent bursts of micro-increases and decreases in the trends, likely seasonality is playing a role in that. Year-over-year along the x-axis, we see from approx years 2003-2013 there's a trending increase the spikes in data getting more pronounced. Lots of spikiness plotted raw data presented.</details>
+
+## Decomposing the data into trend/noise components using Hodrick-Prescott filter.
+
+The Hodrick-Prescott filter is a function we use to decompose a time-series dataset into trending and noise components. This is why we imported the `statsmodels` module. 
+
+We declare trend/noise variables.
+
+<pre><code>settle_noise, settle_trend = sm.tsa.filters.hpfilter(yen_futures['Settle'])</code></pre>
 
 
 
