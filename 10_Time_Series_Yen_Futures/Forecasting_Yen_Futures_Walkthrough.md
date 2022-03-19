@@ -100,5 +100,7 @@ decomposed_yen_settle_prices.head()</code></pre>
 <details><summary>What you should see</summary>
 
 ![image](images/ts_2_decomposed_hp_plot.PNG)
+    
+So we can see an overlay of the trend in Yen settle prices seen in *orange*. 
 </details>
 
