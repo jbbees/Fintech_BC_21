@@ -95,9 +95,10 @@ decomposed_yen_settle_prices['noise'] = settle_noise
 decomposed_yen_settle_prices['trend'] = settle_trend
 decomposed_yen_settle_prices.head()</code></pre>
 
-<pre><code>decomposed_yen_settle_prices[['Settle', 'trend']]['2015-01-01':].plot(title='Settle vs. Trend', ylabel='Settle Price in $USD', figsize=(15,10))</code.</pre>
+<pre><code>decomposed_yen_settle_prices[['Settle', 'trend']]['2015-01-01':].plot(title='Settle vs. Trend', ylabel='Settle Price in $USD', figsize=(15,10))</code></pre>
 
 <details><summary>What you should see</summary>
 
-![image](images/ts_2_decomposed_hp_plot.PNG)</details>
+![image](images/ts_2_decomposed_hp_plot.PNG)
+</details>
 
