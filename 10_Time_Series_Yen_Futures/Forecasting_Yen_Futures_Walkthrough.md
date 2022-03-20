@@ -106,7 +106,9 @@ So we removed the noise or spikiness/seasonality of the Settle price data, and  
 
 ## Forecast Model 1: ARMA Model
 
-We build an ARMA model to make our first forecast based on the *Settle* column. However, we need to first transpose the current *Settle* column data to be non-stationary. We can use the **.pct_change()** function to do this. This will calculate the **percent difference** of the current row value from the previous row, and then we'll multiple by 100 to make it clean whole number form. Then we need to drop nulls afterwards.  
+ARMA models forecast future values based on past values. We build an ARMA model to make our first forecast based on the *Settle* column. 
+
+Transpose the current *Settle* column values to stationary format. We can use the **.pct_change()** function to do this. This will calculate the **percent difference** of the current row value from the previous row, and then we'll multiple by 100 to make it clean whole number form. Then we need to drop nulls afterwards.  
 
 <pre><code>
 returns = (yen_futures[["Settle"]].pct_change() * 100)                    # run the pct_change() * 100 to transform non-stationary data to stationary for model.
@@ -126,6 +128,21 @@ results_1.summary()
 
 ![image](images/ts_4_ARMA_summary.PNG)
 </details>
+
+Plot the forecast results.
+<pre><code>
+forecast_1 = pd.DataFrame(
+    results_1.forecast(steps=5)[0]
+)
+forecast_1.plot(title='Model 1 - ARMA: Predicted Yen Settle Price Returns 5-Day Forecast', ylabel='Settle Price in $USD', figsize=(15,10))
+</code></pre>
+
+<details><summary>Is this ARMA model any good for forecasting?</summary>
+Nope.
+    
+The ARMA model is forecasting that the value of the Japanese Yen will strongly decline in the short-term 
+    
+
 
 
 
