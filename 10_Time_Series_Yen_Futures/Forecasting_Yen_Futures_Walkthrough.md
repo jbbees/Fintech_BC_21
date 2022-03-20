@@ -139,6 +139,7 @@ forecast_1.plot(title='Model 1 - ARMA: Predicted Yen Settle Price Returns 5-Day 
 <details><summary>Forecast</summary>
 
 [!image](images/ts_5_ARMA_model_plot.PNG)
+</details>
 
 
 <details><summary>Is this ARMA model any good for forecasting?</summary>
