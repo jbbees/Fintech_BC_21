@@ -130,12 +130,16 @@ results_1.summary()
 </details>
 
 Plot the forecast results.
-<pre><code>
-forecast_1 = pd.DataFrame(
+<pre><code> forecast_1 = pd.DataFrame(
     results_1.forecast(steps=5)[0]
 )
 forecast_1.plot(title='Model 1 - ARMA: Predicted Yen Settle Price Returns 5-Day Forecast', ylabel='Settle Price in $USD', figsize=(15,10))
 </code></pre>
+
+<details><summary>Forecast</summary>
+
+[!image](images/ts_5_ARMA_model_plot.PNG)
+
 
 <details><summary>Is this ARMA model any good for forecasting?</summary>
 Nope.
