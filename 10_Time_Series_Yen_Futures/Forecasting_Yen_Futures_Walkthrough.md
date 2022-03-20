@@ -106,13 +106,21 @@ So we removed the noise or spikiness/seasonality of the Settle price data, and  
 
 ## Forecast Model 1: ARMA Model
 
-We build an ARMA model.  
+We build an ARMA model to make our first forecast based on the *Settle* column. However, we need to first transpose the current *Settle* column data to be non-stationary. We can use the **.pct_change()** function to do this. This will calculate the **percent difference** of the current row value from the previous row, and then we'll multiple by 100 to make it clean whole number form. Then we need to drop nulls afterwards.  
 
 <pre><code>
 returns = (yen_futures[["Settle"]].pct_change() * 100)                    # run the pct_change() * 100 to transform non-stationary data to stationary for model.
 returns = returns.replace(-np.inf, np.nan).dropna()                       # drop nulls after a pct_change() 
 returns.tail()
+</code></pre>
 
+Then build the ARMA model. Fit the model to the stationary data to a results variable. Run a summary on those results.
+
+<pre><code>
+model_1 = sm.tsa.ARMA(returns.values, order=(2,1))
+results_1 = model_1.fit()
+results_1.summary()
+</code></pre>
 
 
 
