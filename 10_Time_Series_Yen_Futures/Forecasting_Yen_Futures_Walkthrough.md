@@ -116,7 +116,7 @@ returns = returns.replace(-np.inf, np.nan).dropna()                       # drop
 returns.tail()
 </code></pre>
 
-Then build the ARMA model. Fit the model to the stationary data to a results variable. Run a summary on those results.
+Then build the ARMA model. Fit the model to the stationary data to a results variable. We will define the ARMA order, the auto-regressive component as 2, and moving average as 1. This is a second-order ARMA model. Run a summary on those results.
 
 <pre><code>
 model_1 = sm.tsa.ARMA(returns.values, order=(2,1))
@@ -139,6 +139,7 @@ forecast_1.plot(title='Model 1 - ARMA: Predicted Yen Settle Price Returns 5-Day 
 <details><summary>Forecast</summary>
 
 [!image](images/ts_5_ARMA_model_plot.PNG)
+    
 </details>
 
 
