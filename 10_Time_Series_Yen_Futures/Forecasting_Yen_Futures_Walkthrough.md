@@ -104,3 +104,16 @@ decomposed_yen_settle_prices.head()</code></pre>
 So we removed the noise or spikiness/seasonality of the Settle price data, and  can see an overlay of a smooth trend in *orange*. 
 </details>
 
+## Forecast Model 1: ARMA Model
+
+We build an ARMA model.  
+
+<pre><code>
+returns = (yen_futures[["Settle"]].pct_change() * 100)                    # run the pct_change() * 100 to transform non-stationary data to stationary for model.
+returns = returns.replace(-np.inf, np.nan).dropna()                       # drop nulls after a pct_change() 
+returns.tail()
+
+
+
+
+
