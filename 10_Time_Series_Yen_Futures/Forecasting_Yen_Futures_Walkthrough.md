@@ -122,6 +122,11 @@ results_1 = model_1.fit()
 results_1.summary()
 </code></pre>
 
+<details><summary>What you should see</summary>
+
+![image](images/ts_4_ARMA_summary.PNG)
+</details>
+
 
 
 
