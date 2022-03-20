@@ -108,7 +108,7 @@ So we removed the noise or spikiness/seasonality of the Settle price data, and  
 
 ARMA models forecast future values based on past values. We build an ARMA model to make our first forecast based on the *Settle* column. 
 
-Transpose the current *Settle* column values to stationary format. We can use the **.pct_change()** function to do this. This will calculate the **percent difference** of the current row value from the previous row, and then we'll multiple by 100 to make it clean whole number form. Then we need to drop nulls afterwards.  
+1. Transpose the current *Settle* column values to stationary format. We can use the **.pct_change()** function to do this. This will calculate the **percent difference** of the current row value from the previous row, and then we'll multiple by 100 to make it clean whole number form. Then we need to drop nulls afterwards.  
 
 <pre><code>
 returns = (yen_futures[["Settle"]].pct_change() * 100)                    # run the pct_change() * 100 to transform non-stationary data to stationary for model.
@@ -116,7 +116,7 @@ returns = returns.replace(-np.inf, np.nan).dropna()                       # drop
 returns.tail()
 </code></pre>
 
-Then build the ARMA model. Fit the model to the stationary data to a results variable. We will define the ARMA order, the auto-regressive component as 2, and moving average as 1. This is a second-order ARMA model. Run a summary on those results.
+2. Build the ARMA model. Fit the model to the stationary data to a results variable. We will define the ARMA order, the auto-regressive component as 2, and moving average as 1. This is a second-order ARMA model. Run a summary on those results.
 
 <pre><code>
 model_1 = sm.tsa.ARMA(returns.values, order=(2,1))
@@ -129,7 +129,7 @@ results_1.summary()
 ![image](images/ts_4_ARMA_summary.PNG)
 </details>
 
-Plot the forecast results. We are forecasting the next 5 days of Yen values based on the past Yen data.
+3. Put the forecast results into a dataframe, passing the model results. Plot the forecast for the next 5 days of Yen values based on the past Yen data.
 
 <pre><code> forecast_1 = pd.DataFrame(
     results_1.forecast(steps=5)[0]
@@ -137,7 +137,7 @@ Plot the forecast results. We are forecasting the next 5 days of Yen values base
 forecast_1.plot(title='Model 1 - ARMA: Predicted Yen Settle Price Returns 5-Day Forecast', ylabel='Settle Price in $USD', figsize=(15,10))
 </code></pre>
 
-<details><summary>Forecast</summary>
+<details><summary>Model Forecast</summary>
 
 [!image](images/ts_5_ARMA_model_plot.PNG)
 </details>
