@@ -129,7 +129,8 @@ results_1.summary()
 ![image](images/ts_4_ARMA_summary.PNG)
 </details>
 
-Plot the forecast results.
+Plot the forecast results. We are forecasting the next 5 days of Yen values based on the past Yen data.
+
 <pre><code> forecast_1 = pd.DataFrame(
     results_1.forecast(steps=5)[0]
 )
@@ -139,15 +140,13 @@ forecast_1.plot(title='Model 1 - ARMA: Predicted Yen Settle Price Returns 5-Day 
 <details><summary>Forecast</summary>
 
 [!image](images/ts_5_ARMA_model_plot.PNG)
-    
 </details>
-
 
 <details><summary>Is this ARMA model any good for forecasting?</summary>
 Nope.
     
 The ARMA model is forecasting that the value of the Japanese Yen will strongly decline in the short-term 
-    
+</details>
 
 
 
