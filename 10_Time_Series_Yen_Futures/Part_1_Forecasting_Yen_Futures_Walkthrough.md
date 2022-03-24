@@ -82,12 +82,11 @@ Overall the view of Yen settle prices are somewhat increasing as time goes on ac
 
 The Hodrick-Prescott filter is a function we use to decompose a time-series dataset into trending and noise components. This is why we imported the `statsmodels` module. 
 
-We declare trend/noise variables. We only to decompose based on the *Settle* column-only of the original data.
+1. Declare trend/noise variables. We only to decompose based on the *Settle* column-only of the original data.
 
 <pre><code>settle_noise, settle_trend = sm.tsa.filters.hpfilter(yen_futures['Settle'])</code></pre>
 
-Create a new dataframe. Add-in columns for the *noise* and *trend* values.
-
+2. Create a new dataframe. Add-in columns for the *noise* and *trend* values.
 <pre><code>decomposed_yen_settle_prices = pd.DataFrame(yen_futures['Settle'])
 decomposed_yen_settle_prices['noise'] = settle_noise
 decomposed_yen_settle_prices['trend'] = settle_trend
@@ -99,7 +98,7 @@ decomposed_yen_settle_prices.head()</code></pre>
     
 </details>
 
-Plot the trend vs noise 
+3. Plot the trend vs noise overlay.
 <pre><code>decomposed_yen_settle_prices[['Settle', 'trend']]['2015-01-01':].plot(title='Settle vs. Trend', ylabel='Settle Price in $USD', figsize=(15,10))</code></pre>
 
 <details><summary>What you should see</summary>
