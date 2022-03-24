@@ -195,6 +195,11 @@ results_3 = model_3.fit(disp='off')
 results_3.summary()
 </code></pre>
 
+<details><summary>Garch summary results</summary>
+
+![image](images/ts_9_garch_summary.PNG)
+    
+</details>
 
 
 
