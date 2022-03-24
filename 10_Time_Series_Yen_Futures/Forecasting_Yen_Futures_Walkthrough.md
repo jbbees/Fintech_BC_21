@@ -52,9 +52,7 @@ warnings.filterwarnings('ignore')
 
 You'll need to import the `sickit-learn` modules. This will be used to
 
-<pre><code>
-import statsmodels.api as sm
-</code></pre>
+<pre><code>import statsmodels.api as sm</code></pre>
 
 ## Read-in data and cleanup
 
@@ -154,9 +152,7 @@ We will use the original *Settle* column values from our original data. That is,
 
 Import ARIMA model functions.
 
-<pre><code>
-from statsmodels.tsa.arima_model import ARIMA
-</code></pre>
+<pre><code>from statsmodels.tsa.arima_model import ARIMA</code></pre>
 
 
 
