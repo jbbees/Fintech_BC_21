@@ -141,10 +141,8 @@ forecast_1.plot(title='Model 1 - ARMA: Predicted Yen Settle Price Returns 5-Day 
     
 </details>
 
-<details><summary>Is this ARMA model any good for forecasting?</summary>
-Nope.
-    
-The ARMA model is forecasting that the value of the Japanese Yen will strongly decline in the short-term 
+<details><summary>CONCLUSION: Is this ARMA model any good for forecasting?</summary>
+No. The ARMA model is forecasting that the value of the Japanese Yen will strongly decline in the short-term 
 </details>
 
 ## Forecast Model 2: ARIMA Model
@@ -180,5 +178,23 @@ forecast_2.plot(title='Model 2 - ARIMA: Predicted Yen Settle Price Returns 5-Day
 ![image](images/ts_7_ARIMA_forecast.PNG)
     
 </details>
+
+<details><summary>CONCLUSION: Was the ARIMA model good for forecasting?</summary>
+</details>
+
+## Forecast Model 3: Volatility Analysis using GARCH
+
+We will make a third forecast this time on past price **volatility** as opposed to past values. We need to use GARCH model functions.
+
+1. Import GARCH model. If we didn't already. 
+<pre><code>from arch import arch_model</code></pre>
+
+2. Build the GARCH model, fit the model to a results variable. 
+<pre><code>model_3 = arch_model(settle_returns['Settle'], mean="Zero", vol="GARCH", p=1, q=1)
+results_3 = model_3.fit(disp='off')
+results_3.summary()
+</code></pre>
+
+
 
 
