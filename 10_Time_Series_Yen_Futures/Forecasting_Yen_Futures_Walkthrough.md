@@ -150,10 +150,15 @@ The ARMA model is forecasting that the value of the Japanese Yen will strongly d
 
 We will use the original *Settle* column values from our original data. That is, we're using the read-in data that isn't decomposed or manipulated. 
 
-Import ARIMA model functions.
+1. Import ARIMA model functions.
 
 <pre><code>from statsmodels.tsa.arima_model import ARIMA</code></pre>
 
+2. Build the ARIMA model. Set our model components, p = 5, d = 1, and q = 1 
+
+<pre><code>model_2 = ARIMA(yen_futures['Settle'], order=(5, 1, 1))
+results_2 = model_2.fit()
+</code></pre>
 
 
 
