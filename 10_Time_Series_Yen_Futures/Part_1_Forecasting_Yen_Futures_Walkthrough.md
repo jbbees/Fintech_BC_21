@@ -135,7 +135,7 @@ results_1.summary()
 forecast_1.plot(title='Model 1 - ARMA: Predicted Yen Settle Price Returns 5-Day Forecast', ylabel='Settle Price in $USD', figsize=(15,10))
 </code></pre>
 
-<details><summary>Model Forecast</summary>
+<details><summary>ARMA Model Forecast</summary>
 
 ![image](images/ts_5_ARMA_forecast.PNG)
     
@@ -175,9 +175,9 @@ forecast_2 = pd.DataFrame(
 forecast_2.plot(title='Model 2 - ARIMA: Predicted Yen Settle Price Returns 5-Day Forecast', ylabel='Settle Price in $USD', figsize=(15,10))
 </code></pre>
 
-<details><summary>ARIMA Forecast</summary>
+<details><summary>ARIMA Model Forecast</summary>
 
-    ![image](images/ts_7_ARIMA_model_plot.PNG)
+![image](images/ts_7_ARIMA_forecast.PNG)
     
 </details>
 
