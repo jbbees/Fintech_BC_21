@@ -108,8 +108,8 @@ ARMA models forecast future values based on past values. We build an ARMA model 
 
 1. Transpose the current *Settle* column values to **stationary format**. We can use the **.pct_change()** function to do this. This will calculate the **percent difference** of the current row value from the previous row, and then we'll multiple by 100 to make it clean whole number form. Then we need to drop nulls afterwards.  
 
-<pre><code> settle_returns = (yen_futures[["Settle"]].pct_change() * 100)                    # run the pct_change() * 100 to transform non-stationary data to stationary for model.
-settle_returns = settle_returns.replace(-np.inf, np.nan).dropna()                       # drop nulls after a pct_change() 
+<pre><code> settle_returns = (yen_futures[["Settle"]].pct_change() * 100)
+settle_returns = settle_returns.replace(-np.inf, np.nan).dropna()                       
 settle_returns.tail()
 </code></pre>
 
