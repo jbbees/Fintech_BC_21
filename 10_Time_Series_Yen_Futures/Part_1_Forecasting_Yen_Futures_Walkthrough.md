@@ -93,6 +93,13 @@ decomposed_yen_settle_prices['noise'] = settle_noise
 decomposed_yen_settle_prices['trend'] = settle_trend
 decomposed_yen_settle_prices.head()</code></pre>
 
+<details><summary>Trend/Noise</summary>
+    
+![image](images/ts_11_trend_noise.PNG)
+    
+</details>
+
+Plot the trend vs noise 
 <pre><code>decomposed_yen_settle_prices[['Settle', 'trend']]['2015-01-01':].plot(title='Settle vs. Trend', ylabel='Settle Price in $USD', figsize=(15,10))</code></pre>
 
 <details><summary>What you should see</summary>
