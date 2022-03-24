@@ -41,8 +41,7 @@ Run a simple `.shape` or  on the raw dataframe and it will
 # Part 1: Time-Series Analysis
 
 ## Imports:
-<pre><code>
-import numpy as np
+<pre><code>import numpy as np
 import pandas as pd
 from pathlib import Path
 %matplotlib inline
@@ -206,9 +205,25 @@ results_3.summary()
     
 </details>
 
-3. Forecast the next 5 days of Yen settle price volatility. First, let's find the last day of the dataset and make sure it's formattted to Y-m-d.
+3. Forecast the next 5 days/horizons of Yen settle price volatility. GARCH model requires the starting point be the last day of the dataset. First, let's find the last day of the dataset and make sure it's formattted to Y-m-d. For the forecast() function we need to pass in a *start* date (using the the last day of the yen data), and a *horizon* value. 
 
 <pre><code>last_day = settle_returns.index.max().strftime('%Y-%m-%d')
 forecast_horizon = 5
 forecast_3 = results_3.forecast(start=last_day, horizon=forecast_horizon)
 </code></pre>
+
+4. Annualize the variance of volatiltiy forecast horizons. This will pivot each volatility horizon into 'h.1', 'h.2', 'h.3', 'h.4', and 'h.5'. Over the next 5 days we'll see Yen value volatiilty climb from **7.43** to **7.59**. The variance should take into account that there's 252 trading days per year.
+<pre><code>ntermediate = np.sqrt(forecast_3.variance.dropna() * 252)</code></pre>
+<pre><code>forecast_3_final = intermediate.dropna().T
+forecast_3_final.head()
+
+<details><summary>Volatility horizons</summary>
+
+
+
+</details>
+
+5. Plot the GARCH volatility forecast
+<pre><code>forecast_3_final.plot(title='Model 3 - GARCH: Predicted Yen Settle Price Volatility 5-Day Forecast', ylabel='Settle Price in $USD', figsize=(15,10))</code></pre>
+
+
