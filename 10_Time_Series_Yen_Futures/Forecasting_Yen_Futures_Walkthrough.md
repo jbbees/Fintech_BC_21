@@ -166,4 +166,18 @@ results_2.summary()
 
 </details>
 
+3. Make a forecast of the future Yen Settle values for the next 5 days from the ARIMA results that uses past values. Put these forecasts in a dataframe.
+<pre><code>
+forecast_2 = pd.DataFrame(
+    results_2.forecast(steps=5)[0]
+)
+forecast_2.plot(title='Model 2 - ARIMA: Predicted Yen Settle Price Returns 5-Day Forecast', ylabel='Settle Price in $USD', figsize=(15,10))
+</code></pre>
+
+<details><summary>ARIMA Forecast</summary>
+
+    ![image](images/ts_7_ARIMA_model_plot.PNG)
+    
+</details>
+
 
