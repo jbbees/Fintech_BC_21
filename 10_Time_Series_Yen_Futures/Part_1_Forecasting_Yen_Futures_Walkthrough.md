@@ -213,7 +213,7 @@ forecast_3 = results_3.forecast(start=last_day, horizon=forecast_horizon)
 </code></pre>
 
 4. Annualize the variance of volatiltiy forecast horizons. This will pivot each volatility horizon into 'h.1', 'h.2', 'h.3', 'h.4', and 'h.5'. Over the next 5 days we'll see Yen value volatiilty climb from **7.43** to **7.59**. The variance should take into account that there's 252 trading days per year.
-<pre><code>ntermediate = np.sqrt(forecast_3.variance.dropna() * 252)</code></pre>
+<pre><code>intermediate = np.sqrt(forecast_3.variance.dropna() * 252)</code></pre>
 <pre><code>forecast_3_final = intermediate.dropna().T
 forecast_3_final.head()
 </code></pre>
@@ -224,7 +224,12 @@ forecast_3_final.head()
 
 </details>
 
-5. Plot the GARCH volatility forecast
+5. Plot the GARCH volatility forecast.
 <pre><code>forecast_3_final.plot(title='Model 3 - GARCH: Predicted Yen Settle Price Volatility 5-Day Forecast', ylabel='Settle Price in $USD', figsize=(15,10))</code></pre>
 
+<details><summary>GARCH Volatility Forecast</summary>
 
+![image](images/ts_10_garch_model_plot.PNG)
+    
+    
+</details>
