@@ -104,20 +104,20 @@ So we removed the noise or spikiness/seasonality of the Settle price data, and  
 
 ## Forecast Model 1: ARMA Model
 
-ARMA models forecast future values based on past values. We build an ARMA model to make our first forecast based on the *Settle* column. 
+ARMA models forecast future values based on past values. We build an ARMA model to make our first forecast based on the decomposed *Settle* column. 
 
-1. Transpose the current *Settle* column values to stationary format. We can use the **.pct_change()** function to do this. This will calculate the **percent difference** of the current row value from the previous row, and then we'll multiple by 100 to make it clean whole number form. Then we need to drop nulls afterwards.  
+1. Transpose the current *Settle* column values to **stationary format**. We can use the **.pct_change()** function to do this. This will calculate the **percent difference** of the current row value from the previous row, and then we'll multiple by 100 to make it clean whole number form. Then we need to drop nulls afterwards.  
 
 <pre><code>
-returns = (yen_futures[["Settle"]].pct_change() * 100)                    # run the pct_change() * 100 to transform non-stationary data to stationary for model.
-returns = returns.replace(-np.inf, np.nan).dropna()                       # drop nulls after a pct_change() 
-returns.tail()
+settle_returns = (yen_futures[["Settle"]].pct_change() * 100)                    # run the pct_change() * 100 to transform non-stationary data to stationary for model.
+settle_returns = settle_returns.replace(-np.inf, np.nan).dropna()                       # drop nulls after a pct_change() 
+settle_returns.tail()
 </code></pre>
 
 2. Build the ARMA model. Fit the model to the stationary data to a results variable. We will define the ARMA order, the auto-regressive component as 2, and moving average as 1. This is a second-order ARMA model. Run a summary on those results.
 
 <pre><code>
-model_1 = sm.tsa.ARMA(returns.values, order=(2,1))
+model_1 = sm.tsa.ARMA(settle_returns.values, order=(2,1))
 results_1 = model_1.fit()
 results_1.summary()
 </code></pre>
@@ -182,14 +182,14 @@ forecast_2.plot(title='Model 2 - ARIMA: Predicted Yen Settle Price Returns 5-Day
 <details><summary>CONCLUSION: Was the ARIMA model good for forecasting?</summary>
 </details>
 
-## Forecast Model 3: Volatility Analysis using GARCH
+## Forecast Model 3: GARCH Model 
 
-We will make a third forecast this time on past price **volatility** as opposed to past values. We need to use GARCH model functions.
+We will make a third forecast this time on past price **volatility** as opposed to past values that we did with ARMA & ARIMA models. We will be using the decomposed *Settle* column data to forecast on volatility. We need to use GARCH model functions.
 
 1. Import GARCH model. If we didn't already. 
 <pre><code>from arch import arch_model</code></pre>
 
-2. Build the GARCH model, fit the model to a results variable. 
+2. Build the GARCH model. Make sure to set the mean component to "Zero" and not 0. 'Vol' means volatility. Both auto-regressive (AR) or 'p', and moving average (MA) or 'q' is both set to 1. Fit the model to a results variable. Run a summary on the results.  
 <pre><code>model_3 = arch_model(settle_returns['Settle'], mean="Zero", vol="GARCH", p=1, q=1)
 results_3 = model_3.fit(disp='off')
 results_3.summary()
@@ -200,6 +200,8 @@ results_3.summary()
 ![image](images/ts_9_garch_summary.PNG)
     
 </details>
+
+3. 
 
 
 
