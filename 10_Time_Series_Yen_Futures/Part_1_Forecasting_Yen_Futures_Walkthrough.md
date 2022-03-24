@@ -184,6 +184,8 @@ forecast_2.plot(title='Model 2 - ARIMA: Predicted Yen Settle Price Returns 5-Day
 
 ## Forecast Model 3: GARCH Model 
 
+Rising values are not the only thing to consider when making forecasts. We need to know what the risk or volatility there is with this potential investment of buying Yen. If the Yen value is getting and higher and higher over time, and volatility also keeps growing over time in correlation, then that's not a good sign of investing in it. We want value growth to increase and volatility to remain low or decrease. 
+
 We will make a third forecast this time on past price **volatility** as opposed to past values that we did with ARMA & ARIMA models. We will be using the decomposed *Settle* column data to forecast on volatility. We need to use GARCH model functions.
 
 1. Import GARCH model. If we didn't already. 
@@ -195,13 +197,15 @@ results_3 = model_3.fit(disp='off')
 results_3.summary()
 </code></pre>
 
-<details><summary>Garch summary results</summary>
+<details><summary>GARCH summary results</summary>
 
 ![image](images/ts_9_garch_summary.PNG)
     
 </details>
 
-3. 
+3. Forecast the next 5 days of Yen settle price volatility. First, let's find the last day of the dataset and make sure it's formattted to Y-m-d.
 
-
-
+<pre><code>last_day = settle_returns.index.max().strftime('%Y-%m-%d')
+forecast_horizon = 5
+forecast_3 = results_3.forecast(start=last_day, horizon=forecast_horizon)
+</code></pre>
