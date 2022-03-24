@@ -154,10 +154,11 @@ We will use the original *Settle* column values from our original data. That is,
 
 <pre><code>from statsmodels.tsa.arima_model import ARIMA</code></pre>
 
-2. Build the ARIMA model. Set our model components, p = 5, d = 1, and q = 1 
+2. Build the ARIMA model. Set our model components, p = 5, d = 1, and q = 1. Then fit the ARIMA model to a results variable and run a summary on those results.
 
 <pre><code>model_2 = ARIMA(yen_futures['Settle'], order=(5, 1, 1))
 results_2 = model_2.fit()
+results_2.summary()
 </code></pre>
 
 
