@@ -115,7 +115,7 @@ settle_returns.tail()
 
 2. Build the ARMA model. Fit the model to the stationary data to a results variable. We will define the ARMA order, the auto-regressive component as 2, and moving average as 1. This is a second-order ARMA model. Run a summary on those results.
 
-<pre><code> model_1 = sm.tsa.ARMA(settle_returns.values, order=(2,1))
+<pre><code>model_1 = sm.tsa.ARMA(settle_returns.values, order=(2,1))
 results_1 = model_1.fit()
 results_1.summary()
 </code></pre>
