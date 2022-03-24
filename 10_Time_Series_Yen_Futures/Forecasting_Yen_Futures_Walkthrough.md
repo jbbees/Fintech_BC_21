@@ -161,7 +161,9 @@ results_2 = model_2.fit()
 results_2.summary()
 </code></pre>
 <details><summary>ARIMA results</summary>
+    
 ![image](images/ts_6_ARIMA_summary.PNG)
+
 </details>
 
 
