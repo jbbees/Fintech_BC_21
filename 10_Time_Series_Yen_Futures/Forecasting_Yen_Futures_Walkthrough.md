@@ -122,7 +122,7 @@ results_1 = model_1.fit()
 results_1.summary()
 </code></pre>
 
-<details><summary>What you should see</summary>
+<details><summary>ARMA summary results</summary>
 
 ![image](images/ts_4_ARMA_summary.PNG)
 </details>
@@ -160,7 +160,7 @@ We will use the original *Settle* column values from our original data. That is,
 results_2 = model_2.fit()
 results_2.summary()
 </code></pre>
-<details><summary>ARIMA results</summary>
+<details><summary>ARIMA summary results</summary>
     
 ![image](images/ts_6_ARIMA_summary.PNG)
 
