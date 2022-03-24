@@ -216,6 +216,7 @@ forecast_3 = results_3.forecast(start=last_day, horizon=forecast_horizon)
 <pre><code>ntermediate = np.sqrt(forecast_3.variance.dropna() * 252)</code></pre>
 <pre><code>forecast_3_final = intermediate.dropna().T
 forecast_3_final.head()
+</code></pre>
 
 <details><summary>Volatility horizons</summary>
 
