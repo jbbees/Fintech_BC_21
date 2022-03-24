@@ -148,6 +148,15 @@ Nope.
 The ARMA model is forecasting that the value of the Japanese Yen will strongly decline in the short-term 
 </details>
 
+## Forecast Model 2: ARIMA Model
+
+We will use the original *Settle* column values from our original data. That is, we're using the read-in data that isn't decomposed or manipulated. 
+
+Import ARIMA model functions.
+
+<pre><code>
+from statsmodels.tsa.arima_model import ARIMA
+</code></pre>
 
 
 
