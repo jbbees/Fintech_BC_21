@@ -118,6 +118,7 @@ print(f'Out-of-Sample Root Mean Squared Error (RMSE): {out_of_sample_rmse}')</co
 
 Test our predictions on the in-sample data the model is exposed to and then score it.
 
+## Re-Assemble the Model and predict on the training  data.
 1. Re-predict on the model using the `X_train` and not the `X_test`
 <pre><code>in_sample_predictions = model.predict(X_train)</code></pre>
 
@@ -135,6 +136,18 @@ in_sample_results['In-Sample Predicted Return'] = in_sample_predictions
     
 </details>
 
+## Score the model based on in-sample predictions
+
+4. Find the mean-squared error and root mean-squared error.
+<pre><code>
+in_sample_mse = mean_squared_error(
+    in_sample_results['Return'],                               # actual returns
+    in_sample_results['In-Sample Predicted Return']            # preducted returns
+)
+
+in_sample_rmse = np.sqrt(in_sample_mse)
+print(f'In-sample Root Mean Squared Error (RMSE): {in_sample_rmse}')
+</code></pre> 
 
 
 
