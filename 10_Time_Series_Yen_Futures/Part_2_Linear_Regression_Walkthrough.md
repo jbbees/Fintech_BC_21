@@ -96,3 +96,22 @@ out_of_sample_results['Predicted Return'] = predictions
 ![image](images/rg_4_oos_actual_results.PNG)
     
 </details>
+
+# Model scoring - Holdout (Out-of-Sample/Testing) Data
+
+1. Import the model scoring librariies
+<pre><code>from sklearn.metrics import mean_squared_error</code></pre>
+
+2. Find the mean-squared error. Pass in the actual *Return* and *Predicted Return* columns of the holdout dataframe. 
+<pre><code>
+mse = mean_squared_error(
+    out_of_sample_results['Return'],                    # actual returns
+    out_of_sample_results['Predicted Return']           # predicted returns
+)
+</code></pre>
+
+3. Find the root mean-squared error. This is not a good RMSE score. RMSE should be closer to 1.
+<pre><code>out_of_sample_rmse = np.sqrt(mse)
+print(f'Out-of-Sample Root Mean Squared Error (RMSE): {out_of_sample_rmse}')</code></pre>
+
+# Model scoring - In-Sample (Training) Data
