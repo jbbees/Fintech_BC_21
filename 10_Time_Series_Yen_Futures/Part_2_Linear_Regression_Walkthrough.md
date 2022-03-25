@@ -1,6 +1,6 @@
 # Part 2: Linear Regression Analysis
 
-We are going to see if a Linear Regression analysis will fair better than the ARMA, ARIMA models. 
+We are going to see if a Linear Regression analysis will fair better than the ARMA, ARIMA models. We will slice the dataset to predict Yen prices from 2018-forward, based on past data from 2017 and prior.
 
 # Imports
 
@@ -83,7 +83,7 @@ model.fit(X_train, y_train)
 1. Run a prediction on the `X_test` holdout data.
 <pre><code>predictions = model.predict(X_test)</code></pre>
 
-2. Assemble the y (out-of-sample) predictions vs actual returns into a dataframe. Add a column for *Predicted Return*,
+2. Assemble the y (out-of-sample) predictions vs actual returns into a dataframe. Add a column for *Predicted Return*.
 <pre><code>out_of_sample_results = y_test.to_frame()
 out_of_sample_results['Predicted Return'] = predictions
 </code></pre>
@@ -151,6 +151,9 @@ print(f'In-sample Root Mean Squared Error (RMSE): {in_sample_rmse}')
 
 # Conclusion: Did using a Linear Regression model impact our confidence on predicting Yen futures?
 
+The Linear Regression model performs well. But still I would not buy any Japanese Yen on these results.
 
-
-
+* The RMSE score on the holdout testing data was **0.4154** which is closer to zero. A good RMSE on the holdout data to predict accurate returns is closer to 1, which would indicate our predicted data points are on the predicted slope line.
+* When we graphed the actual vs predicted Yen value returns based on the *holdout* data, the predicted returns were inverse to the actual.
+* I have no confidence in the accuracy of the model. I would not buy the Yen today.  
+* The RMSE score on the exposed data was **0.596** which is higher than the score of the holdout data. So the model can more accurately predict on the exposed data. 
