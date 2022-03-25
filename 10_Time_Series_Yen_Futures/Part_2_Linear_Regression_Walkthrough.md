@@ -68,3 +68,12 @@ y_test =test['Return']
     
 </details>
 
+# Build the Linear Regression Model
+
+1. Import the `sklearn` module
+<pre><code>from sklearn.linear_model import LinearRegression</code></pre>
+
+2. Build the model and fit with only the **training** data `X_train` and `y_train`
+<pre><code>model = LinearRegression()
+model.fit(X_train, y_train)
+</code></pre>
