@@ -46,7 +46,7 @@ After running `yen_futures.shape` there should now be 1,415 rows and 10 columns.
 
 # Separate the training (in-sample) independent features and y dependent components
 
-We are predicting Yen values from years 2018 and onward (dependent y values) based on past Yen values 2017 are previous (independent C features). 
+We are predicting Yen values from years 2018 and onward (dependent y values) based on past Yen values 2017 are previous (independent X features). 
 
 1. Create a train/test split. The training in-sample data is rows from 2017 and previous. The testing holdout data is rows 2018 and above. 
 <pre><code>train = yen_futures[:'2017']
@@ -54,8 +54,7 @@ test = yen_futures['2018':]
 </code></pre>
 
 2. Create four unique dataframes, 2 for training, 2 for testing. We will put the X components into a dataframe using `to_frame()`
-<pre><code>
-X_train = train['Lagged_Return'].to_frame()             # Lagged Return is the indepdent component. 
+<pre><code>X_train = train['Lagged_Return'].to_frame()             # Lagged Return is the independent component. 
 y_train = train['Return']                               # Return is the dependent component, it's what we're trying to predict. 
 X_test = test['Lagged_Return'].to_frame() 
 y_test =test['Return']
