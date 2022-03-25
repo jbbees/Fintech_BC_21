@@ -220,7 +220,7 @@ forecast_3_final.head()
 
 <details><summary>Volatility horizons</summary>
 
-
+![image](images/ts_13_garch_horizons_2.PNG)
 
 </details>
 
@@ -229,7 +229,7 @@ forecast_3_final.head()
 
 <details><summary>GARCH Volatility Forecast</summary>
 
-![image](images/ts_10_garch_model_plot.PNG)
+![image](images/ts_10_garch_forecast.PNG)
     
     
 </details>
