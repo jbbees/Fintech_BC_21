@@ -48,8 +48,7 @@ After running `yen_futures.shape` there should now be 1,415 rows and 10 columns.
 
 1. Create a train/test split
 
-<pre><code>
-train = yen_futures[:'2017']
+<pre><code>train = yen_futures[:'2017']
 test = yen_futures['2018':]
 </code></pre>
 
