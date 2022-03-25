@@ -33,3 +33,11 @@ settle_returns = yen_futures['Settle'].pct_change() * 100
 settle_returns.dropna(inplace=True)
 settle_returns.plot()
 </code></pre>
+
+4. Add a column called *Lagged Returns* 
+<pre><code>
+yen_futures['Return'] = settle_returns.copy()
+yen_futures['Lagged_Return'] = settle_returns.shift()
+yen_futures.dropna(inplace=True)
+yen_futures.head()
+</code></pre>
