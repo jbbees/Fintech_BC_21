@@ -12,3 +12,13 @@ from pathlib import Path
 import warnings
 warnings.filterwarnings('ignore')
 </code></pre>
+
+# Read-in data and cleanup
+
+This is the same as Part 1.
+
+<pre><code>
+yen_futures = pd.read_csv(
+    Path("yen.csv"), index_col="Date", infer_datetime_format=True, parse_dates=True
+)
+</code></pre>
