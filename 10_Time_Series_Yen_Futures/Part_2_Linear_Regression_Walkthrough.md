@@ -25,3 +25,11 @@ yen_futures = pd.read_csv(
 
 2. Slice the data for only rows in the year 1990.
 <pre><code>yen_futures = yen_futures.loc["1990-01-01":, :]</code></pre>
+
+3. Decompose the *Settle* column to be in stationary format.
+
+<pre><code>
+settle_returns = yen_futures['Settle'].pct_change() * 100
+settle_returns.dropna(inplace=True)
+settle_returns.plot()
+</code></pre>
