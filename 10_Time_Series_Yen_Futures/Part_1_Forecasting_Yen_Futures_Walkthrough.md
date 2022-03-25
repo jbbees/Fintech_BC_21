@@ -76,11 +76,11 @@ If you run this code it will show the raw data is 10,902 rows of daily Yen data,
 
 <details><summary>Sliced dataframe</summary>
     
-![image[(images/ts_15_sliced_df.PNG)
+![image](images/ts_15_sliced_df.PNG)
 
 </details>
 
-Plot the raw returns based on the *Settle* column of the dataset.
+3. Plot the raw returns based on the *Settle* column of the dataset.
 <pre><code>yen_futures['Settle'].plot(title='Yen Futures Settle Prices', ylabel='Settle Price in $USD', figsize=(15,10))</code></pre>
 
 <details><summary>What you should see</summary>
