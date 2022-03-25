@@ -61,6 +61,7 @@ yen_futures = pd.read_csv(
 )
 yen_futures.head()
 </code></pre>
+
 <details><summary>What you should see</summary>
 
 ![image](images/ts_14_raw_dataframe.PNG)
