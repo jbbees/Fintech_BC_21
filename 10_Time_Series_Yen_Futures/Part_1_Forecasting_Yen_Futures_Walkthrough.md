@@ -156,12 +156,13 @@ forecast_1.plot(title='Model 1 - ARMA: Predicted Yen Settle Price Returns 5-Day 
     
 </details>
 
-<details><summary>OBSERVATION: Is this ARMA model fitted good enough for forecasting Yen?</summary>
+4. **OBSERVATION: Is the ARMA model fitted enough to make good forecasts?** 
+<details><summary>ARMA model performance.</summary>
 
 No. The ARMA model is forecasting that the value of the Japanese Yen will strongly decline approx 75% (.012 to .003) within the next day, but then gradually increase 125% (.003 to .00675) and remain within the same price range above .0065 for the next 5 days. But I cannt be confident this is ARMA model is fitted to make accurate predictions on the past Yen values.  
     
 Based on the ARMA results summary:
-* There's 7,514 daily observations being used to make a future prediction. Our original dataset was 10,902 rows of daily data. We are using 75% of the data in the model.
+* There's 7,514 daily observations being used to make a future prediction. We decomposed the Settle column values. Our original dataset was 10,902 rows of daily data. We are using 75% of the data in the model.
 * We increased the lag-terms to 2, so this a second-order ARMA Model
 * The p-values for both auto-regressive lag-terms are high. They are not close to zero, or below .01. They're closer to 1. This is the opposite of what we want to see.
 * In the first lag-term (ar.L1.y) the error range is between -2.810 to 2.198, which outside the .025-.975 range.
@@ -203,7 +204,18 @@ forecast_2.plot(title='Model 2 - ARIMA: Predicted Yen Settle Price Returns 5-Day
     
 </details>
 
-<details><summary>CONCLUSION: Was the ARIMA model good for forecasting?</summary>
+4. **OBSERVATION: Is the ARIMA model fitted enough to make good forecasts?**
+<details><summary>ARIMA model performance.</summary>
+
+No. The performance was marginally better with the increased AR lag-terms. The ARIMA model is predicting Yen values will strongly increase day-over-day for the next 5 days, going from 9224 to 9228. This is using the raw Settle column values of daily Yen prices. However, like the ARMA model the p-values are high for the lag-terms inputted into the model. And we are using five auto-rgressive lag-terms in the model. More lag-terms should lower the p-values. But the p-values are still range above 0.6, and not capped at .01. This confirms my belief we need more daily price data to be confident in the forecast. 
+    
+Based on the ARIMA summary results:
+* We still use 7,514 daily rows.   
+* We have five auto-regressive (AR) lag-terms.
+* The p-values for each lag-term are marginally better than the ARMA p-values (0.8-0.9), but they are above 0.6, and we need them to be .01 and lower, closer to zero. 
+* Some AR lag-terms fall outside the error ranges.
+* Both the AIC and BIC values are postive when they need to be strongly negative. 
+  
 </details>
 
 ## Forecast Model 3: GARCH Model 
