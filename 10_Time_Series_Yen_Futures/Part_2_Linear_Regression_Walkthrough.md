@@ -41,3 +41,16 @@ yen_futures['Lagged_Return'] = settle_returns.shift()
 yen_futures.dropna(inplace=True)
 yen_futures.head()
 </code></pre>
+
+After running `yen_futures.shape` there should now be 1,415 rows and 10 columns. This is much lower than the 7.515 rows from Part 1. 
+
+# Separate the training (in-sample) independent features and y dependent components
+
+1. Create a train/test split
+
+<pre><code>
+train = yen_futures[:'2017']
+test = yen_futures['2018':]
+</code></pre>
+
+
