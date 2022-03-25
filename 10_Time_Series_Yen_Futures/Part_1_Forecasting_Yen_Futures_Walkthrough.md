@@ -160,13 +160,13 @@ forecast_1.plot(title='Model 1 - ARMA: Predicted Yen Settle Price Returns 5-Day 
 
 No. The ARMA model is forecasting that the value of the Japanese Yen will strongly decline approx 75% (.012 to .003) within the next day, but then gradually increase 125% (.003 to .00675) and remain within the same price range above .0065 for the next 5 days. But I cannt be confident this is ARMA model is fitted to make accurate predictions on the past Yen values.  
     
-Based on the ARMA results summary:ns:
-    * There's 7,514 daily observations being used to make a future prediction. Our original dataset was 10,902 rows of daily data. We are using 75% of the data in the model.
-    * We increased the lag-terms to 2, so this a second-order ARMA Model
-    * The p-values for both auto-regressive lag-terms are high. They are not close to zero, or below .01. They're closer to 1. This is the opposite of what we want to see.
-    * In the first lag-term (ar.L1.y) the error range is between -2.810 to 2.198, which outside the .025-.975 range.
-    * Both Akakie Information Criterion (AIC) value 15,798 and Bayesian Information Criterion (BIC) value 15,810 are close in range to each other, but they should be very negative numbers. 
-    * After changing lag-terms adding in a third auto-regressive term, that didn't lower p-values. 
+Based on the ARMA results summary:
+* There's 7,514 daily observations being used to make a future prediction. Our original dataset was 10,902 rows of daily data. We are using 75% of the data in the model.
+* We increased the lag-terms to 2, so this a second-order ARMA Model
+* The p-values for both auto-regressive lag-terms are high. They are not close to zero, or below .01. They're closer to 1. This is the opposite of what we want to see.
+* In the first lag-term (ar.L1.y) the error range is between -2.810 to 2.198, which outside the .025-.975 range.
+* Both Akakie Information Criterion (AIC) value 15,798 and Bayesian Information Criterion (BIC) value 15,810 are close in range to each other, but they should be very negative numbers. 
+* After changing lag-terms adding in a third auto-regressive term, that didn't lower p-values. 
 
 </details>
 
