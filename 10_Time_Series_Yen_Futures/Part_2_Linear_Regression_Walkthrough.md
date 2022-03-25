@@ -44,6 +44,12 @@ yen_futures.head()
 
 After running `yen_futures.shape` there should now be 1,415 rows and 10 columns. This is much lower than the 7.515 rows from Part 1. 
 
+<details><summary>Cleaned dataframe</summary>
+
+![image](images/rg_2_final_data_df.PNG)
+
+</details>
+
 # Separate data into training (in-sample) independent features, and y (out-of-sample) dependent components
 
 We are predicting Yen values from years 2018 and onward (dependent y values) based on past Yen values 2017 are previous (independent X features). 
