@@ -64,7 +64,7 @@ y_test =test['Return']
 
 <details><summary>X_train</summary>
 
-![image[(images/rg_3_xtrain.PNG)
+![image](images/rg_3_xtrain.PNG)
     
 </details>
 
