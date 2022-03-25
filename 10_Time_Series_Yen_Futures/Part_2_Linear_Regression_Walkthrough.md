@@ -77,3 +77,10 @@ y_test =test['Return']
 <pre><code>model = LinearRegression()
 model.fit(X_train, y_train)
 </code></pre>
+
+# Make Predictions on the testing data
+
+1. Run a prediction on the `X_test` holdout data.
+<pre><code>predictions = model.predict(X_test)</code></pre>
+
+
