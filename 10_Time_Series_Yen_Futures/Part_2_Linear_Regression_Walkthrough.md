@@ -83,7 +83,7 @@ model.fit(X_train, y_train)
 1. Run a prediction on the `X_test` holdout data.
 <pre><code>predictions = model.predict(X_test)</code></pre>
 
-2. Assemble the y (out-of-sample) predictions vs actual returns into a dataframe.
+2. Assemble the y (out-of-sample) predictions vs actual returns into a dataframe. Add a column for *Predicted Return*,
 <pre><code>out_of_sample_results = y_test.to_frame()
 out_of_sample_results['Predicted Return'] = predictions
 </code></pre>
@@ -118,7 +118,7 @@ print(f'Out-of-Sample Root Mean Squared Error (RMSE): {out_of_sample_rmse}')</co
 
 Test our predictions on the in-sample data the model is exposed to and then score it.
 
-## Re-Assemble the Model and predict on the training  data.
+## Re-Assemble the Model and predict on the training data
 1. Re-predict on the model using the `X_train` and not the `X_test`
 <pre><code>in_sample_predictions = model.predict(X_train)</code></pre>
 
@@ -148,6 +148,9 @@ in_sample_mse = mean_squared_error(
 in_sample_rmse = np.sqrt(in_sample_mse)
 print(f'In-sample Root Mean Squared Error (RMSE): {in_sample_rmse}')
 </code></pre> 
+
+# Conclusion: Did using a Linear Regression model impact our confidence on predicting Yen futures?
+
 
 
 
