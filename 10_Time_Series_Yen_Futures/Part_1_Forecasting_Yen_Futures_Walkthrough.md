@@ -156,8 +156,13 @@ forecast_1.plot(title='Model 1 - ARMA: Predicted Yen Settle Price Returns 5-Day 
     
 </details>
 
-<details><summary>CONCLUSION: Is this ARMA model any good for forecasting?</summary>
-No. The ARMA model is forecasting that the value of the Japanese Yen will strongly decline in the short-term 
+<details><summary>OBSERVATION: Is this ARMA model any good for forecasting?</summary>
+
+No. The ARMA model is forecasting that the value of the Japanese Yen will strongly decline approx 75% (.012 to .003) within the next day, but then gradually increase 125% (.003 to .00675) and remain within the same price range above .0065 for the next 5 days. But can I be confident this is ARMA model is fitted to make  
+    
+The ARMA summary results aren't looking that good. The follwing observations:
+    * There's 7,514 daily observations being used to make a future prediction. We eliminated 
+
 </details>
 
 ## Forecast Model 2: ARIMA Model
