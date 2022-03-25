@@ -60,4 +60,11 @@ X_test = test['Lagged_Return'].to_frame()
 y_test =test['Return']
 </code></pre>
 
+3. Analyze the `X_train` data. This is 967 rows of the 1,415 rows.
+
+<details><summary>X_train</summary>
+
+![image[(images/rg_3_xtrain.PNG)
+    
+</details>
 
