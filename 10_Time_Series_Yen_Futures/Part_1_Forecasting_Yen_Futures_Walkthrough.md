@@ -53,7 +53,7 @@ You'll need to import the `sickit-learn` modules. This will be used to
 
 ## Read-in data and cleanup
 
-We create a starting dataframe by reading in the `yen.csv` and I'll call it `yen_futures`.
+1. Create a starting dataframe by reading in the `yen.csv` and I'll call it `yen_futures`.
 
 <pre><code>
 yen_futures = pd.read_csv(
@@ -68,8 +68,17 @@ yen_futures.head()
     
 </details> 
 
-Slice the dataframe. Only use rows from **Jan 1 1990 to present**. 
+If you run this code it will show the raw data is 10,902 rows of daily Yen data, in 8 columns. 
+<pre><code>yen_futures.shape</code></pre>
+
+2. Slice the dataframe. Only use rows from **Jan 1 1990 to present**. Running the previous `yen_futures.shape` should show 7,515 rows, 8 columns.
 <pre><code>yen_futures = yen_futures.loc["1990-01-01":, :]</code></pre>
+
+<details><summary>Sliced dataframe</summary>
+    
+![image[(images/ts_15_sliced_df.PNG)
+
+</details>
 
 Plot the raw returns based on the *Settle* column of the dataset.
 <pre><code>yen_futures['Settle'].plot(title='Yen Futures Settle Prices', ylabel='Settle Price in $USD', figsize=(15,10))</code></pre>
@@ -241,6 +250,6 @@ forecast_3_final.head()
 
 Looking at the predictions of these models, the settle price values of the Japanese Yen (JPY) is expected to increase day-over-day for the next 5 days. However, volatility in the Yen market is also expected to increase day-over-day in the same horizon. That makes the risk of this trade into the JPY market increased. When I look at both results of the ARMA and ARIMA models that utilized past settle prices, the one thing that cannot be overlooked is the p-values. Ideally we want p-values for the lag-terms to be closer to zero, to give confidence that each prediction point is close to the predicted trend according to the Hodrick-Prescott filter. But they were closer to 1. I re-tested the models by adding more lag-terms to each (ARMA and ARIMA) models, and that only decreased the p-values somewhat. The p-values were still well above the .01 threshold. The only other way to lower the score is to feed in more daily Yen pricing data.
 
-Personally I cannot be confident that these models can accurately predict the value of the Yen with the pricing data provided for this investing case scenario. The p-values were high for each result summary, meaning predictions are not within the predicted trend. Also I feel there isn't enough data, we had a file of over **10,902** rows of daily settle prices, and we fed in **7,514** of those rows, or 75% of the data (after data cleaning). We definitelty need more data to make better predictions.
+Personally I cannot be confident that these models can accurately predict the value of the Yen with the pricing data provided for this investing case scenario. Especially with the increasing risk. The p-values were high for each result summary, meaning predictions are not within the predicted trend. Also I feel there isn't enough data, we had a file of over **10,902** rows of daily settle prices, and we fed in **7,514** of those rows, or 75% of the data (after data cleaning). We definitelty need more data to make better predictions if the volatility is expected to increase in this investment.
 
 Conclusion: don't buy Japanese Yen. 
