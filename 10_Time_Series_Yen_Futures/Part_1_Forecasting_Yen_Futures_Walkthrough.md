@@ -61,7 +61,11 @@ yen_futures = pd.read_csv(
 )
 yen_futures.head()
 </code></pre>
-<details><summary>What you should see</summary></details> 
+<details><summary>What you should see</summary>
+
+![image](images/
+    
+</details> 
 
 Slice the dataframe. Only use rows from **Jan 1 1990 to present**. 
 <pre><code>yen_futures = yen_futures.loc["1990-01-01":, :]</code></pre>
