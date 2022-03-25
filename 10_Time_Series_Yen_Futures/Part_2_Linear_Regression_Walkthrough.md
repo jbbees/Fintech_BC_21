@@ -83,4 +83,7 @@ model.fit(X_train, y_train)
 1. Run a prediction on the `X_test` holdout data.
 <pre><code>predictions = model.predict(X_test)</code></pre>
 
-
+2. Assemble the y predictions vs actual into a dataframe.
+<pre><code>out_of_sample_results = y_test.to_frame()
+out_of_sample_results['Predicted Return'] = predictions
+</code></pre>
