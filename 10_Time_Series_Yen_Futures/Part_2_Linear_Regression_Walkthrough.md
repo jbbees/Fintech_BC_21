@@ -44,7 +44,7 @@ yen_futures.head()
 
 After running `yen_futures.shape` there should now be 1,415 rows and 10 columns. This is much lower than the 7.515 rows from Part 1. 
 
-# Separate the training (in-sample) independent features and y dependent components
+# Separate data into training (in-sample) independent features, and y (out-of-sample) dependent components
 
 We are predicting Yen values from years 2018 and onward (dependent y values) based on past Yen values 2017 are previous (independent X features). 
 
@@ -115,3 +115,24 @@ mse = mean_squared_error(
 print(f'Out-of-Sample Root Mean Squared Error (RMSE): {out_of_sample_rmse}')</code></pre>
 
 # Model scoring - In-Sample (Training) Data
+
+Test our predictions on the in-sample data the model is exposed to.
+
+1. Re-predict on the model using the `X_train` and not the `X_test`
+<pre><code>in_sample_predictions = model.predict(X_train)</code></pre>
+
+2. Assemble in-sample predictions vs actual return into a dataframe. Add-in a column for the in-sample predictions.
+<pre><code>in_sample_results = y_train.to_frame()
+in_sample_results['In-Sample Predicted Return'] = in_sample_predictions
+</code></pre>
+
+3. Plot the actual vs return based on the data the model is exposed to.
+<pre><code>in_sample_results[:20].plot(subplots=True)</code></pre>
+
+<details><summary>Predicted vs Actual Results</summary>
+
+![image](images/rg_5_ins_actual_results.PNG)
+    
+</details>
+
+
