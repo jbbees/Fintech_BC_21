@@ -78,12 +78,21 @@ y_test =test['Return']
 model.fit(X_train, y_train)
 </code></pre>
 
-# Make Predictions on the testing data
+# Make Predictions on the holdout testing data
 
 1. Run a prediction on the `X_test` holdout data.
 <pre><code>predictions = model.predict(X_test)</code></pre>
 
-2. Assemble the y predictions vs actual into a dataframe.
+2. Assemble the y (out-of-sample) predictions vs actual returns into a dataframe.
 <pre><code>out_of_sample_results = y_test.to_frame()
 out_of_sample_results['Predicted Return'] = predictions
 </code></pre>
+
+3. Plot the first 20 predictions of future Yen values.
+<pre><code>out_of_sample_results[:20].plot(subplots=True)</code></pre>
+
+<details><summary>Predicted vs Acutal Results (Holdout Data)</summary>
+    
+![image](images/rg_4_oos_actual_results.PNG)
+    
+</details>
