@@ -1,6 +1,6 @@
 
 <details><summary>Premise:</summary>
-We are dealing an imbalanced classification problem for predicting if loan applications based on data are low-risk of defaulting or high-risk of defaulting. We don't know what would a be a good method to make. 
+We are dealing an imbalanced classification problem for predicting if bank loan applications based on column data will be *low-risk* of defaulting or *high-risk* of defaulting. We don't know what would a be a good method to make this determination. We will use different ML methods to feed the data into these models that will predict the rish of loan default. More specifiically we will explore two broad ML methods: Oversampling & Ensemble Random Forest Classifier.
 
 The data is imbalanced. There are way more low-risk loans than high-risk, but that imbalance
 
