@@ -1,9 +1,11 @@
 
-
+<details><summary>Premise:</summary>
 We are dealing an imbalanced classification problem for predicting if loan applications based on data are low-risk of defaulting or high-risk of defaulting. We don't know what would a be a good method to make. 
 
 The data is imbalanced. There are way more low-risk loans than high-risk, but that imbalance
 
+
+</details>
 
 
 The raw data file has very basic data. 
