@@ -8,7 +8,7 @@ The data is imbalanced. There are way more low-risk loans than high-risk, but th
 
 </details>
 
-<details><summary>What does the file contain></summary>
+<details><summary>What does the file contain?</summary>
 
 A very basic file containing over 70,000 loan applications with few descriptive columns. The attributes of the file contain:
 
@@ -34,7 +34,7 @@ The typical
 Predictive value 
 
 
-# OPTION 1: Resampling Method with various ML algorithms. 
+# OPTION 1: Resampling Method with various ML resampling algorithms. 
 
 This approach uses algorithms that will be taking the loan-level data file, focusing on the core columns that have a predictive relevance, splitting the targer vector (loan_status) into two classes: *low-risk*, or *high-risk*. And then re-balancing those the data in those classes  to make them equal.   
 
