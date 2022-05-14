@@ -1,3 +1,4 @@
+![image](images/credit-risk.jpg)
 
 <details><summary>Premise:</summary>
   
