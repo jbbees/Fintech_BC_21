@@ -61,9 +61,11 @@ After we cleaned the imbalanced loan dataset. We will re-sampled the cleaned tra
 
 We'll use **scikit learn** features ro
 
->from sklearn.linear_model import LogisticRegression
->lr_model = LogisticRegression(solver='lbfgs', random_state=1)
->lr_model.fit(X_train, y_train)
+<pre><code>
+from sklearn.linear_model import LogisticRegression
+lr_model = LogisticRegression(solver='lbfgs', random_state=1)
+lr_model.fit(X_train, y_train)
+</code></pre>
 
 ## MODEL 1: SMOTE Oversampler
 
