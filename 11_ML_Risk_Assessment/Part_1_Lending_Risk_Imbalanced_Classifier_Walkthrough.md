@@ -61,9 +61,7 @@ Here we test to see how an ML algorithm predicts fraud on imbalanced data. That 
 
 Our imbalanced y-target data shows way more low-risk loans than high-risk ones.
 
-<pre><code>
-y.value_counts()
-</code></pre>
+<pre><code>y.value_counts()</code></pre>
 
 We'll use **scikit learn** features to import in the LR. We'll use a seed state value of 1 to replicate results. 
 
@@ -73,6 +71,13 @@ lr_model.fit(X_train, y_train)
 </code></pre>
 
 Run an accuracy score on how well an LR model predicted. 
+<pre><code>
+from sklearn.metrics import balanced_accuracy_score
+y_pred_lr = lr_model.predict(X_test)
+balanced_accuracy_score(y_test, y_pred_lr)
+</code></pre>
+
+
 
 After we cleaned the imbalanced loan dataset. We will re-sampled the cleaned training data acorss three different ML models. In this case an oversampler, an undersampler, and a combination re-sampler. We first create each resampling model. And then resample the imbalanced training data. And then we will fit that resampled onto a Logistic Regression Model, and then run predictions model scoring. 
 
