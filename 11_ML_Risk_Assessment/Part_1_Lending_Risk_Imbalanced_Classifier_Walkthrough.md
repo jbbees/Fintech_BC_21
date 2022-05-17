@@ -97,7 +97,15 @@ After we cleaned the imbalanced loan dataset. We will re-sampled the cleaned tra
 
 ## MODEL 1: SMOTE Oversampler
 
-This approach uses algorithms that will be taking the loan-level data file, focusing on the core columns that have a predictive relevance, splitting the targer vector (loan_status) into two classes: *low-risk*, or *high-risk*. And then re-balancing those the data in those classes  to make them equal.   
+
+<pre><code>from imblearn.over_sampling import SMOTE
+X_resampled_sm, y_resampled_sm = SMOTE(random_state = 1, sampling_strategy = 1.0).fit_resample(X_train, y_train)
+</code></pre>
+
+After resampling the class breakdown in the data 
+<pre><code>Counter(y_resampled_sm)</code></pre>
+>Counter({'low_risk': 56271, 'high_risk': 56271})
+
 
 ## MODEL 2: Unsampling Model - Clustered Centroids
 
