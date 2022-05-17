@@ -63,21 +63,29 @@ Our imbalanced y-target data shows way more low-risk loans than high-risk ones.
 
 <pre><code>y.value_counts()</code></pre>
 
-We'll use **scikit learn** features to import in the LR. We'll use a seed state value of 1 to replicate results. 
+We'll use **scikit learn** features to import in the LR. We'll use a seed state value of 1 to replicate results. And fit the regular training data on it. No resampling or scaling. 
 
 <pre><code> from sklearn.linear_model import LogisticRegression
 lr_model = LogisticRegression(solver='lbfgs', random_state=1)
 lr_model.fit(X_train, y_train)
 </code></pre>
 
-Run an accuracy score on how well an LR model predicted. 
-<pre><code>
-from sklearn.metrics import balanced_accuracy_score
+Run an accuracy score on how well an LR model predicted. It displayed a 95% accuracy score.
+<pre><code>from sklearn.metrics import balanced_accuracy_score
 y_pred_lr = lr_model.predict(X_test)
 balanced_accuracy_score(y_test, y_pred_lr)
 </code></pre>
 
-
+Display a confusion matrix to breakdown the True Positives (acutal high-risk loans) and True Negatives (actual low-risk loans)
+<pre><code>from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, y_pred_lr)
+cm_df = pd.DataFrame(
+    cm,
+    index = ['Actual 0', 'Actual 1'],
+    columns = ['Predicted 0', 'Predicted 1']
+)
+cm_df
+</code></pre>
 
 After we cleaned the imbalanced loan dataset. We will re-sampled the cleaned training data acorss three different ML models. In this case an oversampler, an undersampler, and a combination re-sampler. We first create each resampling model. And then resample the imbalanced training data. And then we will fit that resampled onto a Logistic Regression Model, and then run predictions model scoring. 
 
