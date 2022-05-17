@@ -87,6 +87,12 @@ cm_df = pd.DataFrame(
 cm_df
 </code></pre>
 
+Run an imblanced classification report on the precision and recall performances. 
+
+<pre><code>from imblearn.metrics import classification_report_imbalanced
+print(classification_report_imbalanced(y_test, y_pred_lr))
+</code></pre>
+
 After we cleaned the imbalanced loan dataset. We will re-sampled the cleaned training data acorss three different ML models. In this case an oversampler, an undersampler, and a combination re-sampler. We first create each resampling model. And then resample the imbalanced training data. And then we will fit that resampled onto a Logistic Regression Model, and then run predictions model scoring. 
 
 ## MODEL 1: SMOTE Oversampler
