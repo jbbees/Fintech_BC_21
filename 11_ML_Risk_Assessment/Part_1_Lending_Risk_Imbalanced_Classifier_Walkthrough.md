@@ -1,6 +1,6 @@
 ![image](images/credit-risk.jpg)
 
-# Part 1: Lending Club Loan Risk Analysiis - Imbalanced Classification (Supervised ML)
+# Part 1: Lending Club Loan Risk Analysis - Imbalanced Classification (Supervised ML)
 
 <details><summary>Premise:</summary>
   
@@ -56,6 +56,14 @@ Our y-target is what will be the **TRUE POSITIVE** event in our confusion matrix
 #### Part 2: 
 
 ## Create a base Logistic Regression Model
+
+After we cleaned the imbalanced loan dataset. We will re-sampled the cleaned training data with three different ML models. In this case an oversampler, an undersampler, and a combination re-sampler. We first create each resampling model. And then resample the imbalanced training data. And then we will fit that resampled onto a Logistic Regression Model. 
+
+We'll use **scikit learn** features ro
+
+>from sklearn.linear_model import LogisticRegression
+>lr_model = LogisticRegression(solver='lbfgs', random_state=1)
+>lr_model.fit(X_train, y_train)
 
 ## MODEL 1: SMOTE Oversampler
 
