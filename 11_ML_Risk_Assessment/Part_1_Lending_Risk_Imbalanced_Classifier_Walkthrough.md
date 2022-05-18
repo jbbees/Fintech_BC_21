@@ -34,8 +34,10 @@ The typical
 Predictive value 
 
 ## Imports
-<pre><code>
-import warnings
+
+We'll be using both scikit-learn and imblearn feature suites.
+
+<pre><code>import warnings
 warnings.filterwarnings('ignore')
 import numpy as np
 import pandas as pd
