@@ -55,7 +55,7 @@ Our y-target is what will be the **TRUE POSITIVE** event in our confusion matrix
 
 ## ML Model Comparisons. Which predicts best? Imblanced data model or resampled data model? 
 
-We are building four comparative Logistic Regression models to predict high risk loans with the now cleaned imbalanced dataset. We are deciding if a ML model (Logistical Regression) with an imbalanced dataset will predict better than a ML model with a resampled dataset. There will be 1 model with imbalanced data. And we will build three different models that resample the loan classes differently. This means we will resample using a oversampling algorithm (SMOTE), 
+We are building four comparative Logistic Regression models to predict **high risk loans** with the now cleaned imbalanced dataset. We are deciding if a *basic* ML model (Logistical Regression) with an imbalanced dataset will predict risky loans better than a ML model with a *resampled* dataset that eliminates bias. There will be 1 control model with imbalanced data. And we will build three different models that resample the loan classes differently. This means we will resample using a oversampling algorithm (SMOTE), 
 
 ### MODEL 1: Logistic Regression Model - Imbalanced Data
 
