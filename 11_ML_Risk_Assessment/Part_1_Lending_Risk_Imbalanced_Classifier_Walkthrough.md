@@ -141,13 +141,39 @@ Display an imbalanced classification report.
 ### MODEL 3: Unsampling Model - Clustered Centroids
 
 This resampling model will undersample the *majority* class of low-risk loans to match the *minority* class of high-risk loans. 
+
+Bring in the Clustered Centroids algo. Create a Clustered Centroid object. Resample the training data.
 <pre><code>from imblearn.under_sampling import ClusterCentroids
 cc = ClusterCentroids(random_state = 1)
 X_resampled_cc, y_resampled_cc = cc.fit_resample(X_train, y_train)
 </code></pre>
 
-After resampling the training data, the class breakdown shows this.
+After resampling the data, the target class breakdown shows this.
 <pre><code>Counter(y_resampled_cc)</code></pre>
 >Counter({'high_risk': 1881, 'low_risk': 1881})
+
+Fit the Clustered Centroid resampled data to our third Logistic Regression model.
+<pre><code>cc_model = LogisticRegression(solver = 'lbfgs', random_state = 1)
+cc_model.fit(X_resampled_cc, y_resampled_cc)
+</code></pre>
+
+Make predictions. Display balanced accuracy score. It looks like it's marginally weaker than the SMOTE model, but still better than our control model.
+y_pred_cc = cc_model.predict(X_test)
+balanced_accuracy_score(y_test, y_pred_cc)
+>0.9865149130022852
+
+Display confusion matrix.
+<pre><code>cm_cc = confusion_matrix(y_test, y_pred_cc)
+cm_cc_df = pd.DataFrame(
+    cm_cc,
+    index = ['Actual 0', 'Actual 1'],
+    columns = ['Predicted 0', 'Predicted 1']
+)
+cm_cc_df
+</code></pre>
+
+Display the imabalanced classification report.
+<pre><code>print(classification_report_imbalanced(y_test, y_pred_cc))</code></pre>
+
 
 #### MODEL 4: Combination Sampling Model - SMOTEENN
