@@ -193,3 +193,9 @@ Fit the SMOTEENN resampled data to the final Logistic Regression.
 <pre><code>cos_model = LogisticRegression(solver = 'lbfgs', random_state = 1)
 cos_model.fit(X_resampled_cos, y_resampled_cos) 
 </code></pre>
+
+Make predictions. Get the balanced accuracy score. The final score is **99.3%** which is lowest score of all the resampled models, but better than the control model. 
+<pre><code>y_pred_cos = cos_model.predict(X_test)
+balanced_accuracy_score(y_test, y_pred_cos)
+</code></pre>
+>0.9935182494822666
