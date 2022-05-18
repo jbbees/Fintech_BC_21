@@ -199,3 +199,16 @@ Make predictions. Get the balanced accuracy score. The final score is **99.3%** 
 balanced_accuracy_score(y_test, y_pred_cos)
 </code></pre>
 >0.9935182494822666
+
+Display the confusion matrix.
+<pre><code>cm_cos = confusion_matrix(y_test, y_pred_cos)
+cm_cos_df = pd.DataFrame(
+    cm_cos,
+    index = ['Actual 0', 'Actual 1'],
+    columns = ['Predicted 0', 'Predicted 1']
+)
+cm_cos_df
+</code></pre>
+
+Display the classification report.
+<pre><code>print(classification_report_imbalanced(y_test, y_pred_cos))</code></pre>
