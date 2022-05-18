@@ -59,7 +59,7 @@ We are building four comparative Logistic Regression models to predict/classify 
 
 ### MODEL 1: Logistic Regression Model - Imbalanced Data
 
-The first model. A basic algorithm predicts fraud on imbalanced data. That is, we're not resampling the data. 
+The control model. A basic algorithm predicts fraud on imbalanced data. That is, we're not resampling the data. 
 
 Our imbalanced y-target data shows way more low-risk loans than high-risk ones.
 <pre><code>y.value_counts()</code></pre>
@@ -103,7 +103,7 @@ After we cleaned the imbalanced loan dataset. We will re-sampled the cleaned tra
 
 **NOTE:** I did include a naive overslampling model, but SMOTE oversampling works better.
 
-Second model will oversample the *minority* data class of high-risk loans to match the *majority* class of low-risk using SMOTE algorithm.
+The second model will oversample the *minority* data class of high-risk loans to match the *majority* class of low-risk using SMOTE algorithm.
 
 Bring the **imblearn** feature-suite to use the SMOTE resampling algo. Fit resample the training data with SMOTE. Keep a seed value of 1. 
 <pre><code>from imblearn.over_sampling import SMOTE
@@ -157,7 +157,7 @@ Fit the Clustered Centroid resampled data to our third Logistic Regression model
 cc_model.fit(X_resampled_cc, y_resampled_cc)
 </code></pre>
 
-Make predictions. Display balanced accuracy score. It looks like it's marginally weaker than the SMOTE model, but still better than our control model.
+Make predictions. Display balanced accuracy score of **98.6%**. It performed marginally weaker than the SMOTE model, but still better than our control model.
 y_pred_cc = cc_model.predict(X_test)
 balanced_accuracy_score(y_test, y_pred_cc)
 >0.9865149130022852
@@ -175,5 +175,12 @@ cm_cc_df
 Display the imabalanced classification report.
 <pre><code>print(classification_report_imbalanced(y_test, y_pred_cc))</code></pre>
 
-
 #### MODEL 4: Combination Sampling Model - SMOTEENN
+
+Final model will combine oversampling and undersampling. SMOTEENN will first oversample the *minority* class of high risk loans to match the low-risk one's. And then the **Editied Nearest Neighbors**, the ENN part, feature kicks in. It will undersample the balanced dataset, by eliminating data points it feels are too close. 
+
+Bring in SMOTEENN algo. Create a SMOTEENN object and fit resample the imbalanced training data.
+<pre><code>from imblearn.combine import SMOTEENN
+cos = SMOTEENN(random_state = 1)
+X_resampled_cos, y_resampled_cos = cos.fit_resample(X_train, y_train)
+</code></pre>
