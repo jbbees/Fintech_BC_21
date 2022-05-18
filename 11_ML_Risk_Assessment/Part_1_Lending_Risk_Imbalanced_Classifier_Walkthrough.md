@@ -62,8 +62,9 @@ We are building four comparative Logistic Regression models to predict **high ri
 The first model. A basic algorithm predicts fraud on imbalanced data. That is, we're not resampling the data. 
 
 Our imbalanced y-target data shows way more low-risk loans than high-risk ones.
-
 <pre><code>y.value_counts()</code></pre>
+>low_risk     75036
+>high_risk     2500
 
 We'll use **scikit learn** features to import in the LR. We'll use a seed state value of 1 to replicate results. And fit the regular training data on it. No resampling or scaling. 
 
@@ -97,11 +98,11 @@ print(classification_report_imbalanced(y_test, y_pred_lr))
 
 After we cleaned the imbalanced loan dataset. We will re-sampled the cleaned training data acorss three different ML models. In this case an oversampler, an undersampler, and a combination re-sampler. We first create each resampling model. And then resample the imbalanced training data. And then we will fit that resampled onto a Logistic Regression Model, and then run predictions model scoring. 
 
-#### MODEL 2: SMOTE Oversampler
+### MODEL 2: SMOTE Oversampler
 
 **NOTE:** I did include a naive overslampling model, but SMOTE oversampling works better.
 
-Second model will oversample the minority data class of high-risk loans to match the majority class of low-risk using SMOTE algorithm,
+Second model will oversample the *minority* data class of high-risk loans to match the majority class of low-risk using SMOTE algorithm.
 
 Bring the **imblearn** feature-suite to use these resampling algos.
 <pre><code>from imblearn.over_sampling import SMOTE
@@ -116,6 +117,14 @@ Fit the SMOTE resampled training data to our second Logistic Regression model.
 <pre><code>sm_model = LogisticRegression(solver='lbfgs', max_iter =2000, random_state=1)
 sm_model.fit(X_resampled_sm, y_resampled_sm)
 </code></pre>
+
+Make predictions. Get the accuracy score. The SMOTE oversampling has a **99%** accuracy score. Better than our basic imbalanced model. 
+<pre><code>y_pred_sm = sm_model.predict(X_test)
+balanced_accuracy_score(y_test, y_pred_sm)
+</code></pre>
+>0.9936781215845847
+
+
 
 #### MODEL 3: Unsampling Model - Clustered Centroids
 
