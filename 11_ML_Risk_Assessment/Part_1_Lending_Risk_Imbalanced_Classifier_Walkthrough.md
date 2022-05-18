@@ -105,7 +105,7 @@ After we cleaned the imbalanced loan dataset. We will re-sampled the cleaned tra
 
 Second model will oversample the *minority* data class of high-risk loans to match the *majority* class of low-risk using SMOTE algorithm.
 
-Bring the **imblearn** feature-suite to use these resampling algos. Fit resample the training data with SMOTE. Keep a seed value of 1. 
+Bring the **imblearn** feature-suite to use the SMOTE resampling algo. Fit resample the training data with SMOTE. Keep a seed value of 1. 
 <pre><code>from imblearn.over_sampling import SMOTE
 X_resampled_sm, y_resampled_sm = SMOTE(random_state = 1, sampling_strategy = 1.0).fit_resample(X_train, y_train)
 </code></pre>
@@ -138,6 +138,16 @@ cm_sm_df
 Display an imbalanced classification report. 
 <pre><code>print(classification_report_imbalanced(y_test, y_pred_sm))</code></pre>
 
-#### MODEL 3: Unsampling Model - Clustered Centroids
+### MODEL 3: Unsampling Model - Clustered Centroids
+
+This resampling model will undersample the *majority* class of low-risk loans to match the *minority* class of high-risk loans. 
+<pre><code>from imblearn.under_sampling import ClusterCentroids
+cc = ClusterCentroids(random_state = 1)
+X_resampled_cc, y_resampled_cc = cc.fit_resample(X_train, y_train)
+</code></pre>
+
+After resampling the training data, the class breakdown shows this.
+<pre><code>Counter(y_resampled_cc)</code></pre>
+>Counter({'high_risk': 1881, 'low_risk': 1881})
 
 #### MODEL 4: Combination Sampling Model - SMOTEENN
