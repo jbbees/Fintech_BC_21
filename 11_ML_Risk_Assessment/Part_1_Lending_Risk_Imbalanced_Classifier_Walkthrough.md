@@ -55,7 +55,7 @@ Our y-target is what will be the **TRUE POSITIVE** event in our confusion matrix
 
 ## ML Model Comparisons. Which predicts best? Imblanced data model or resampled data model? 
 
-We are building four comparative Logistic Regression models to predict **high risk loans** with the now cleaned imbalanced dataset. We are deciding if a *basic* ML model (Logistical Regression) with an imbalanced dataset will predict risky loans better than a ML model with a *resampled* dataset that eliminates bias. There will be 1 control model with imbalanced data. And we will build three different models that resample the loan classes differently. This means we will resample using a oversampling algorithm (SMOTE), 
+We are building four comparative Logistic Regression models to predict/classify **high risk loans** with the imbalanced dataset. We are deciding if a *basic* ML model (Logistical Regression) with an *imbalanced* dataset will predict risky loans better than a ML model with a *resampled* dataset that eliminates bias. There will be 1 control model with imbalanced data. And we will build three different models that resample the loan classes differently. This means we will resample using a oversampling algorithm (SMOTE), undersampling (Clustered Centroids), and combination sampling (SMOTEENN). We'll bring the imblearn features to use these algos. 
 
 ### MODEL 1: Logistic Regression Model - Imbalanced Data
 
@@ -125,7 +125,18 @@ balanced_accuracy_score(y_test, y_pred_sm)
 </code></pre>
 >0.9936781215845847
 
+Display a confusion matrix.
+<pre><code>cm_sm = confusion_matrix(y_test, y_pred_sm)
+cm_sm_df = pd.DataFrame(
+    cm_sm,
+    index = ['Actual 0', 'Actual 1'],
+    columns = ['Predicted 0', 'Predicted 1']
+)
+cm_sm_df
+</code></pre>
 
+Display an imbalanced classification report. 
+<pre><code>print(classification_report_imbalanced(y_test, y_pred_sm))</code></pre>
 
 #### MODEL 3: Unsampling Model - Clustered Centroids
 
