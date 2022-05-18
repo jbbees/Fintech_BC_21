@@ -73,11 +73,12 @@ lr_model = LogisticRegression(solver='lbfgs', random_state=1)
 lr_model.fit(X_train, y_train)
 </code></pre>
 
-Run an accuracy score on how well an LR model predicted. It displayed a 95% accuracy score.
+Make predictions. Run an accuracy score on how well an LR model predicted. It displayed a **95%** balanced accuracy score.
 <pre><code>from sklearn.metrics import balanced_accuracy_score
 y_pred_lr = lr_model.predict(X_test)
 balanced_accuracy_score(y_test, y_pred_lr)
 </code></pre>
+>0.9520479254722232
 
 Display a confusion matrix to breakdown the True Positives (acutal high-risk loans) and True Negatives (actual low-risk loans)
 <pre><code>from sklearn.metrics import confusion_matrix
@@ -102,14 +103,14 @@ After we cleaned the imbalanced loan dataset. We will re-sampled the cleaned tra
 
 **NOTE:** I did include a naive overslampling model, but SMOTE oversampling works better.
 
-Second model will oversample the *minority* data class of high-risk loans to match the majority class of low-risk using SMOTE algorithm.
+Second model will oversample the *minority* data class of high-risk loans to match the *majority* class of low-risk using SMOTE algorithm.
 
-Bring the **imblearn** feature-suite to use these resampling algos.
+Bring the **imblearn** feature-suite to use these resampling algos. Fit resample the training data with SMOTE. Keep a seed value of 1. 
 <pre><code>from imblearn.over_sampling import SMOTE
 X_resampled_sm, y_resampled_sm = SMOTE(random_state = 1, sampling_strategy = 1.0).fit_resample(X_train, y_train)
 </code></pre>
 
-After resampling the class breakdown in the data 
+After resampling the class breakdown in the data both classes are equal. 
 <pre><code>Counter(y_resampled_sm)</code></pre>
 >Counter({'low_risk': 56271, 'high_risk': 56271})
 
@@ -118,7 +119,7 @@ Fit the SMOTE resampled training data to our second Logistic Regression model.
 sm_model.fit(X_resampled_sm, y_resampled_sm)
 </code></pre>
 
-Make predictions. Get the accuracy score. The SMOTE oversampling has a **99%** accuracy score. Better than our basic imbalanced model. 
+Make predictions. Get the accuracy score. The SMOTE oversampling has a **99%**  balanced accuracy score. Better than our basic imbalanced model. 
 <pre><code>y_pred_sm = sm_model.predict(X_test)
 balanced_accuracy_score(y_test, y_pred_sm)
 </code></pre>
