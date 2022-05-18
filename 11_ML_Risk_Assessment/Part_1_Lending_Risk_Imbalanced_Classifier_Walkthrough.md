@@ -53,11 +53,13 @@ Import the feature and create the object.
 
 Our y-target is what will be the **TRUE POSITIVE** event in our confusion matrix. We are predicting *high-risk* loans that would default or be a loss to the firm. Only 1 column in the dataset reflects this attribute * 
 
-#### Part 2: 
+#### Part 2: ML Models. Which predicts best? Imblanced data or resampled data? 
+
+We are building four comparative Logistic Regression models to predict high risk loans with the now cleaned imbalanced dataset. We are deciding if a model with an imbalanced dataset of high/low risk loand  We are first make a si
 
 ## Logistic Regression Model - Imbalanced Data
 
-Here we test to see how an ML algorithm predicts fraud on imbalanced data. That is, we're not resampling the data so both classes of low-risk & high-risk loans match. 
+The first model we Here we test to see how an ML algorithm predicts fraud on imbalanced data. That is, we're not resampling the data so both classes of low-risk & high-risk loans match. 
 
 Our imbalanced y-target data shows way more low-risk loans than high-risk ones.
 
@@ -106,6 +108,10 @@ After resampling the class breakdown in the data
 <pre><code>Counter(y_resampled_sm)</code></pre>
 >Counter({'low_risk': 56271, 'high_risk': 56271})
 
+Fit the SMOTE resampled training data to our second Logistic Regression model.
+<pre><code>sm_model = LogisticRegression(solver='lbfgs', max_iter =2000, random_state=1)
+sm_model.fit(X_resampled_sm, y_resampled_sm)
+</code></pre>
 
 ## MODEL 2: Unsampling Model - Clustered Centroids
 
