@@ -110,7 +110,7 @@ Bring the **imblearn** feature-suite to use the SMOTE resampling algo. Fit resam
 X_resampled_sm, y_resampled_sm = SMOTE(random_state = 1, sampling_strategy = 1.0).fit_resample(X_train, y_train)
 </code></pre>
 
-After resampling the class breakdown in the data both classes are equal. 
+After resampling the class breakdown in the data both classes are equal. We boosted the high-risk numbers.
 <pre><code>Counter(y_resampled_sm)</code></pre>
 >Counter({'low_risk': 56271, 'high_risk': 56271})
 
@@ -148,7 +148,7 @@ cc = ClusterCentroids(random_state = 1)
 X_resampled_cc, y_resampled_cc = cc.fit_resample(X_train, y_train)
 </code></pre>
 
-After resampling the data, the target class breakdown shows this.
+After resampling the data, the target class breakdown shows this. We decreased the large number of low-risk loans. 
 <pre><code>Counter(y_resampled_cc)</code></pre>
 >Counter({'high_risk': 1881, 'low_risk': 1881})
 
@@ -175,7 +175,7 @@ cm_cc_df
 Display the imabalanced classification report.
 <pre><code>print(classification_report_imbalanced(y_test, y_pred_cc))</code></pre>
 
-#### MODEL 4: Combination Sampling Model - SMOTEENN
+### MODEL 4: Combination Sampling Model - SMOTEENN
 
 Final model will combine oversampling and undersampling. SMOTEENN will first oversample the *minority* class of high risk loans to match the low-risk one's. And then the **Editied Nearest Neighbors**, the ENN part, feature kicks in. It will undersample the balanced dataset, by eliminating data points it feels are too close. 
 
@@ -183,4 +183,13 @@ Bring in SMOTEENN algo. Create a SMOTEENN object and fit resample the imbalanced
 <pre><code>from imblearn.combine import SMOTEENN
 cos = SMOTEENN(random_state = 1)
 X_resampled_cos, y_resampled_cos = cos.fit_resample(X_train, y_train)
+</code></pre>
+
+The resampling yields a slightly uneven breakdown. This will give a good chance of non-biased classification.
+<pre><code>Counter(y_resampled_cos)</code></pre>
+>Counter({'high_risk': 55603, 'low_risk': 55948})
+
+Fit the SMOTEENN resampled data to the final Logistic Regression.
+<pre><code>cos_model = LogisticRegression(solver = 'lbfgs', random_state = 1)
+cos_model.fit(X_resampled_cos, y_resampled_cos) 
 </code></pre>
