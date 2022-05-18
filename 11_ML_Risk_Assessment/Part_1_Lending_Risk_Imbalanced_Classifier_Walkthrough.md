@@ -53,11 +53,11 @@ Import the feature and create the object.
 
 Our y-target is what will be the **TRUE POSITIVE** event in our confusion matrix. We are predicting *high-risk* loans that would default or be a loss to the firm. Only 1 column in the dataset reflects this attribute * 
 
-#### Part 2: ML Models. Which predicts best? Imblanced data or resampled data? 
+## ML Model Comparisons. Which predicts best? Imblanced data model or resampled data model? 
 
 We are building four comparative Logistic Regression models to predict high risk loans with the now cleaned imbalanced dataset. We are deciding if a model with an imbalanced dataset of high/low risk loand  We are first make a si
 
-## Logistic Regression Model - Imbalanced Data
+#### MODEL 1: Logistic Regression Model - Imbalanced Data
 
 The first model we Here we test to see how an ML algorithm predicts fraud on imbalanced data. That is, we're not resampling the data so both classes of low-risk & high-risk loans match. 
 
@@ -97,7 +97,7 @@ print(classification_report_imbalanced(y_test, y_pred_lr))
 
 After we cleaned the imbalanced loan dataset. We will re-sampled the cleaned training data acorss three different ML models. In this case an oversampler, an undersampler, and a combination re-sampler. We first create each resampling model. And then resample the imbalanced training data. And then we will fit that resampled onto a Logistic Regression Model, and then run predictions model scoring. 
 
-## MODEL 1: SMOTE Oversampler
+#### MODEL 2: SMOTE Oversampler
 
 
 <pre><code>from imblearn.over_sampling import SMOTE
@@ -113,6 +113,6 @@ Fit the SMOTE resampled training data to our second Logistic Regression model.
 sm_model.fit(X_resampled_sm, y_resampled_sm)
 </code></pre>
 
-## MODEL 2: Unsampling Model - Clustered Centroids
+#### MODEL 3: Unsampling Model - Clustered Centroids
 
-## MODEL 3: Combination Sampling Model - SMOTEENN
+#### MODEL 4: Combination Sampling Model - SMOTEENN
