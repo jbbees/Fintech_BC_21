@@ -33,6 +33,25 @@ The typical
 
 Predictive value 
 
+## Imports
+<pre><code>
+import warnings
+warnings.filterwarnings('ignore')
+import numpy as np
+import pandas as pd
+from pathlib import Path
+from collections import Counter
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import balanced_accuracy_score
+from sklearn.metrics import confusion_matrix
+from imblearn.metrics import classification_report_imbalanced
+from imblearn.over_sampling import SMOTE
+from imblearn.under_sampling import ClusterCentroids
+from imblearn.combine import SMOTEENN
+</code></pre>
+
 ## Pre-Processing Data
 
 The loan-level dataset will be cleaned to be able to feed into the various high-level models.
