@@ -55,11 +55,11 @@ Our y-target is what will be the **TRUE POSITIVE** event in our confusion matrix
 
 ## ML Model Comparisons. Which predicts best? Imblanced data model or resampled data model? 
 
-We are building four comparative Logistic Regression models to predict high risk loans with the now cleaned imbalanced dataset. We are deciding if a model with an imbalanced dataset of high/low risk loand  We are first make a si
+We are building four comparative Logistic Regression models to predict high risk loans with the now cleaned imbalanced dataset. We are deciding if a ML model (Logistical Regression) with an imbalanced dataset will predict better than a ML model with a resampled dataset. There will be 1 model with imbalanced data. And we will build three different models that resample the loan classes differently. This means we will resample using a oversampling algorithm (SMOTE), 
 
-#### MODEL 1: Logistic Regression Model - Imbalanced Data
+### MODEL 1: Logistic Regression Model - Imbalanced Data
 
-The first model we Here we test to see how an ML algorithm predicts fraud on imbalanced data. That is, we're not resampling the data so both classes of low-risk & high-risk loans match. 
+The first model. A basic algorithm predicts fraud on imbalanced data. That is, we're not resampling the data. 
 
 Our imbalanced y-target data shows way more low-risk loans than high-risk ones.
 
@@ -99,7 +99,11 @@ After we cleaned the imbalanced loan dataset. We will re-sampled the cleaned tra
 
 #### MODEL 2: SMOTE Oversampler
 
+**NOTE:** I did include a naive overslampling model, but SMOTE oversampling works better.
 
+Second model will oversample the minority data class of high-risk loans to match the majority class of low-risk using SMOTE algorithm,
+
+Bring the **imblearn** feature-suite to use these resampling algos.
 <pre><code>from imblearn.over_sampling import SMOTE
 X_resampled_sm, y_resampled_sm = SMOTE(random_state = 1, sampling_strategy = 1.0).fit_resample(X_train, y_train)
 </code></pre>
