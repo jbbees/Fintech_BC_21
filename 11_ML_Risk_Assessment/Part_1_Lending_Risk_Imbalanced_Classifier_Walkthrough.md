@@ -35,7 +35,7 @@ Predictive value
 
 ## Imports
 
-We'll be using both scikit-learn and imblearn feature suites.
+We'll be using both `scikit-learn` and `imblearn` feature import suites.
 
 <pre><code>import warnings
 warnings.filterwarnings('ignore')
@@ -64,13 +64,14 @@ df.head()
 
 #### Part 1: Label Encoding of non-numeric columns.
 
-Classification models work off of numeric data. Any columns with character values need be converted to numeric values using a `LabelEncoder` object to input into a classifier. **NOTE:** Before doing this, it's easier to first assess if the column has a predictive value, and if it doesn't simply drop the column. However, in our case the non-numeric columns are `homeowner` and `loan_status` which is the target prediction, so these columns have to remain, and need to be converted to numeric format.
+Classification models work off of numeric data. Any columns with character values need be converted to numeric values using a `LabelEncoder` object to input into a classifier. 
 
-Create a 'LabelEncoder()` object, 
-`label_encoder = LabelEncoder()`
+**NOTE:** Before doing this, it's easier to first assess if the column has a predictive value, and if it doesn't simply drop the column. However, in our case the non-numeric columns are `homeowner` has predictive value for determining loan risk. 
 
-
-
+Create a 'LabelEncoder()` object, fit the 'homeowner` column to it, transform the values into numbers.
+<pre><code>label_encoder = LabelEncoder()
+label_encoder.fit(df['homeowner'])
+df['homeowner] = label_encoder.transform(df['homeowner'])
 
 #### Part 2: Define X predictive features, & y-target vector. 
 
