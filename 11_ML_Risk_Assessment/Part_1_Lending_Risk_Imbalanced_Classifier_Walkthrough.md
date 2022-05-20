@@ -189,8 +189,12 @@ cm_sm_df = pd.DataFrame(
 cm_sm_df
 </code></pre>
 
+![image](images/cm_smote.PNG)
+
 Display an imbalanced classification report. 
 <pre><code>print(classification_report_imbalanced(y_test, y_pred_sm))</code></pre>
+
+![image](images/cr_smote.PNG)
 
 ### MODEL 3: Unsampling Model - Clustered Centroids
 
@@ -226,8 +230,12 @@ cm_cc_df = pd.DataFrame(
 cm_cc_df
 </code></pre>
 
+![image](images/cm_clustered.PNG)
+
 Display the imabalanced classification report.
 <pre><code>print(classification_report_imbalanced(y_test, y_pred_cc))</code></pre>
+
+![image](images/cr_clustered.PNG)
 
 ### MODEL 4: Combination Sampling Model - SMOTEENN
 
@@ -264,5 +272,9 @@ cm_cos_df = pd.DataFrame(
 cm_cos_df
 </code></pre>
 
+![image](images/cm_cos.PNG)
+
 Display the classification report.
 <pre><code>print(classification_report_imbalanced(y_test, y_pred_cos))</code></pre>
+
+![image](images/cr_cos.PNG)
