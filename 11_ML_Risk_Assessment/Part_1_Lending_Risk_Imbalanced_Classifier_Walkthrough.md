@@ -4,7 +4,7 @@
 
 <details><summary>Premise:</summary>
   
-We are dealing an **imbalanced classification problem** for predicting risk of default on bank loan applications based on dataset attributes (borrower's income, total debt they have, derogatory marks on their credit record, number of financial accounts, or if they own their current home), using various ML algorithms. Loans will be either classified as *low-risk* of defaulting or *high-risk* of defaulting. We don't know what would a be a good method to make this determination. We will use different ML methods to feed the data into these models that will predict the rish of loan default. More specifiically we will explore two broad ML methods: Oversampling & Ensemble Random Forest Classifier.
+We are dealing an **imbalanced classification problem** using supervised ML methods for predicting risk of default on bank loan applications based on dataset attributes (borrower's income, total debt they have, derogatory marks on their credit record, number of financial accounts, or if they own their current home). Loans will be either classified as *low-risk* of defaulting or *high-risk* of defaulting. We don't know what would a be an accurate model to make this determination. We will use different ML methods using imbalanced or resampled loan data inputted into these models. 
 
 </details>
 
@@ -23,15 +23,6 @@ A very basic file containing over 70,000 loan applications with few descriptive 
 * loans_status (default predictive target, two classes: low-risk or high-risk)
 
 </details>
-
-
-The raw data file has very basic data. 
-
-The key column we care about is 
-
-The typical 
-
-Predictive value 
 
 ## Imports
 
@@ -64,7 +55,7 @@ df.head()
 
 #### Part 1: Label Encoding of non-numeric columns.
 
-Classification models work off of numeric data. Any predictive columns with character values need be converted to numeric values using a `LabelEncoder` object. 
+Classification models work off of numeric data. Any predictive columns with character values need be converted to numeric values using a `LabelEncoder()` object. 
 
 **NOTE:** Before doing this, it's easier to first assess if the column has a predictive value, and if it doesn't simply drop the column. However, in our case the non-numeric columns are `homeowner` has predictive value for determining loan risk, so it needs to remain. 
 
@@ -93,7 +84,7 @@ X.drop('loan_status', axis=1, inplace=True)
 
 #### Part 4: Scale the training data.
 
-Create a `StandardScaler` object, fit the training data to it, and then transform the X FEATURES data that will be exposed to the models.  
+Create a `StandardScaler()` object, fit the training data to it, and then transform the X FEATURES data that will be exposed to the models.  
 <pre><code>
 data_scaler = StandardScaler()
 X_scaler = data_scaler.fit(X_train)
