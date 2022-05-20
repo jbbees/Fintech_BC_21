@@ -74,7 +74,7 @@ Import the feature and create the object.
 
 
 
-#### Part 1: Define X predictive features, & y-target vector. 
+#### Part 2: Define X predictive features, & y-target vector. 
 
 Our y-target is what will be the **TRUE POSITIVE** event in our confusion matrix. We are predicting *low-risk* loans. Only 1 column in the dataset reflects this attribute, the `loan_status` column.
 `y = df['loan_status']`
@@ -82,6 +82,20 @@ Our y-target is what will be the **TRUE POSITIVE** event in our confusion matrix
 The X features will be everything else except `loan_status`. We'll copy the original dataframe into X and drop the target column, and any column that doesn't have predictive value.
 <pre><code>X = df.copy() 
 X.drop('loan_status', axis=1, inplace=True)
+</code></pre>
+
+#### Part 3: Train/test split
+<pre><code>X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
+</code></pre>
+
+#### Part 4: Scale the training data.
+
+Create a `StandardScaler` object, fit the training data to it, and then transform the X FEATURES data that will be exposed to the models.  
+<pre><code>
+data_scaler = StandardScaler()
+X_scaler = data_scaler.fit(X_train)
+X_train_scaled = X_scaler.transform(X_train)
+X_test_scaled = X_scaler.transform(X_test)
 </code></pre>
 
 ## ML Model Comparisons. Which predicts best? Imblanced data model or resampled data model? 
