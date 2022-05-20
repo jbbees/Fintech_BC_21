@@ -279,7 +279,7 @@ Display the classification report.
 
 ![image](images/cr_cos.PNG)
 
-# Model Results
+# Model Results - Use imbalanced data, or resampled data?
 
 The following observations can be made about using an imbalanced dataset.
 * The simple logistic regression model using just imbalanced training data performed worse in prediction accuracy at **95%**, as opposed to using a resampled method which performed between **98-99%** in accuracy. So it would be better to resample data.
