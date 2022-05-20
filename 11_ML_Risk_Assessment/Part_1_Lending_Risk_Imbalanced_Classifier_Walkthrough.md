@@ -76,7 +76,13 @@ Import the feature and create the object.
 
 #### Part 1: Define X predictive features, & y-target vector. 
 
-Our y-target is what will be the **TRUE POSITIVE** event in our confusion matrix. We are predicting *high-risk* loans that would default or be a loss to the firm. Only 1 column in the dataset reflects this attribute * 
+Our y-target is what will be the **TRUE POSITIVE** event in our confusion matrix. We are predicting *low-risk* loans. Only 1 column in the dataset reflects this attribute, the `loan_status` column.
+`y = df['loan_status']`
+
+The X features will be everything else except `loan_status`. We'll copy the original dataframe into X and drop the target column, and any column that doesn't have predictive value.
+<pre><code>X = df.copy() 
+X.drop('loan_status', axis=1, inplace=True)
+</code></pre>
 
 ## ML Model Comparisons. Which predicts best? Imblanced data model or resampled data model? 
 
