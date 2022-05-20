@@ -58,6 +58,12 @@ df = pd.read_csv(file_path)
 df.head()
 </code></pre>
 
+<details><summary>What you should see</summary>
+
+![image](images/loan_data.PNG)
+  
+</details>
+
 #### Part 1: Label Encoding of non-numeric columns.
 
 Classification models work off of numeric data. Any predictive columns with character values need be converted to numeric values using a `LabelEncoder()` object. 
