@@ -72,11 +72,12 @@ Create a 'LabelEncoder()` object, fit the 'homeowner` column to it, transform th
 <pre><code>label_encoder = LabelEncoder()
 label_encoder.fit(df['homeowner'])
 df['homeowner] = label_encoder.transform(df['homeowner'])
+</code></pre>
 
 #### Part 2: Define X predictive features, & y-target vector. 
 
 Our y-target is what will be the **TRUE POSITIVE** event in our confusion matrix. We are predicting *low-risk* loans. Only 1 column in the dataset reflects this attribute, the `loan_status` column.
-`y = df['loan_status']`
+<pre><code>y = df['loan_status']</cpde></pre>
 
 The breakdown of `loan_status` values:
 <pre><code>y.value_counts()</code></pre>
