@@ -64,9 +64,9 @@ df.head()
 
 #### Part 1: Label Encoding of non-numeric columns.
 
-Classification models work off of numeric data. Any columns with character values need be converted to numeric values using a `LabelEncoder` object to input into a classifier. 
+Classification models work off of numeric data. Any predictive columns with character values need be converted to numeric values using a `LabelEncoder` object. 
 
-**NOTE:** Before doing this, it's easier to first assess if the column has a predictive value, and if it doesn't simply drop the column. However, in our case the non-numeric columns are `homeowner` has predictive value for determining loan risk. 
+**NOTE:** Before doing this, it's easier to first assess if the column has a predictive value, and if it doesn't simply drop the column. However, in our case the non-numeric columns are `homeowner` has predictive value for determining loan risk, so it needs to remain. 
 
 Create a 'LabelEncoder()` object, fit the 'homeowner` column to it, transform the values into numbers.
 <pre><code>label_encoder = LabelEncoder()
@@ -77,7 +77,7 @@ df['homeowner] = label_encoder.transform(df['homeowner'])
 #### Part 2: Define X predictive features, & y-target vector. 
 
 Our y-target is what will be the **TRUE POSITIVE** event in our confusion matrix. We are predicting *low-risk* loans. Only 1 column in the dataset reflects this attribute, the `loan_status` column.
-<pre><code>y = df['loan_status']</cpde></pre>
+<pre><code>y = df['loan_status']</code></pre>
 
 The breakdown of `loan_status` values:
 <pre><code>y.value_counts()</code></pre>
@@ -101,9 +101,9 @@ X_train_scaled = X_scaler.transform(X_train)
 X_test_scaled = X_scaler.transform(X_test)
 </code></pre>
 
-## ML Model Comparisons. Which predicts best? Imblanced data model or resampled data model? 
+## ML Model Comparisons. 
 
-We are building four comparative Logistic Regression models to predict/classify **high risk loans** with the imbalanced dataset. We are deciding if a *basic* ML model (Logistical Regression) with an *imbalanced* dataset will predict risky loans better than a ML model with a *resampled* dataset that eliminates bias. There will be 1 control model with imbalanced data. And we will build three different models that resample the loan classes differently. This means we will resample using a oversampling algorithm (SMOTE), undersampling (Clustered Centroids), and combination sampling (SMOTEENN). We'll bring the imblearn features to use these algos. 
+We are building four comparative Logistic Regression models to predict/classify **low risk loans** with the *imbalanced* dataset in a control model, and *resampled* data using ML algorithms to determine which model has the best accuracy score in the results. There will be 1 control model with the cleaned imbalanced data. And we will build three different models that resample the loan classes differently. We will resample data using an oversampling algorithm (SMOTE), undersampling (Clustered Centroids), and combination sampling (SMOTEENN). We'll bring the imblearn features to use these algos. In the end we assess the accuracy scores for each model.
 
 ### MODEL 1: Logistic Regression Model - Imbalanced Data
 
@@ -114,7 +114,7 @@ Our imbalanced y-target data shows way more low-risk loans than high-risk ones.
 >low_risk     75036
 >high_risk     2500
 
-We'll use **scikit learn** features to import in the LR. We'll use a seed state value of 1 to replicate results. And fit the regular training data on it. No resampling or scaling. 
+We'll use `scikit learn` features to import in the LR. We'll use a seed state value of 1 to replicate results. And fit the regular training data on it. No resampling or scaling. 
 
 <pre><code> from sklearn.linear_model import LogisticRegression
 lr_model = LogisticRegression(solver='lbfgs', random_state=1)
