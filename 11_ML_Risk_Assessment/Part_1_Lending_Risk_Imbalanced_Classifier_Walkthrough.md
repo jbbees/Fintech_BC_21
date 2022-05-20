@@ -1,6 +1,6 @@
 ![image](images/credit-risk.jpg)
 
-# Part 1: Lending Club Loan Risk Analysis - Imbalanced Classification (Supervised ML)
+# Part 1: Lending Club Loan Risk Analysis - Imbalanced Classification
 
 <details><summary>Premise:</summary>
   
