@@ -35,3 +35,10 @@ for col in target_cols:
     
     df[col] = label_encoder.transform(df[col])
 </code></pre>
+
+#### Part 2: Define X features & y-target vector
+
+<pre><code>y = df['loan_status']
+X = df.copy()
+X.drop('loan_status', axis=1, inplace=True)
+</code></pre>
