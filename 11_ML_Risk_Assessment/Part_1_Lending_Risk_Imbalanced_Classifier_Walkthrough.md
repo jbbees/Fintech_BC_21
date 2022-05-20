@@ -64,11 +64,9 @@ df.head()
 
 #### Part 1: Label Encoding of non-numeric columns.
 
-Classification models work off of numeric data. Any columns with character values need be converted to numeric values using a **LabelEncoder** object to input into a classifier. **NOTE:** Before doing this, it's easier to first assess if the column has a predictive value, and if it doesn't simply drop the column. However, in our case the non-numeric columns are `homeowner` and `loan_status` which is the target prediction, so these columns have to remain, and need to be converted to numeric format.
+Classification models work off of numeric data. Any columns with character values need be converted to numeric values using a `LabelEncoder` object to input into a classifier. **NOTE:** Before doing this, it's easier to first assess if the column has a predictive value, and if it doesn't simply drop the column. However, in our case the non-numeric columns are `homeowner` and `loan_status` which is the target prediction, so these columns have to remain, and need to be converted to numeric format.
 
-Import the feature and create the object.
-
-`from sklearn.preprocessing import LabelEncoder`
+Create a 'LabelEncoder()` object, 
 `label_encoder = LabelEncoder()`
 
 
@@ -78,6 +76,9 @@ Import the feature and create the object.
 
 Our y-target is what will be the **TRUE POSITIVE** event in our confusion matrix. We are predicting *low-risk* loans. Only 1 column in the dataset reflects this attribute, the `loan_status` column.
 `y = df['loan_status']`
+
+The breakdown of `loan_status` values:
+<pre><code>y.value_counts()</code></pre>
 
 The X features will be everything else except `loan_status`. We'll copy the original dataframe into X and drop the target column, and any column that doesn't have predictive value.
 <pre><code>X = df.copy() 
