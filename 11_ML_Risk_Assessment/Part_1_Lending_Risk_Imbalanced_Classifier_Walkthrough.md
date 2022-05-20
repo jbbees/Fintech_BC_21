@@ -278,3 +278,11 @@ Display the classification report.
 <pre><code>print(classification_report_imbalanced(y_test, y_pred_cos))</code></pre>
 
 ![image](images/cr_cos.PNG)
+
+# Model Results
+
+The following observations can be made about using an imbalanced dataset.
+* The simple logistic regression model using just imbalanced training data performed worse in prediction accuracy at **95%**, as opposed to using a resampled method which performed between **98-99%** in accuracy. So it would be better to resample data.
+* Of the resampling techniques used: SMOTE, Clustered Centroids, and SMOTEENN. Each method captured almost all the low-risk loans in the True Positive event. Not many False Negatives.
+* I then looked at the specificity of high-risk loans. High-risk loans will default, it's in the banks interest to ensure high-risk loans were not included in the Predict True population. Not many were. Most high-risk loans across all models fell in the True-Negative event. Since SMOTENN had the best balance of low False Negatives, and low False Positives. The SMOTEENN model is the best method for this loan data-set/
+* **Preferred model:** SMOTEENN combination sampler. 
