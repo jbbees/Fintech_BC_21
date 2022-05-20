@@ -63,7 +63,7 @@ Read-in data
 file_path = Path('resources/lending_data.csv')
 df = pd.read_csv(file_path)
 df.head()
-</code><pre>
+</code></pre>
 
 #### Part 1: Label Encoding of non-numeric columns.
 
