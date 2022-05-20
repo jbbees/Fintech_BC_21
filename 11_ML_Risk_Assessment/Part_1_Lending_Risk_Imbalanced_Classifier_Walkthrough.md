@@ -81,7 +81,7 @@ df['homeowner] = label_encoder.transform(df['homeowner'])
 Our y-target is what will be the **TRUE POSITIVE** event in our confusion matrix. We are predicting *low-risk* loans. Only 1 column in the dataset reflects this attribute, the `loan_status` column.
 <pre><code>y = df['loan_status']</code></pre>
 
-The breakdown of `loan_status` values:
+Check the breakdown of `loan_status` values:
 <pre><code>y.value_counts()</code></pre>
 
 The X features will be everything else except `loan_status`. We'll copy the original dataframe into X and drop the target column, and any column that doesn't have predictive value.
@@ -141,11 +141,15 @@ cm_df = pd.DataFrame(
 cm_df
 </code></pre>
 
+![image](images/cm_lr.PNG)
+
 Run an imblanced classification report on the precision and recall performances. 
 
 <pre><code>from imblearn.metrics import classification_report_imbalanced
 print(classification_report_imbalanced(y_test, y_pred_lr))
 </code></pre>
+
+![image](images/cr_lr.PNG)
 
 After we cleaned the imbalanced loan dataset. We will re-sampled the cleaned training data acorss three different ML models. In this case an oversampler, an undersampler, and a combination re-sampler. We first create each resampling model. And then resample the imbalanced training data. And then we will fit that resampled onto a Logistic Regression Model, and then run predictions model scoring. 
 
