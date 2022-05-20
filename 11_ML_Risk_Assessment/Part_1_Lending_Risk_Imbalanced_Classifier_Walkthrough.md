@@ -68,7 +68,7 @@ Classification models work off of numeric data. Any predictive columns with char
 
 **NOTE:** Before doing this, it's easier to first assess if the column has a predictive value, and if it doesn't simply drop the column. However, in our case the non-numeric columns are `homeowner` has predictive value for determining loan risk, so it needs to remain. 
 
-Create a 'LabelEncoder()` object, fit the 'homeowner` column to it, transform the values into numbers.
+Create a `LabelEncoder()` object, fit the `homeowner` column to it, transform the values into numbers.
 <pre><code>label_encoder = LabelEncoder()
 label_encoder.fit(df['homeowner'])
 df['homeowner] = label_encoder.transform(df['homeowner'])
