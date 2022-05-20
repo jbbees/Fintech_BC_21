@@ -56,11 +56,8 @@ from imblearn.combine import SMOTEENN
 
 ## Pre-Processing Data
 
-The loan-level dataset will be cleaned to be able to feed into the various high-level models.
-
-Read-in data
-<pre><code>
-file_path = Path('resources/lending_data.csv')
+Read-in data. This is a very basic loan data file.
+<pre><code>file_path = Path('resources/lending_data.csv')
 df = pd.read_csv(file_path)
 df.head()
 </code></pre>
