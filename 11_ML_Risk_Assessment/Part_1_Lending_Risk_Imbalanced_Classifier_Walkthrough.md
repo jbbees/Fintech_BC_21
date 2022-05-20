@@ -58,6 +58,13 @@ from imblearn.combine import SMOTEENN
 
 The loan-level dataset will be cleaned to be able to feed into the various high-level models.
 
+Read-in data
+<pre><code>
+file_path = Path('resources/lending_data.csv')
+df = pd.read_csv(file_path)
+df.head()
+</code><pre>
+
 #### Part 1: Label Encoding of non-numeric columns.
 
 Classification models work off of numeric data. Any columns with character values need be converted to numeric values using a **LabelEncoder** object to input into a classifier. **NOTE:** Before doing this, it's easier to first assess if the column has a predictive value, and if it doesn't simply drop the column. However, in our case the non-numeric columns are `homeowner` and `loan_status` which is the target prediction, so these columns have to remain, and need to be converted to numeric format.
