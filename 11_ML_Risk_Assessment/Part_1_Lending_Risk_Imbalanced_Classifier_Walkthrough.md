@@ -26,7 +26,7 @@ A very basic file containing over 70,000 loan applications with few descriptive 
 
 ## Imports
 
-We'll be using both `scikit-learn` and `imblearn` feature import suites.
+We'll be using both `scikit-learn` and `imblearn` feature import suites. They can be installed using: `conda install -c conda-forge imbalanced-learn`.
 
 <pre><code>import warnings
 warnings.filterwarnings('ignore')
@@ -44,6 +44,11 @@ from imblearn.over_sampling import SMOTE
 from imblearn.under_sampling import ClusterCentroids
 from imblearn.combine import SMOTEENN
 </code></pre>
+
+We will display model results in dataframes using the `pydotplus` visualization library. 
+* `conda install python-graphviz`
+* `conda install graphviz`
+* `conda install -c conda-forge pydotplus`
 
 ## Pre-Processing Data
 
