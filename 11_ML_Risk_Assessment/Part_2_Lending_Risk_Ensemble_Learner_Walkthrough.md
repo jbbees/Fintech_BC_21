@@ -6,7 +6,7 @@ This part is more advanced. Instead of predicting loan default based on resampli
 
 ## Data Pre-Processing
 
-This will use more detailed loan data than the previous section. 
+Read-in data file. This will use more detailed loan data than the previous section. 
 
 <pre><code>file_path = Path('resources/LoanStats_2019Q1.csv')
 df = pd.read_csv(file_path, skiprows=1)[:-2]
@@ -36,9 +36,21 @@ for col in target_cols:
     df[col] = label_encoder.transform(df[col])
 </code></pre>
 
-#### Part 2: Define X features & y-target vector
+#### Part 2: Define X features & y-target vector.
 
 <pre><code>y = df['loan_status']
 X = df.copy()
 X.drop('loan_status', axis=1, inplace=True)
+</code></pre>
+
+#### Part 3: Train/test split.
+
+<pre><code>from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=78)
+</code></pre>
+
+#### Part 4: Scaling the feature data.
+
+<pre><code>from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
 </code></pre>
