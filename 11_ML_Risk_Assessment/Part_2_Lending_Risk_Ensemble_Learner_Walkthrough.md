@@ -4,6 +4,24 @@
 
 This part is more advanced. Instead of predicting loan default based on resampling data classes, we'll use an ensemlbe-learner, tree-algorithim to breakdown the data and make the prediction. Will a tree algorithm be better suited for predicting loan risk?
 
+## Imports
+<pre><code>
+import warnings
+warnings.filterwarnings('ignore')
+import numpy as np
+import pandas as pd
+from pathlib import Path
+from collections import Counter
+from sklearn.metrics import balanced_accuracy_score
+from sklearn.metrics import confusion_matrix
+from imblearn.metrics import classification_report_imbalanced
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from imblearn.ensemble import BalancedRandomForestClassifier
+from imblearn.ensemble import EasyEnsembleClassifier
+</code></pre>
+
 ## Data Pre-Processing
 
 Read-in data file. This will use more detailed loan data than the previous section. 
