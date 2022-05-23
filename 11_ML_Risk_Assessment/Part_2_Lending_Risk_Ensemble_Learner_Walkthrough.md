@@ -1,5 +1,12 @@
 # Risky Business Part 2 - Ensemble Learner Walkthrough
 
+**CODER'S NOTE:** This notebook will not be able to exdecute the RF model results. When running tests on predictions and scoring, python returns sample inconsistency error:  
+
+> ValueError: Found input variables with inconsistent numbers of samples: [17205, 51612]
+
+The core problem lies in the data file itself. There's too many columns to process even after data-cleaning. The solution file to this homework used a completely different data file, so I am not able to rely on the provided solution. 
+
+The code below however, is the appropriate steps as to how you setup a Random Forest analysis.
 
 
 This part is more advanced. Instead of predicting loan default based on resampling data classes, we'll use an ensemlbe-learner, tree-algorithim to breakdown the data and make the prediction. Will a tree algorithm be better suited for predicting loan risk?
