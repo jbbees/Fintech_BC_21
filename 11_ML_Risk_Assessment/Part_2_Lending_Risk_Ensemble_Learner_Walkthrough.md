@@ -114,7 +114,7 @@ Make predictions.
 Find the accuracy score on the predictions
 <pre><code>balanced_accuracy_score(y_test, y_pred_brf)</code></pre>
 
-Confusion matrix
+Confusion matrix.
 <pre><code>cm = confusion_matrix(y_test, y_pred_brf)
 cm_df = pd.DataFrame(
     cm,
@@ -124,7 +124,7 @@ cm_df = pd.DataFrame(
 cm_df
 </code></pre>
 
-Classification report
+Classification report.
 <pre><code>print(classification_report_imbalanced(y_test, y_pred_brf))</code></pre>
 
 Display feature importances. These are the core features in the data the RF algo determined for predictions, for every row, loan application, or in this case the `root node` and split up into various `decision nodes` leading down to the `terminal node` to classify a single loan as high risk/low risk.
@@ -136,9 +136,22 @@ Features are weighted and reversed sorted. The highest weight indicates the core
 ## Easy Ensemble Classifier
 
 We'll just repeat the same steps for this RF model.
-
 <pre><code>from imblearn.ensemble import EasyEnsembleClassifier
 ens = EasyEnsembleClassifier(n_estimators=100, random_state=1)
 ens.fit(X_train_scaled, y_train)
 </code></pre>
 
+Make predictions.
+<pre><code>y_pred_ens = ens.predict(X_train_scaled)</code></pre>
+
+Accuracy score, confusion matrix, and classification report.
+<pre><code>
+balanced_accuracy_score(y_test, y_pred_ens)
+cm2 = confusion_matrix(y_test, y_pred_ens)
+cm2_df = pd.DataFrame(
+    cm2,
+    index = ['Actual 0', 'Actual 1'],
+    columns = ['Predicted 0', 'Predicted 1']   
+)
+cm2_df
+</code></pre>
