@@ -5,8 +5,7 @@
 This part is more advanced. Instead of predicting loan default based on resampling data classes, we'll use an ensemlbe-learner, tree-algorithim to breakdown the data and make the prediction. Will a tree algorithm be better suited for predicting loan risk?
 
 ## Imports
-<pre><code>
-import warnings
+<pre><code>import warnings
 warnings.filterwarnings('ignore')
 import numpy as np
 import pandas as pd
