@@ -15,7 +15,9 @@ df.head()
 
 #### Part 1: Label Encoding
 
-First, drop useless columns that will have no predictive value. Try to get rid of as many columns with *non-numeric* values. The columns to drop are ones that only have **1 value for every row** in the file. For example, the column `pymnt_plan` denoting a loan applicant is on a payment plan, has only the value 'n' for all rows. So no loan applicants regardless the risk are on a payment plan, so this column can be eliminated. Other columns to drop are based on personal decision.
+First, drop useless columns that will have no predictive value. Try to get rid of as many columns with *non-numeric* values. The columns to drop have the **same value for every row**. 
+
+For example, the column `pymnt_plan` denoting a loan applicant is on a payment plan, has only the value 'n' for all rows. So no loan applicants regardless the risk are on a payment plan, so this column can be eliminated. Other columns to drop are based on personal decision.
 
 <pre><code>df.drop('pymnt_plan', axis=1, inplace=True ) # this column only has 1 value for every row. value 'n', no applicants are on a pymt plan. Useless column.
 df.drop('hardship_flag', axis=1, inplace=True)          # all rows under column have the same value, meaningless.
@@ -31,7 +33,7 @@ df.drop('issue_d', axis=1, inplace=True)                # the loan issue date is
 df.drop('next_pymnt_d', axis=1, inplace=True)           # next payment date is meaningless.
 </code></pre>
 
-Second, make a list of all columns that will need to be transformed.
+Second, make a list of all columns with non-numeric values that will need to be transformed.
 <pre><code>target_cols = ['home_ownership', 'verification_status', 'pymnt_plan', 'hardship_flag', 'debt_settlement_flag']
 </code></pre>
 
