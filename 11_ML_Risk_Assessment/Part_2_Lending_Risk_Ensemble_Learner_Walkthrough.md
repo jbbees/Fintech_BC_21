@@ -154,4 +154,6 @@ cm2_df = pd.DataFrame(
     columns = ['Predicted 0', 'Predicted 1']   
 )
 cm2_df
+
+print(classification_report_imbalanced(y_test, y_pred_ens))
 </code></pre>
