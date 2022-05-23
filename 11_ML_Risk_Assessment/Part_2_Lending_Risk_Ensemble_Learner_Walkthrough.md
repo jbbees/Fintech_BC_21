@@ -66,6 +66,11 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=78)
 
 #### Part 4: Scaling the feature data.
 
+Create a `StandardScaler()` object, and fit with only numeric valued data. It cannot accept non-numeric. And then use our X_scaler to scale the X features data.
+
 <pre><code>from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
+X_scaler = scaler.fit(X_train)
+X_train_scaled = X_scaler.transform(X_train)
+X_test_scaled = X_scaler.transform(X_test)
 </code></pre>
