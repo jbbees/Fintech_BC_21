@@ -13,7 +13,7 @@ df = pd.read_csv(file_path, skiprows=1)[:-2]
 df.head()
 </code></pre>
 
-#### Part 1: Label Encoding
+#### Part 1: Eliminate useless columns.
 
 First, drop useless columns that will have no predictive value. Try to get rid of as many columns with *non-numeric* values. The columns to drop have the **same value for every row**. 
 
@@ -33,16 +33,18 @@ df.drop('issue_d', axis=1, inplace=True)                # the loan issue date is
 df.drop('next_pymnt_d', axis=1, inplace=True)           # next payment date is meaningless.
 </code></pre>
 
-Second, make a list of all columns with non-numeric values that will need to be transformed.
+#### Part 2: Label Encoding
+
+Second, make a list of all columns with non-numeric values that will need to be transformed with a `LabelEncoder()`.
 <pre><code>target_cols = ['home_ownership', 'verification_status', 'pymnt_plan', 'hardship_flag', 'debt_settlement_flag']
 </code></pre>
 
-Third, create a `LabelEncoder()` object
+Create a `LabelEncoder()` object
 <pre><code>from sklearn.preprocessing import LabelEncoder
 label_encoder = LabelEncoder()
 </code></pre>
 
-Fourth, loop through the list of target columns, fit the LabelEncoder with the column, and then transform the value to numeric.
+Loop through the list of target columns, fit the LabelEncoder with the column, and then transform the value to numeric.
 <pre><code>
 for col in target_cols:
 	
@@ -51,20 +53,20 @@ for col in target_cols:
     df[col] = label_encoder.transform(df[col])
 </code></pre>
 
-#### Part 2: Define X features & y-target vector.
+#### Part 3: Define X features & y-target vector.
 
 <pre><code>y = df['loan_status']
 X = df.copy()
 X.drop('loan_status', axis=1, inplace=True)
 </code></pre>
 
-#### Part 3: Train/test split.
+#### Part 4: Train/test split.
 
 <pre><code>from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=78)
 </code></pre>
 
-#### Part 4: Scaling the feature data.
+#### Part 5: Scaling the feature data.
 
 Create a `StandardScaler()` object, and fit with only numeric valued data. It cannot accept non-numeric. And then use our X_scaler to scale the X features data.
 
