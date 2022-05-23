@@ -145,8 +145,8 @@ Make predictions.
 <pre><code>y_pred_ens = ens.predict(X_train_scaled)</code></pre>
 
 Accuracy score, confusion matrix, and classification report.
-<pre><code>
-balanced_accuracy_score(y_test, y_pred_ens)
+<pre><code>balanced_accuracy_score(y_test, y_pred_ens)
+
 cm2 = confusion_matrix(y_test, y_pred_ens)
 cm2_df = pd.DataFrame(
     cm2,
