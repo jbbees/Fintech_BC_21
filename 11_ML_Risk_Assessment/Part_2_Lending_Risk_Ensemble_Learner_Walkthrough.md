@@ -127,9 +127,18 @@ cm_df
 Classification report
 <pre><code>print(classification_report_imbalanced(y_test, y_pred_brf))</code></pre>
 
-Display feature importances. These are the core features in the data the RF used for every row, loan application, or in this case the `root node` and split up into various `decision nodes` leading down to the `terminal node` to classify a single loan as high risk/low risk.
+Display feature importances. These are the core features in the data the RF algo determined for predictions, for every row, loan application, or in this case the `root node` and split up into various `decision nodes` leading down to the `terminal node` to classify a single loan as high risk/low risk.
 
 Features are weighted and reversed sorted. The highest weight indicates the core feature to split up the data.
 
 <pre><code>brf_importances_sorted = sorted(zip(brf.feature_importances_, X.columns), reverse=True)</code></pre>
+
+## Easy Ensemble Classifier
+
+We'll just repeat the same steps for this RF model.
+
+<pre><code>from imblearn.ensemble import EasyEnsembleClassifier
+ens = EasyEnsembleClassifier(n_estimators=100, random_state=1)
+ens.fit(X_train_scaled, y_train)
+</code></pre>
 
