@@ -15,8 +15,21 @@ df.head()
 
 #### Part 1: Label Encoding
 
-First, dropping columns I feel will have no predictive value. The `issue_d` column has no impact on the outcome. 
-<pre><code>df.drop('issue_d', axis = 1, inplace=True)</code></pre>
+First, analyze the raw data file and drop useless columns that will have no predictive value. Try to get rid of as many columns with *non-numeric* values. The columns to drop are ones that only have **1 value for every row** in the file. For example, the column `pymnt_plan` denoting a loan applicant is on a payment plan, has only the value 'n' for all rows. So no loan applicants regardless the risk are on a payment plan, so this column can be eliminated. Other columns to drop are based on personal decision.
+
+<pre><code>df.drop('pymnt_plan', axis=1, inplace=True ) # this column only has 1 value for every row. value 'n', no applicants are on a pymt plan. Useless column.
+df.drop('hardship_flag', axis=1, inplace=True)          # all rows under column have the same value, meaningless.
+df.drop('debt_settlement_flag', axis=1, inplace=True)   # all rows have same value. no predictive characteristic. 
+df.drop('recoveries', axis=1, inplace=True)             # same value.
+df.drop('collection_recovery_fee', axis=1, inplace=True)
+df.drop('acc_now_delinq', axis=1, inplace=True)
+df.drop('num_tl_120dpd_2m', axis=1, inplace=True)
+df.drop('num_tl_30dpd', axis=1, inplace=True)
+df.drop('num_tl_90g_dpd_24m', axis=1, inplace=True)
+df.drop('tax_liens', axis=1, inplace=True) 
+df.drop('issue_d', axis=1, inplace=True)                # the loan issue date is meaningless.
+df.drop('next_pymnt_d', axis=1, inplace=True)           # next payment date is meaningless.
+</code></pre>
 
 Second, make a list of all columns that will need to be transformed.
 <pre><code>target_cols = ['home_ownership', 'verification_status', 'pymnt_plan', 'hardship_flag', 'debt_settlement_flag']
