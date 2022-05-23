@@ -101,6 +101,11 @@ brf = BalancedRandomForestClassifier(n_estimators=100, random_state=1)
 brf.fit(X_train_scaled, y_train)
 </code></pre>
 
-Make predictions
+Make predictions.
 <pre><code>y_pred_brf = brf.predict(X_train_scaled)</code></pre>
 
+**NOTE:** This notebook will not be able to exdecute the RF model results. When running tests on predictions and scoring, python returns sample inconsistency error:  
+> ValueError: Found input variables with inconsistent numbers of samples: [17205, 51612]
+The core problem lies in the data file itself. There's too many columns to process even after data-cleaning. The solution file to this homework used a completely different data file, so I am not able to rely on the provided solution. 
+
+The code below however, is the appropriate steps as to how you setup a Random Forest analysis.
