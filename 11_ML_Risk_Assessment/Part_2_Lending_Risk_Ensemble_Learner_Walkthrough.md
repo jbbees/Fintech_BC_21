@@ -93,3 +93,14 @@ X_scaler = scaler.fit(X_train)
 X_train_scaled = X_scaler.transform(X_train)
 X_test_scaled = X_scaler.transform(X_test)
 </code></pre>
+
+## Balanced Random Forest Classifier
+Build the RF model and fit.
+<pre><code>from imblearn.ensemble import BalancedRandomForestClassifier
+brf = BalancedRandomForestClassifier(n_estimators=100, random_state=1)
+brf.fit(X_train_scaled, y_train)
+</code></pre>
+
+Make predictions
+<pre><code>y_pred_brf = brf.predict(X_train_scaled)</code></pre>
+
