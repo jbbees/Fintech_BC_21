@@ -111,8 +111,22 @@ brf.fit(X_train_scaled, y_train)
 Make predictions.
 <pre><code>y_pred_brf = brf.predict(X_train_scaled)</code></pre>
 
-**NOTE:** This notebook will not be able to exdecute the RF model results. When running tests on predictions and scoring, python returns sample inconsistency error:  
-> ValueError: Found input variables with inconsistent numbers of samples: [17205, 51612]
-The core problem lies in the data file itself. There's too many columns to process even after data-cleaning. The solution file to this homework used a completely different data file, so I am not able to rely on the provided solution. 
+Find the accuracy score on the predictions
+<pre><code>balanced_accuracy_score(y_test, y_pred_brf)</code></pre>
 
-The code below however, is the appropriate steps as to how you setup a Random Forest analysis.
+Confusion matrix
+<pre><code>cm = confusion_matrix(y_test, y_pred_brf)
+cm_df = pd.DataFrame(
+    cm,
+    index = ['Actual 0', 'Actual 1'],
+    columns = ['Predicted 0', 'Predicted 1']
+)
+cm_df
+</code></pre>
+
+Classification report
+<pre><code>print(classification_report_imbalanced(y_test, y_pred_brf))</code></pre>
+
+Display feature importances. These are the features the RF used for every row, loan application, or in this case the `root node` and split up into various `decision nodes` leading down to the `terminal node` to classify a single loan as high risk/low risk.
+<pre><code>brf_importances_sorted = sorted(zip(brf.feature_importances_, X.columns), reverse=True)</code></pre>
+
