@@ -1,6 +1,6 @@
 # Risky Business Part 2 - Ensemble Learner Walkthrough
 
-This part is more advanced. Instead of predicting loan default based on resampling data classes, we'll use an ensemlbe-learner, tree-algorithim to breakdown the heavily imbalanced data and make the predictions using the various columns and characteristics of the dataset. We will use two decision tree ML algos: an Balanced Random Forest and an Easy Ensemble Classifier.
+This part is more advanced. We'll be a using quarterly data from Lending Club that has way more detailed characteristics for loan applications. Instead of predicting loan default based on resampling data classes, we'll use an ensemlbe-learner, tree-algorithim to breakdown the heavily imbalanced data and make the predictions using the various columns and characteristics of the dataset. We will use two decision tree ML algos: an Balanced Random Forest and an Easy Ensemble Classifier.
 
 ## Imports
 <pre><code>import warnings
@@ -142,7 +142,7 @@ Display the ten most important features in a visual graph. I chose a horizontal 
     legend = False
 )</code></pre>
 
-[!image](images/brf_feature_importances_sorted.png)
+![image](images/brf_feature_importances_sorted.PNG)
 
 ## Easy Ensemble Classifier
 
