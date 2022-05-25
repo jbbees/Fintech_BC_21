@@ -135,13 +135,14 @@ brf_importances_df.rename(columns = {0: 'Feature Importances'}, inplace=True)
 </code></pre>
 
 Display the ten most important features in a visual graph. I chose a horizontal bar graph.
-<pre><code>
-brf_importances_df[:10].plot(
+<pre><code>brf_importances_df[:10].plot(
     kind='barh',
     color='lightgreen',
     title = 'Feature Importances',
     legend = False
 )</code></pre>
+
+[!image](images/brf_feature_importances_sorted.png)
 
 ## Easy Ensemble Classifier
 
