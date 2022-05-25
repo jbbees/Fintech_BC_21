@@ -170,3 +170,8 @@ cm2_df
 
 print(classification_report_imbalanced(y_test, y_pred_ens))
 </code></pre>
+![image](images/cm_ens.PNG)
+
+![image](images/cr_ens.PNG)
+
+## Conclusion
