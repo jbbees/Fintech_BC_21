@@ -1,15 +1,6 @@
 # Risky Business Part 2 - Ensemble Learner Walkthrough
 
-**CODER'S NOTE:** This notebook will not be able to exdecute the RF model results. When running tests on predictions and scoring, python returns sample inconsistency error:  
-
-> ValueError: Found input variables with inconsistent numbers of samples: [17205, 51612]
-
-The core problem lies in the data file itself. There's too many columns to process even after data-cleaning. The solution file to this homework used a completely different data file, so I am not able to rely on the provided solution. 
-
-The code below however, is the appropriate steps as to how you setup a Random Forest analysis.
-
-
-This part is more advanced. Instead of predicting loan default based on resampling data classes, we'll use an ensemlbe-learner, tree-algorithim to breakdown the data and make the prediction. Will a tree algorithm be better suited for predicting loan risk?
+This part is more advanced. Instead of predicting loan default based on resampling data classes, we'll use an ensemlbe-learner, tree-algorithim to breakdown the heavily imbalanced data and make the predictions using the various columns and characteristics of the dataset. We will use two decision tree ML algos: an Balanced Random Forest and an Easy Ensemble Classifier.
 
 ## Imports
 <pre><code>import warnings
@@ -127,11 +118,30 @@ cm_df
 Classification report.
 <pre><code>print(classification_report_imbalanced(y_test, y_pred_brf))</code></pre>
 
-Display feature importances. These are the core features in the data the RF algo determined for predictions, for every row, loan application, or in this case the `root node` and split up into various `decision nodes` leading down to the `terminal node` to classify a single loan as high risk/low risk.
+Display feature importances. These are the core features in the data the RF algo determined for the final predictions, for every row, loan application, or in this case the `root node` and split up into various `decision nodes` leading down to the `terminal node` to classify a single loan as high risk/low risk.
 
-Features are weighted and reversed sorted. The highest weight indicates the core feature to split up the data.
+Put feature importances into a dataframe. Reverse sort so the highest weight indicates the core features that make up the decision to label risk.
+<pre><code>
+brf_importances_df = pd.DataFrame(
+    sorted(zip(brf.feature_importances_, X.columns), reverse=True)
+)
+brf_importances_df
+</code></pre>
 
-<pre><code>brf_importances_sorted = sorted(zip(brf.feature_importances_, X.columns), reverse=True)</code></pre>
+Do additional stripping of the features dataframe.
+<pre><code>brf_importances_df.set_index(brf_importances_df[1], inplace=True)
+brf_importances_df.drop(columns=1, inplace=True)
+brf_importances_df.rename(columns = {0: 'Feature Importances'}, inplace=True)
+</code></pre>
+
+Display the ten most important features in a visual graph. I chose a horizontal bar graph.
+<pre><code>
+brf_importances_df[:10].plot(
+    kind='barh',
+    color='lightgreen',
+    title = 'Feature Importances',
+    legend = False
+)</code></pre>
 
 ## Easy Ensemble Classifier
 
