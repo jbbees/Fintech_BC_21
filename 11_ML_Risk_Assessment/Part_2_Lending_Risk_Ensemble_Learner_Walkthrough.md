@@ -1,6 +1,6 @@
 # Risky Business Part 2 - Ensemble Learner Walkthrough
 
-This part is more advanced. We'll be a using quarterly data from Lending Club that has way more detailed characteristics for loan applications. Instead of predicting loan default based on resampling data classes, we'll use an ensemlbe-learner, tree-algorithim to breakdown the heavily imbalanced data and make the predictions using the various columns and characteristics of the dataset. We will use two decision tree ML algos: an Balanced Random Forest and an Easy Ensemble Classifier.
+This part is more advanced. Performing more *supervised* ML techniques on a complex imbalanced dataset. We'll be a using quarterly data from Lending Club that has way more detailed characteristics for loan applications for high or low risk of default. Instead of predicting loan default based on resampling data classes, we'll use an ensemlbe-learner, tree-algorithim to breakdown the heavily imbalanced data and make the predictions using the various columns and characteristics of the dataset. We will use two decision tree ML algos: an Balanced Random Forest and an Easy Ensemble Classifier.
 
 ## Imports
 <pre><code>import warnings
@@ -93,6 +93,9 @@ X_test_scaled = X_scaler.transform(X_test)
 </code></pre>
 
 ## Balanced Random Forest Classifier
+
+**NOTE:** We are not resampling the imbalanced data when training our ML models. We will rely on ML to determine which column features to use to classify.
+
 Build the RF model and fit.
 <pre><code>from imblearn.ensemble import BalancedRandomForestClassifier
 brf = BalancedRandomForestClassifier(n_estimators=100, random_state=1)
@@ -104,7 +107,7 @@ Make predictions.
 
 Find the accuracy score on the predictions
 <pre><code>balanced_accuracy_score(y_test, y_pred_brf)</code></pre>
-> 
+> **Balanced Accuracy Score: 0.699176962831924**
 
 Confusion matrix.
 <pre><code>cm = confusion_matrix(y_test, y_pred_brf)
@@ -171,7 +174,7 @@ cm2_df
 
 print(classification_report_imbalanced(y_test, y_pred_ens))
 </code></pre>
-> Balanced accuracy score: 0.7393285341162741
+> **Balanced accuracy score: 0.7393285341162741**
 
 ![image](images/cm_ens.PNG)
 
