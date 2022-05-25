@@ -114,9 +114,11 @@ cm_df = pd.DataFrame(
 )
 cm_df
 </code></pre>
+![image](images/cm_brf.PNG)
 
 Classification report.
 <pre><code>print(classification_report_imbalanced(y_test, y_pred_brf))</code></pre>
+![image](images/cr_brf.PNG)
 
 Display feature importances. These are the core features in the data the RF algo determined for the final predictions, for every row, loan application, or in this case the `root node` and split up into various `decision nodes` leading down to the `terminal node` to classify a single loan as high risk/low risk.
 
