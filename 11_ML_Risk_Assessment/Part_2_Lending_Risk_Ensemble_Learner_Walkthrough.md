@@ -181,3 +181,10 @@ print(classification_report_imbalanced(y_test, y_pred_ens))
 ![image](images/cr_ens.PNG)
 
 ## Conclusion
+Both decision tree models performed horribly. And I mean horribly. But I can't make a comparison of which ML method (decision tree vs resampling) is good because we used different datasets. But with this dataset, I wouldn't rely or have any confidence to use either of these models, based on the data file given, to train a ML algo to predict loan risk. 
+
+When we did the first part with resampling techniques, we a had basic file with few columns, and we resampled the training data for each instance. In this ensemble-learner section we're not resampling anything, it'll be the ML algo making it's decision on what's in the file. Because this is supervised machine learning, and a very big data file of lots of characteristics, the effectiveness of the model results and errors are tied to my data cleaning decisions, and elimination of columns. I cleaned the file of columns I felt were not predictive based on the fact the same value exists across all rows. 
+
+The Balanced Forest Classifier, looking at the feature importances, based its decisions primarily on `loan amount`, `loan payment amount`, `loan payment`. A lot of False Negatives were seen in the holdout data. As noted in the code, 19% of the low-risk loans were classified as high-risk despite the overwhelming low-risk population in the test data. What could account for this? Maybe if the loan application type is not an independent loan. Most of the loan data were indivdual loans, but some were joint-types. What's even worse is that high-risk loans represented only .006% of the holdout data, and 41% of high-risk loans were classified as low-risk. So this model barely captures high-risk loans accurately.
+
+The Easy Ensemble Classifier performed better in terms of correctly classifying high-risk loans, but more low-risk loans were classed as high-risk of default. 
