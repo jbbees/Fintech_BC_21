@@ -104,6 +104,7 @@ Make predictions.
 
 Find the accuracy score on the predictions
 <pre><code>balanced_accuracy_score(y_test, y_pred_brf)</code></pre>
+> 
 
 Confusion matrix.
 <pre><code>cm = confusion_matrix(y_test, y_pred_brf)
@@ -170,6 +171,8 @@ cm2_df
 
 print(classification_report_imbalanced(y_test, y_pred_ens))
 </code></pre>
+> Balanced accuracy score: 0.7393285341162741
+
 ![image](images/cm_ens.PNG)
 
 ![image](images/cr_ens.PNG)
