@@ -31,6 +31,8 @@ random.set_seed(2)
 
 ## Data Pre-Processing
 
+# Part 1: Define X & y components
+
 This will be kind of a complicated way of separating the X & y components. We are not just setting the target to a column, and the X features to everything else. The dataframe itself is very basic. This time we're building a custom **function** that will use a for-loop to iterate through the BTC data, and append the *column numbers* of X and y components to their own lists.  
 
 We will define a function using the `window_data()` function. Pass in the following 4 arguments: *the raw DataFrame of BTC prices and sentiment scores*, *window of 10 days*, *the column number of the FNG sentiment score*, and *the column of the Bitcoin closing price*.
@@ -56,5 +58,32 @@ feature_column = 0
 target_column = 1
 X, y = window_data(df, window_size, feature_column, target_column)
 ```
+
+# Part 2: Splitting the data up into training and holdout sets
+
+We are exposing **70%** of the data to the RNN model. We will manually split the data as opposed to importing the `train_test_split()` function from keras. This is because this is time-series data, and we need to focus on the sequences. Whereas, with classification problems it was much simpler. 
+
+```
+split = int(0.7 * len(X))              # taking 70% of the entire length of X features. 
+
+X_train = X[ : split - 1]
+X_test = X[split : ] 
+y_train = y[ : split - 1]
+y_test = y[split : ]
+```
+
+# Part 3: Scale the data
+
+Use the `MinMaxScaler()` to scale the data between values of 0--1 
+
+```
+X_train_scaler = MinMaxScaler()          # create a Scaler object
+X_test_scaler = MinMaxScaler()
+y_train_scaler = MinMaxScaler()
+y_test_scaler = MinMaxScaler()
+```
+
+
+## Building the model
 
 
