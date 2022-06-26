@@ -1,3 +1,7 @@
+# Bitcoin Fear & Greed Index, Price Predictions
+
+We're using time-series BTC price data from the Fear & Greed (FNG) Index of crypto prices. We will be building a deep RNN model utilizing long short-term memory (LSTM) architecture within keras tensorflow, to predict the closing price of BTC using the past rolling-window of 10 days worth of crypto pricing. 
+
 
 ## Imports
 ```
