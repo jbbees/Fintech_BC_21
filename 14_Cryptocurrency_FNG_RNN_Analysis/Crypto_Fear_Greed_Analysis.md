@@ -74,7 +74,7 @@ y_test = y[split : ]
 
 ### Part 3: Scale the data
 
-Use the `MinMaxScaler()` to scale the data between values of 0--1 
+Use the `MinMaxScaler()` to scale the data between values of 0--1. Create four scaler objects for each dataset. 
 
 ```
 X_train_scaler = MinMaxScaler()          # create a Scaler object
@@ -83,6 +83,27 @@ y_train_scaler = MinMaxScaler()
 y_test_scaler = MinMaxScaler()
 ```
 
+Fit the X & y splits to these scalers.
+```
+X_train_scaler.fit(X_train)             # fit the X features to the scaler
+X_test_scaler.fit(X_test)
+y_train_scaler.fit(y_train)
+y_test_scaler.fit(y_test)
+```
+
+Transform the BTC values to be 0-1 for all four datasets.
+```
+X_train = X_train_scaler.transform(X_train)
+X_test = X_test_scaler.transform(X_test)
+y_train = y_train_scaler.transform(y_train)
+y_test = y_test_scaler.transform(y_test)
+```
+Reshape the data to be 1 coiumn.
+
+```
+X_train = X_train.reshape((X_train.shape[0], X_train.shape[1], 1))
+X_test = X_test.reshape((X_test.shape[0], X_test.shape[1], 1))
+```
 
 ## Building the model
 
