@@ -1,6 +1,6 @@
 # Bitcoin Fear & Greed Index, LSTM RNN Price Predictor
 
-This program is building a recurrent neural network (RNN) to predict future Bitcoin prices based on a combination of past prices and crypto sentiment. We're using time-series BTC price data from the Fear & Greed (FNG) Index of crypto sentiment scores and closing prices. We will be building a deep RNN model utilizing long short-term memory (LSTM) architecture within the keras tensorflow feature set, to predict the future closing price of BTC using the past rolling-window of 10 days worth of crypto pricing and the sentiment scores of crypto reported that day. 
+This program is building a recurrent neural network (RNN) to predict future Bitcoin prices based on crypto sentiment. We're using time-series BTC price data from the Fear & Greed (FNG) Index of crypto sentiment scores and closing prices. We will be building a deep RNN model utilizing long short-term memory (LSTM) architecture within the keras tensorflow feature set, to predict the future closing price of BTC using the past rolling-window of 10 days worth of crypto sentiment scores reported that week. 
 
 ## The Data
 
@@ -33,7 +33,7 @@ random.set_seed(2)
 
 This will be kind of a complicated way of separating the X & y components. We are not just setting the target to a column, and the X features to everything else. The dataframe itself is very basic. This time we're building a custom **function** that will use a for-loop to iterate through the BTC data, and append the *column numbers* of X and y components to their own lists.  
 
-We will define a function using the `window_data()` function. Pass in the following 4 arguments: *the raw DataFrame of BTC prices and sentiment scores*, *window of 10 days*, *the column number of the feature column*, and *the column of the Bitcoin closing price*.
+We will define a function using the `window_data()` function. Pass in the following 4 arguments: *the raw DataFrame of BTC prices and sentiment scores*, *window of 10 days*, *the column number of the FNG sentiment score*, and *the column of the Bitcoin closing price*.
 
 We weill append the X predictive features to the empty list **X** and closing price y-targets to the list called **y**
 
