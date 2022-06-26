@@ -74,7 +74,7 @@ y_test = y[split : ]
 
 ### Part 3: Scale the data
 
-Use the `MinMaxScaler()` to scale the data between values of 0--1. Create four scaler objects for each dataset. 
+Use the `MinMaxScaler()` to scale the data between values of 0-1. Create four scaler objects for each dataset. 
 
 ```
 X_train_scaler = MinMaxScaler()          # create a Scaler object
@@ -98,7 +98,7 @@ X_test = X_test_scaler.transform(X_test)
 y_train = y_train_scaler.transform(y_train)
 y_test = y_test_scaler.transform(y_test)
 ```
-Reshape the data to be 1 coiumn.
+Reshape the data to be 1 column.
 
 ```
 X_train = X_train.reshape((X_train.shape[0], X_train.shape[1], 1))
