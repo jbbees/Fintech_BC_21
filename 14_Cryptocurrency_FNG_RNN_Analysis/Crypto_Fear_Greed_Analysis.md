@@ -31,9 +31,9 @@ random.set_seed(2)
 
 ## Data Pre-Processing
 
-This will be kind of a complicated way of separating the X & y components. We are not just setting the target to a column, and the X features to everything else. The dataframe itself is very basic. This time we're building a custom function that will use a for-loop to iterate through the BTC data, and append the *column numbers* of X and y components to their own lists to feed into a model.  
+This will be kind of a complicated way of separating the X & y components. We are not just setting the target to a column, and the X features to everything else. The dataframe itself is very basic. This time we're building a custom **function** that will use a for-loop to iterate through the BTC data, and append the *column numbers* of X and y components to their own lists.  
 
-We will define a function using the `window_data()` function. Pass in the following arguments: the raw DataFrame of BTC prices and sentiment scores, window of 10 days, the column number of the feature column, and the column
+We will define a function using the `window_data()` function. Pass in the following 4 arguments: *the raw DataFrame of BTC prices and sentiment scores*, *window of 10 days*, *the column number of the feature column*, and *the column of the Bitcoin closing price*.
 
 We weill append the X predictive features to the empty list **X** and closing price y-targets to the list called **y**
 
@@ -49,7 +49,7 @@ def window_data(df, window, feature_col_number, target_col_number):
     return np.array(X), np.array(y).reshape(-1, 1)
 ```
 
-Define the needed arguments. Call on this window_data function. 
+Define the 4 needed arguments. `window_size` is 10 for 10-day rolling window of prices. X column is the 0th column and the target closing price is the 1 column. Call on this window_data function. 
 ```
 window_size = 10
 feature_column = 0
