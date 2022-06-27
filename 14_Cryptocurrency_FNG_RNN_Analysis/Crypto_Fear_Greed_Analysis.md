@@ -1,15 +1,16 @@
 # Bitcoin Fear & Greed Index, LSTM RNN Price Predictor
 
-This program is building a recurrent neural network (RNN) to predict future Bitcoin prices based on crypto sentiment. We're using time-series BTC price data from the Fear & Greed (FNG) Index of crypto sentiment scores and closing prices. We will be building a deep RNN model utilizing long short-term memory (LSTM) architecture within the keras tensorflow feature set, to predict the future closing price of BTC using the past rolling-window of 10 days worth of crypto sentiment scores reported that week. 
+This program is building a recurrent neural network (RNN) to predict future Bitcoin prices based on a rolling-past crypto sentiment scores. We're using time-series BTC price data and the Fear & Greed (FNG) Index of crypto sentiment scores from crypto news sources to see if past sentiments can predict the next closing prices. We will be building this deep RNN model utilizing long short-term memory (LSTM) architecture within the keras tensorflow feature set.
 
 ## The Data
 
-We are provided with files of BTC closing prices as well as FNG sentiment scoring for Bitcoin on that unique trading day. We didn't need to fetch the data for this particular excercise, and there's no need to do sentiment analysis since it was done by the FNG, so it can be read-in. But the setup for our RNN model is predicting on a rolling-window
+We are provided with files of BTC closing prices as well as FNG sentiment scoring for Bitcoin on that unique trading day. We didn't need to fetch the data for this particular excercise, and there's no need to do sentiment analysis since it was done by the FNG, so it can be read-in. But the setup for our RNN model is predicting on a rolling-window of past sentiments. A few things to note:
 
 * The FNG sentiment scores come from various crypto news sources the Index web scrapes for that trading day in BTC.
-* The closing price is whatever the BTC was. Except there is no real closing time period in crypto. Crypto is traded world-wide 24/7, so we will assume this is going up to 11:59PM each day. 
+* **Extreme bias.** We're using online posts and articles of people who have varied opinions about crypto as the sole predictive feature. There's no way this predictor we're building will be un-biased. We are trying to predict what the monetary value of a very speculative asset will be on a few people's words. 
+* The closing price is whatever the BTC value was for that day. Except there is no real closing time period in crypto. Crypto is traded world-wide 24/7, so we will assume this is going up to 11:59PM each day. 
 * Splitting the data 70/30. 70% of the BTC price data will be exposed to the model.
-* Rolling windw of 10-days.
+* Rolling windw of 10-days of sentiment scores. What was said about BTC in the past 10 days to see what the price will be. 
 * The RNN model will be a deep, 3-layered model with LSTM layers feeding input data into the next layer.
 
 
@@ -30,6 +31,25 @@ random.set_seed(2)
 ```
 
 ## DataFrame Setup
+
+We have two csv files. One for past BTC prices, and the other is Fear & Greed (FNG) sentiment scores. We'll read these files in and concatenate them. It'll be a very simple Dataframe with two columns. The FNG sentiment is what's predicting future closing price of Bitcoin.
+
+Read-in ***btc sentiemnt*** 
+```
+df = pd.read_csv('btc_sentiment.csv', index_col="date", infer_datetime_format=True, parse_dates=True)
+df = df.drop(columns="fng_classification")
+```
+Read-in the historic prices.
+```
+df2 = pd.read_csv('btc_historic.csv', index_col="Date", infer_datetime_format=True, parse_dates=True)['Close']
+df2 = df2.sort_index()
+```
+
+Concatenate both files with a simple inner join
+```
+df = df.join(df2, how="inner")
+```
+
 
 
 
@@ -175,4 +195,7 @@ model.fit(
     )
 ```
 
+# Conclusion
+
+Terrible model. The optimizer couldn't effectively make the loss values reduce at each epoch. I would never use sentiment scores to predict crypto values. This is worse than using direct prices that are never static. The source data is too simple in nature. We just have sentiment and closing prices. A good price predictor should be based on *percent change* in values within a rolling-window, as opposed to direct past price points, or even this. People are biased in their perception of cryptocurrencies and what they write 
 
