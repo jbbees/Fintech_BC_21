@@ -29,6 +29,11 @@ from tensorflow import random
 random.set_seed(2)
 ```
 
+## DataFrame Setup
+
+
+
+
 ## Data Pre-Processing
 
 ### Part 1: Define X & y components
@@ -107,12 +112,12 @@ X_test = X_test.reshape((X_test.shape[0], X_test.shape[1], 1))
 
 ## Building the model
 
-Create a Sequentual model object. We'll then add layers to it. Also, we will be utilizing Droput layers to control for overfitting. After each LSTM layer we will drop a random 20% of the data, and keep the remaining 80%. And it will repeat after every LSTM layer. Set `dropout_fraction` to **0.2**.
+Create a Sequentual NN model object. We'll then add layers to it. Also, we will be utilizing *Dropout* layers at each step to control for overfitting. After each LSTM layer we will drop a random 20% of the data, and keep the remaining 80%. And it will repeat after every LSTM layer. Set `dropout_fraction` to **0.2**.
 ```
 model = Sequential()
 dropout_fraction = 0.2     # drop random 20% of data after each LSTM layer.
 ```
-Add first LSTM layer. Along with a Dropout Layer. Make sure to include `return_sequences = True` to connect other LSTM layers to the model. Pass the `dropout_fraction` in the Dropout Layer. 
+Add first LSTM layer. Along with a Dropout Layer. Make sure to include `return_sequences = True` to connect the next LSTM layer. Pass the `dropout_fraction` in the Dropout Layer. 
 ```
 model.add(LSTM(
     units =30,
@@ -121,6 +126,26 @@ model.add(LSTM(
 ))
 
 model.add(Dropout(dropout_fraction))                # Dropout layer, drops random 20% of the data.
+```
+Add the second LSTM layer. Along with a Dropout layer.
+```
+model.add(LSTM(
+    units = 30,
+    return_sequences = True                         
+))
+
+model.add(Dropout(dropout_fraction))               # Drop another 20% of random data.
+```
+
+Third LSTM layer. No need to include a `return_sequences = True`.
+```
+model.add(LSTM(units = 30))
+model.add(Dropout(dropout_fraction))
+```
+
+Output Layer. A Dense layer returning 1 output. We don't put a Dropout on the output layer.
+```
+model.add(Dense(1))
 ```
 
 ## Running the Model
