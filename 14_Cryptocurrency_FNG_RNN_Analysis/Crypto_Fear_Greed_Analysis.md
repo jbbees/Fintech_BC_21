@@ -49,15 +49,13 @@ Concatenate both files with a simple inner join
 ```
 df = df.join(df2, how="inner")
 ```
-
-
-
-
+![image](fng_df.PNG)
 
 ## Data Pre-Processing
 
 ### Part 1: Define X & y components
 
+This is time-series data that will be using a rolling-window of values to make a prediction. Even though it's a simple file. The X-features are the FNG sentiment scores, and the y-target vector is the closing price. However, we can't simply set `X = df['fn
 This will be kind of a complicated way of separating the X & y components. We are not just setting the target to a column, and the X features to everything else. The dataframe itself is very basic. This time we're building a custom **function** that will use a for-loop to iterate through the BTC data, and append the *column numbers* of X and y components to their own lists.  
 
 We will define a function using the `window_data()` function. Pass in the following 4 arguments: *the raw DataFrame of BTC prices and sentiment scores*, *window of 10 days*, *the column number of the FNG sentiment score*, and *the column of the Bitcoin closing price*.
