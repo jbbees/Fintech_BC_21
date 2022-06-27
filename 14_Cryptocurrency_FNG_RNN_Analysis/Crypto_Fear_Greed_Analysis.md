@@ -112,7 +112,7 @@ X_test = X_test.reshape((X_test.shape[0], X_test.shape[1], 1))
 
 ## Building the model
 
-Create a Sequentual NN model object. We'll then add layers to it. Also, we will be utilizing *Dropout* layers at each step to control for overfitting. After each LSTM layer we will drop a random 20% of the data, and keep the remaining 80%. And it will repeat after every LSTM layer. Set `dropout_fraction` to **0.2**.
+Create a Sequentual NN model object. We'll then add layers to it. Also, we will be utilizing *Dropout* layers at each step to control for overfitting. After each LSTM layer we will drop a random 20% of the data, and keep the remaining 80%. And it will repeat after every LSTM layer. Set `dropout_fraction` to **0.2**. And each LSTM layer will have 30 neurons. 
 ```
 model = Sequential()
 dropout_fraction = 0.2     # drop random 20% of data after each LSTM layer.
