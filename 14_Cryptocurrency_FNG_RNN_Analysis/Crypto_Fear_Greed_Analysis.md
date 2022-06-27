@@ -127,7 +127,7 @@ model.add(LSTM(
 
 model.add(Dropout(dropout_fraction))                # Dropout layer, drops random 20% of the data.
 ```
-Add the second LSTM layer. Along with a Dropout layer.
+Add the second LSTM layer. Along with a Dropout layer to drop another random 20% of data.
 ```
 model.add(LSTM(
     units = 30,
@@ -137,7 +137,7 @@ model.add(LSTM(
 model.add(Dropout(dropout_fraction))               # Drop another 20% of random data.
 ```
 
-Third LSTM layer. No need to include a `return_sequences = True`.
+Third LSTM layer and Dropout. No need to include a `return_sequences = True`.
 ```
 model.add(LSTM(units = 30))
 model.add(Dropout(dropout_fraction))
@@ -148,7 +148,19 @@ Output Layer. A Dense layer returning 1 output. We don't put a Dropout on the ou
 model.add(Dense(1))
 ```
 
+Compile it all together. We use **mean_squared_error** for the loss function because this is time-series data. We will use the **adam** optimizer on that loss function.
+```
+model.compile(optimizer = 'adam', loss = 'mean_squared_error')
+```
+
+Summary of RNN layers.
+```
+model.summary()
+```
+
 ## Running the Model
+
+
 
 Fit the NN 
 
