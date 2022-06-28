@@ -199,7 +199,9 @@ model.fit(
 
 # Conclusion
 
-Terrible model. The *actual* Bitcoin prices in the dataset we were given for this excercise far exceeded the *predicted* prices. At the start of the model, actual prices were below the predicted. The optimizer effectively made the loss values reduce significiantly at each epoch. I can only conclude there is bias in the data. And since it's sentiment of words and opinions being used as the predictive power, then the problem is definitely bias in the senitment.   
+Terrible model. The *actual* Bitcoin prices in the dataset we were given for this excercise far exceeded the *predicted* prices. At the start of the model, actual prices were below the predicted. The optimizer effectively made the loss values reduce significiantly at each epoch. I can only conclude there is bias in the data. And since it's sentiment of words and opinions being used as the predictive power, then the problem is definitely bias in the senitment. 
+
+It could be the RNN weighted negative sentiment more in the interpretability of model based on the much lower BTC prices, and that led the model to predict much lower closing prices to pesist. Or the sentiment data was heavily skewed with more negative sentiment values. If there's negative sentiment, there's likely low closing prices, and positive sentiment will be correlated with higher closing prices. There was crypto rallies trying to drive crypto values up in the later half, and that's why we see the sharp increase at the later part of the models. Usually when BTC declines, investors buy in the dip and begin rallying new investors into the space. 
 
 I would never use sentiment scores to predict crypto values. This is worse than using direct prices that are almost never static. The source data is too simple in nature. We just have sentiment and closing prices. A good price predictor should be based on *percent change* in values within a rolling-window, as opposed to direct past price points, or even this. People are biased in their perception of cryptocurrencies and what they write. 
 
