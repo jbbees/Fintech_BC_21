@@ -1,10 +1,12 @@
 # Bitcoin Fear & Greed Index, LSTM RNN Price Predictor
 
-This program is building a recurrent neural network (RNN) to predict future Bitcoin prices based on a rolling-past crypto sentiment scores. We're using time-series BTC price data and the Fear & Greed (FNG) Index of crypto sentiment scores from crypto news sources to see if past sentiments can predict the next closing prices. We will be building this deep RNN model utilizing long short-term memory (LSTM) architecture within the keras tensorflow feature set.
+This program is building an LSTM recurrent neural network (RNN) to predict future Bitcoin prices based on a rolling-past crypto **sentiment** scores. We're using time-series BTC price data and the Fear & Greed (FNG) Index of crypto sentiment scores from crypto news sources to see if past sentiments can predict the next BTC closing prices.
 
 ## The Data
 
-We are provided with files of BTC closing prices as well as FNG sentiment scoring for Bitcoin on that unique trading day. We didn't need to fetch the data for this particular excercise, and there's no need to do sentiment analysis since it was done by the FNG, so it can be read-in. But the setup for our RNN model is predicting on a rolling-window of past sentiments. A few things to note:
+We are provided with files of BTC closing prices, as well as FNG sentiment scoring for Bitcoin on that unique trading day. We didn't need to fetch the API data for this particular excercise, and there's no need to do sentiment analysis since it was done by the FNG, so it can be read-in. But the setup for our RNN model is predicting on a rolling-window of past sentiments. 
+
+A few things to note:
 
 * The FNG sentiment scores come from various crypto news sources the Index web scrapes for that trading day in BTC.
 * **Extreme bias.** We're using online posts and articles of people who have varied opinions about crypto as the sole predictive feature. There's no way this predictor we're building will be un-biased. We are trying to predict what the monetary value of a very speculative asset will be on a few people's words. 
@@ -12,7 +14,6 @@ We are provided with files of BTC closing prices as well as FNG sentiment scorin
 * Splitting the data 70/30. 70% of the BTC price data will be exposed to the model.
 * Rolling windw of 10-days of sentiment scores. What was said about BTC in the past 10 days to see what the price will be. 
 * The RNN model will be a deep, 3-layered model with LSTM layers feeding input data into the next layer.
-
 
 ## Imports
 ```
@@ -177,8 +178,6 @@ model.summary()
 ```
 
 ## Running the Model
-
-
 
 Fit the NN 
 
