@@ -122,7 +122,7 @@ X_test = X_test_scaler.transform(X_test)
 y_train = y_train_scaler.transform(y_train)
 y_test = y_test_scaler.transform(y_test)
 ```
-Reshape the data to be 1 column.
+Reshape the data to be 1 column. This format is required for LSTM RNN models. 
 
 ```
 X_train = X_train.reshape((X_train.shape[0], X_train.shape[1], 1))
