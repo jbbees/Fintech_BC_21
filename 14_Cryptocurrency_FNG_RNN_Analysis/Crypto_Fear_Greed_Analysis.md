@@ -178,6 +178,8 @@ model.summary()
 ```
 ![image](images/nn_summary.PNG)
 
+This LSTM RNN is trained on 18,511 parameters. We start with 3,840 parameters in the first layer, but then we double those parameters in the next LSTM layer. 
+
 ## Running the Model
 
 Fit the NN 
@@ -192,6 +194,8 @@ model.fit(
     verbose = 1
     )
 ```
+
+![image](images/btc_performance.PNG)
 
 # Conclusion
 
