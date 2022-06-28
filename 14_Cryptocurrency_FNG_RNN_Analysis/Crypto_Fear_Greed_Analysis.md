@@ -50,7 +50,7 @@ Concatenate both files with a simple inner join
 ```
 df = df.join(df2, how="inner")
 ```
-![image](fng_df.PNG)
+![image](images/fng_df.PNG)
 
 ## Data Pre-Processing
 
@@ -176,6 +176,7 @@ Summary of RNN layers.
 ```
 model.summary()
 ```
+![image](images/nn_summary.PNG)
 
 ## Running the Model
 
