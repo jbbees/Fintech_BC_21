@@ -218,6 +218,100 @@ The Golden City across these years.
 ## Main Program
 The core code. This program defines 9 custom functions for each visual. When the dashboard is executed, each visual function is executed, builds the visual, and returns it to the dashboard. 
 
+```
+def housing_units_per_year():                              # for some reason we are not passing anything into these visual functions. 
+    """Housing Units Per Year."""
+    
+    # YOUR CODE HERE!
+    housing_units = pd.DataFrame(
+        sfo_data,
+        columns=['year', 'housing_units']
+    ).groupby('year')['housing_units'].mean().reset_index()
+
+    # Make a visual plot
+    housing_plot = housing_units.hvplot.bar(
+    x='year',
+    y='housing_units',
+    width=1200,
+    color='yellow',
+    alpha=.2
+    ).opts(xformatter='%.0f', title='SFO Housing Units Sold 2010-2016', invert_axes=True)
+    housing_plot
+    return housing_plot
+    
+def average_gross_rent():
+    """Average Gross Rent in San Francisco Per Year."""
+    
+    # YOUR CODE HERE!
+    rent = pd.DataFrame(
+        sfo_data,
+        columns=['year', 'gross_rent']
+    ).groupby('year')['gross_rent'].mean().reset_index()
+    
+    rent_plot = rent.hvplot.bar(
+    x='year',
+    y='gross_rent',
+    width=1200,
+    color='purple',
+    alpha=.2                               
+    ).opts(xformatter='%.0f', title='SFO Gross Rent Sold 2010-2016', invert_axes=True)
+    return rent_plot
+    
+def average_sales_price():
+    """Average Sales Price Per Year."""
+    
+    # YOUR CODE HERE!
+    sales_price = pd.DataFrame(
+        sfo_data,
+        columns=['year', 'sale_price_sqr_foot']
+    ).groupby('year')['sale_price_sqr_foot'].mean().reset_index() 
+    return sales_price
+    
+def average_price_by_neighborhood():
+    """Average Prices by Neighborhood."""
+    
+    # YOUR CODE HERE!
+
+    sfo_neighborhood_data = sfo_data.groupby(['year', 'neighborhood'])['sale_price_sqr_foot'].mean().reset_index()
+
+    neighborhood_plot = sfo_neighborhood_data.hvplot.line(
+        "year",
+        "sale_price_sqr_foot",
+        xlabel="Year",
+        ylabel="Avg. Sale Price per Square Foot",
+        groupby="neighborhood",                                            # this will create an interactive dropdown per neighborhood
+    )
+    return neighborhood_plot
+
+def top_most_expensive_neighborhoods():
+    """Top 10 Most Expensive Neighborhoods."""
+
+    # YOUR CODE HERE!
+    expensive = sfo_data.groupby('neighborhood')['sale_price_sqr_foot'].mean().reset_index()
+    expensive.sort_values('sale_price_sqr_foot', ascending=False, inplace=True)
+    top_10 = expensive.nlargest(10, 'sale_price_sqr_foot')
+    return top_10
+    
+def most_expensive_neighborhoods_rent_sales():
+    """Comparison of Rent and Sales Prices of Most Expensive Neighborhoods."""   
+    
+    # YOUR CODE HERE!
+    sfo_neighborhood_data = sfo_data.groupby(['year', 'neighborhood']).mean().reset_index()       # this will keep all columns.      
+
+    sfo_compare_plot = sfo_neighborhood_data.hvplot.bar(
+    'year',
+    ['sale_price_sqr_foot', 'gross_rent'],      # this list will generate 2 bars per each column, per each year
+    xlabel='Year',
+    ylabel='Number of Housing Units',
+    groupby='neighborhood',                     # initialize a drowdown selector per neighborhood 
+    height=700,
+    width=1000,
+    rot=90
+    )
+    return sfo_compare_plot
+
+```
+
 ## Build the Dashboard
 This dashboard will be 5 tabs. Each tab has a name, and will call a function(s) in the main program to be assembled and returned/displayed in that tab. And we will present the content of each tab in either a `panel.Row` or `panel.Column`
 
