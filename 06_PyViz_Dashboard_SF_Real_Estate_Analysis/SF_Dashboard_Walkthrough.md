@@ -21,7 +21,6 @@ warnings.filterwarnings('ignore')
 ## Mapbox API setup
 
 We need to embed the Mapbox API using the plotly-express library. Note: there are issues with the API keys not rendering as **str** types. 
-
 ```
 load_dotenv()                                    
 map_box_api = os.getenv("mapboxapi")
@@ -197,9 +196,9 @@ sfo_neighborhood_map = px.scatter_mapbox(
 )
 sfo_neighborhood_map.show()
 ```
-## Visual 7
-## Visual 8
-## Visual 9 - Plotly Sunburst Chart
+#### Visual 7 - Parallel Coordinates Plot
+#### Visual 8 - Parallel Categories Plot
+#### Visual 9 - Plotly Sunburst Chart
 ## Analysis Markdown Notes
 
 
