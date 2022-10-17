@@ -146,7 +146,7 @@ top_10_plot = top_10.hvplot.bar(
 top_10_plot
 ```
 
-## Visual 5 - Comparison of Rent vs Sales Prices
+#### Visual 5 - Comparison of Rent vs Sales Prices
 
 Comparison visual of average rent vs average sales prices per year, per neighborhood. This will be a dropdown selector for neighborhood which displays duo-bar charts of rent compared to sales price.
 
@@ -168,7 +168,35 @@ sfo_compare_plot = sfo_neighborhood_data.hvplot.bar(
 sfo_compare_plot
 ```
 
-## Visual 6
+#### Visual 6 - Mapbox Plot
+
+Visual that constructs the map using the Mapbox API. This requires concatenating the 2 data files togehter. We need the latitude and longitude colimns.
+```
+df1 = sfo_data
+df2 = sfo_map_data                                                  # geocoded data
+sfo_combined = pd.concat([df1, df2], axis=1, join='inner')
+
+```
+Initialize the mapbox access token
+```
+px.set_mapbox_access_token(map_box_api)
+```
+Build the map.
+```
+sfo_neighborhood_map = px.scatter_mapbox(
+    sfo_combined,
+    lat='Lat',                                                       # latitude
+    lon='Lon',                                                       # longitude
+    size='sale_price_sqr_foot',                                      # sales price is the bubble size. The larger the bubble correlates to larger rent. 
+    color='gross_rent',                                              # rent is the category.
+    size_max=15,
+    zoom=11,
+    color_continuous_scale=px.colors.cyclical.IceFire,
+    hover_name='Neighborhood',                                       # this will show the neighborhood name when you hover a mouse over a data-bubble. 
+    title='SFO Average Rent per Neighborhood'
+)
+sfo_neighborhood_map.show()
+```
 ## Visual 7
 ## Visual 8
 ## Visual 9 - Plotly Sunburst Chart
