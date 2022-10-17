@@ -199,9 +199,24 @@ sfo_neighborhood_map.show()
 #### Visual 7 - Parallel Coordinates Plot
 #### Visual 8 - Parallel Categories Plot
 #### Visual 9 - Plotly Sunburst Chart
-## Analysis Markdown Notes
+## Panel Pane Markdown Notes
+These are just contextual Markdown notes that will be displayed along with the visual in each tab. Such as, a general welcome note, or other analysis notes. Each message is within a `panel.pane.Markdown()` function. I won't list them all here. But every message is presented this way. 
 
-
+Standard Welcome message
+```
+welcome = pn.pane.Markdown(
+    """
+This dashboard presents a visual analysis of historical prices of house units,
+sale price per square foot and gross rent in San Francisco, California
+from 2010 to 2016.
+You can navigate through the tabs above to explore
+more details about the evolution of the real estate market on
+The Golden City across these years.
+"""    
+)
+```
 ## Main Program
+The core code. This program defines 9 custom functions for each visual. When the dashboard is executed, each visual function is executed, builds the visual, and returns it to the dashboard. 
+
 ## Build the Dashboard
 ## Serve the Dashboard 
