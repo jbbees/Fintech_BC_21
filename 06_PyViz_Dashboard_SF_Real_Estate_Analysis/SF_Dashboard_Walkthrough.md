@@ -77,9 +77,7 @@ housing_plot = housing_units.hvplot.bar(
 ).opts(yformatter='%.0f', title='SFO Housing Units Sold 2010-2016', invert_axes=False)
 housing_plot
 ```
-<details><summary>Visual 1 - Hvbar Plot</summary>
-    ![image](images/visual_1.PNG)
-    </details>
+![image](images/visual_1.PNG)
 
 #### Visual 2 - Rent per year 
 
