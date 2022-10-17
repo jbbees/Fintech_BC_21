@@ -219,4 +219,30 @@ The Golden City across these years.
 The core code. This program defines 9 custom functions for each visual. When the dashboard is executed, each visual function is executed, builds the visual, and returns it to the dashboard. 
 
 ## Build the Dashboard
+This dashboard will be 5 tabs. Each tab has a name, and will call a function(s) in the main program to be assembled and returned/displayed in that tab. And we will present the content of each tab in either a `panel.Row` or `panel.Column`
+
+Create the tabs
+```
+tabs = pn.Tabs(
+    ('Welcome', pn.Row(welcome, neighborhood_map())),                                                # this is the first pane the user will see. 
+    ('Yearly Market Analysis', pn.Column(market_note, average_gross_rent(), average_sales_price())),
+    ('Neighborhood Analysis', pn.Column()),
+    ('Parallel Plots Analysis', pn.Column(parallel_coordinates(), parallel_categories())),
+    ('Sunburst', pn.Column(sunburst()))
+)
+```
+Run the dashboard. Pass the tabs into it. 
+```
+sfo_dashboard = pn.Column(
+    pn.Row(title),                      # title on top
+    tabs,                               # pass in our 5 tabs that each have their own visuals.
+    width=900 
+)
+```
+
+
 ## Serve the Dashboard 
+```
+pn.extension('bokeh')                              # enable the bokeh extension
+sfo_dashboard.servable()                           # serve the dashbaord to the bokeh server
+```
