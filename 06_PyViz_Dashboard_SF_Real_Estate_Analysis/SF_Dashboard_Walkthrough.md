@@ -102,7 +102,7 @@ rent_plot = rent.hvplot.bar(
 ).opts(xformatter='%.0f', title='SFO Gross Rent Sold 2010-2016', invert_axes=True)
 rent_plot
 ```
-
+![image](images/visual_2.PNG)
 
 #### Visual 3 - Sale price
 
@@ -122,6 +122,7 @@ neighborhood_plot = sfo_neighborhood_data.hvplot.line(
     )
 neighborhood_plot
 ```
+![image](images/visual_3.PNG)
 
 #### Visual 4 - Top 10 Expensive Neighborhoods (Sales Price)
 
@@ -143,6 +144,7 @@ top_10_plot = top_10.hvplot.bar(
 ).opts(xformatter='%.0f', title='SFO Top 10 Expensive Neighborhoods (Sale Price per Sq Ft)', invert_axes=True)
 top_10_plot
 ```
+![image](images/visual_4.PNG)
 
 #### Visual 5 - Comparison of Rent vs Sales Prices
 
