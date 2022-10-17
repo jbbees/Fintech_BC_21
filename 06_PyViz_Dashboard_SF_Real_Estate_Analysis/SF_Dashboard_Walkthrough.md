@@ -167,6 +167,7 @@ sfo_compare_plot = sfo_neighborhood_data.hvplot.bar(
 )
 sfo_compare_plot
 ```
+![image](images/visual_5.PNG)
 
 #### Visual 6 - Mapbox Plot
 
