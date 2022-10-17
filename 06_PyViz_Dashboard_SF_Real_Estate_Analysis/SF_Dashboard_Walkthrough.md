@@ -216,8 +216,9 @@ The Golden City across these years.
 )
 ```
 ## Main Program
-The core code. This program defines 9 custom functions for each visual. When the dashboard is executed, each visual function is executed, builds the visual, and returns it to the dashboard. 
+The core code. This program defines 9 custom functions for each visual. When the dashboard is executed, each visual function is executed, builds the visual, and returns it to the dashboard. None of these functions takes an argument and are only executed at the .servable() line. 
 
+Function 1 - Housing Units Per Year
 ```
 def housing_units_per_year():                              # for some reason we are not passing anything into these visual functions. 
     """Housing Units Per Year."""
@@ -238,7 +239,9 @@ def housing_units_per_year():                              # for some reason we 
     ).opts(xformatter='%.0f', title='SFO Housing Units Sold 2010-2016', invert_axes=True)
     housing_plot
     return housing_plot
-    
+```
+Function 2 - Rent
+```
 def average_gross_rent():
     """Average Gross Rent in San Francisco Per Year."""
     
@@ -256,7 +259,9 @@ def average_gross_rent():
     alpha=.2                               
     ).opts(xformatter='%.0f', title='SFO Gross Rent Sold 2010-2016', invert_axes=True)
     return rent_plot
-    
+```
+Function 3 - Sales Price
+```
 def average_sales_price():
     """Average Sales Price Per Year."""
     
@@ -266,7 +271,9 @@ def average_sales_price():
         columns=['year', 'sale_price_sqr_foot']
     ).groupby('year')['sale_price_sqr_foot'].mean().reset_index() 
     return sales_price
-    
+```
+Function 4 - Neighborhood Price, this time we're grouping the data by neighborhood and taking the average. 
+```
 def average_price_by_neighborhood():
     """Average Prices by Neighborhood."""
     
@@ -282,7 +289,9 @@ def average_price_by_neighborhood():
         groupby="neighborhood",                                            # this will create an interactive dropdown per neighborhood
     )
     return neighborhood_plot
-
+```
+Function 5 - The top 10 most expensive neighborhoods. We'll group by neighborhood, reverse sort by sales price, and use the **.nlargest()** function to grab the top 10.
+```
 def top_most_expensive_neighborhoods():
     """Top 10 Most Expensive Neighborhoods."""
 
@@ -291,7 +300,9 @@ def top_most_expensive_neighborhoods():
     expensive.sort_values('sale_price_sqr_foot', ascending=False, inplace=True)
     top_10 = expensive.nlargest(10, 'sale_price_sqr_foot')
     return top_10
-    
+```
+Function 6 - Compare rent vs Sales price, per neighborhood, per year
+```
 def most_expensive_neighborhoods_rent_sales():
     """Comparison of Rent and Sales Prices of Most Expensive Neighborhoods."""   
     
@@ -309,7 +320,6 @@ def most_expensive_neighborhoods_rent_sales():
     rot=90
     )
     return sfo_compare_plot
-
 ```
 
 ## Build the Dashboard
