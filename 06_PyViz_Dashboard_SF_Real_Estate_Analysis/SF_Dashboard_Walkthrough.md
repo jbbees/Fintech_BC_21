@@ -173,9 +173,7 @@ sfo_compare_plot
 
 Visual that constructs the map using the Mapbox API. This requires concatenating the 2 data files togehter. We need the latitude and longitude colimns.
 
-<details><summary>Combined Data</summary>
 ![image](images/visual_6_ex1.PNG)
-</details>
 
 ```
 df1 = sfo_data
